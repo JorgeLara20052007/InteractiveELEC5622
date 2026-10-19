@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+.vscode/
+
+# Tree data is the thing you are building: keep data/tree.json tracked.
+# Automatic backups written before each save are not.
+data/backups/

@@ -1,0 +1,8 @@
+# Runtime dependencies (top-level only; pip resolves the rest).
+# Versions are the ones installed and tested on 2026-10-19.
+dash==4.4.1            # web UI framework, pure Python (Flask underneath)
+dash-cytoscape==1.0.2  # interactive graph/tree widget: zoom, pan, click, layouts
+pydantic==2.14.1       # validate the tree JSON schema (also pulled in by dash)
+
+# Dev
+pytest==9.1.1          # unit tests for the tree logic
