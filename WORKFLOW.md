@@ -69,7 +69,7 @@ InteractiveELEC5622/
 
 Each step ends with something you can run or test. Commit after each one.
 
-**Step 1: Data + logic (no UI)**
+**Step 1: Data + logic (no UI)** (DONE: 13 tests pass)
 - Define the pydantic `Node` model and write `tree.py`: `find`, `add_child`, `update`,
   `delete`, `generate_id`, `flatten_to_elements` (nested JSON → cytoscape nodes + edges).
 - Write `storage.py`: load, validate, save atomically (write temp file then rename),
@@ -125,9 +125,8 @@ Each step ends with something you can run or test. Commit after each one.
 
 ## 6. Open questions to decide before coding
 
-- **Top-level shape:** one root `ELEC5622` with a child per week (recommended, one big
-  tree), or a separate tree per week with a dropdown to switch?
-- **Layout:** top-down hierarchy (easy to read, wide) or radial (compact, good for zoom)?
+- **Top-level shape:** DECIDED: one root `ELEC5622` with a child per week.
+- **Layout:** DECIDED: top-down hierarchy.
 - **Content source:** do you want to type definitions yourself, or should Claude draft
   them from your lecture slides (put the PDFs in a `source/` folder)?
 - **Definition format:** plain text, or Markdown with formulas?
