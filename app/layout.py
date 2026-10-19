@@ -57,6 +57,8 @@ def build_layout() -> html.Div:
                             "pointerEvents": "none",  # let drags through the empty toolbar area
                         },
                         children=[
+                            html.Button("↶ Undo", id="btn-undo", disabled=True, style=_tool),
+                            html.Button("↷ Redo", id="btn-redo", disabled=True, style=_tool),
                             html.Button("Fit to screen", id="btn-fit", style=_tool),
                             html.Button("Collapse all", id="btn-collapse-all", style=_tool),
                             html.Button("Expand all", id="btn-expand-all", style=_tool),
@@ -99,10 +101,32 @@ def build_layout() -> html.Div:
                             html.H3(id="form-title", style={"marginTop": 0}),
                             html.Label("Label"),
                             dcc.Input(id="form-label", type="text", style=_field),
-                            html.Label("Definition (Markdown and $math$ supported)"),
-                            dcc.Textarea(id="form-definition", style={**_field, "height": "220px"}),
+                            html.Label("Definition (Markdown, $math$ and images supported)"),
+                            dcc.Textarea(
+                                id="form-definition",
+                                style={**_field, "height": "200px", "fontFamily": "Consolas, monospace"},
+                            ),
+                            dcc.Upload(
+                                id="image-upload",
+                                accept="image/png,image/jpeg,image/gif,image/webp",
+                                children=html.Div(
+                                    "🖼 Add an image: drop a file here or click. "
+                                    "You can also paste a screenshot into the box above."
+                                ),
+                                style={
+                                    "border": "1px dashed #8c959f",
+                                    "borderRadius": "6px",
+                                    "padding": "10px",
+                                    "textAlign": "center",
+                                    "fontSize": "13px",
+                                    "cursor": "pointer",
+                                    "marginBottom": "12px",
+                                },
+                            ),
                             html.Button("Save", id="btn-save", style=_button),
                             html.Button("Cancel", id="btn-cancel", style=_button),
+                            html.Div("Preview", style={"margin": "16px 0 4px", "color": "#57606a", "fontSize": "12px"}),
+                            dcc.Markdown(id="form-preview", mathjax=True, style={"borderTop": "1px solid #d0d7de"}),
                         ],
                     ),
                     html.Div(id="status", style={"marginTop": "12px", "color": "#8a4b00"}),

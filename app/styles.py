@@ -34,6 +34,20 @@ def _week_rules() -> list[dict]:
     return rules
 
 
+def edge_colour(branch: int) -> str:
+    """A softer version of the week's colour, so lines sit behind the nodes."""
+    hue = WEEK_HUES[branch % len(WEEK_HUES)] / 360
+    r, g, b = colorsys.hls_to_rgb(hue, 0.62, 0.4)
+    return f"#{round(r * 255):02x}{round(g * 255):02x}{round(b * 255):02x}"
+
+
+def _edge_rules() -> list[dict]:
+    return [
+        {"selector": f"edge[branch = {branch}]", "style": {"line-color": edge_colour(branch)}}
+        for branch in range(len(WEEK_HUES))
+    ]
+
+
 STYLESHEET = [
     {
         "selector": "node",
@@ -55,14 +69,24 @@ STYLESHEET = [
     {"selector": "node[depth = 0]", "style": {"background-color": ROOT_COLOUR}},
     *_week_rules(),
     {
+        # Right-angle connectors: down from the parent, across at the halfway height, down into
+        # the child, so siblings share one "bus" line instead of criss-crossing.
         "selector": "edge",
         "style": {
             "curve-style": "taxi",
-            "taxi-direction": "vertical",
-            "line-color": "#9aa5b1",
-            "width": 2,
+            "taxi-direction": "downward",
+            "taxi-turn": "32px",  # fixed distance, so every sibling's horizontal line is at one height
+            "taxi-turn-min-distance": 10,
+            "source-endpoint": "outside-to-node",
+            "target-endpoint": "outside-to-node",
+            "line-color": "#aab4bf",
+            "line-cap": "round",
+            "width": 2.5,
+            "opacity": 0.9,
+            "z-index": 0,
         },
     },
+    *_edge_rules(),
     {
         # a collapsed node: double border, as a "there is more under here" hint
         "selector": "node[?collapsed]",

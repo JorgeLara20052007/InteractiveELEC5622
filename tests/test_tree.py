@@ -87,6 +87,15 @@ def test_to_elements_branch_is_the_week_index(root):
     assert branches == {"root": -1, "w1": 0, "w1-a": 0, "w2": 1}
 
 
+def test_to_elements_edges_take_their_childs_branch(root):
+    edges = {
+        (e["data"]["source"], e["data"]["target"]): e["data"]["branch"]
+        for e in tree.to_elements(root)
+        if "source" in e["data"]
+    }
+    assert edges == {("root", "w1"): 0, ("w1", "w1-a"): 0, ("root", "w2"): 1}
+
+
 def test_to_elements_collapsed_hides_children_and_counts_them(root):
     tree.add_child(root, "w1-a", "B")
     elements = tree.to_elements(root, collapsed={"w1"})

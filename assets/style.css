@@ -1,0 +1,26 @@
+/* Pictures inside definitions fit the side panel; click one to open it full size. */
+#definition img,
+#form-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 8px 0;
+}
+#definition img {
+  cursor: zoom-in;
+}
+#definition table,
+#form-preview table {
+  border-collapse: collapse;
+}
+#definition th,
+#definition td,
+#form-preview th,
+#form-preview td {
+  border: 1px solid #d0d7de;
+  padding: 4px 8px;
+}
+button:disabled {
+  cursor: not-allowed !important;
+}

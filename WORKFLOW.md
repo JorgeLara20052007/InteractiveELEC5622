@@ -58,15 +58,22 @@ InteractiveELEC5622/
 │   ├── layout.py      # page layout: graph on the left, detail panel on the right
 │   ├── callbacks.py   # click, add, edit, delete handlers
 │   ├── tree.py        # pure tree logic: find/add/edit/delete node, ids, to-cytoscape
-│   ├── storage.py     # SQLite: init/seed, load, add/update/delete node, export
+│   ├── storage.py     # SQLite: init/seed, load, add/update/delete node, undo/redo, export
+│   ├── images.py      # save/serve/upload pictures for definitions
 │   ├── export_json.py # `python -m app.export_json`: database -> data/seed.json
-│   └── styles.py      # cytoscape stylesheet (colours per depth, sizes)
+│   └── styles.py      # cytoscape stylesheet (colour per week, edges, '+' node)
+├── assets/
+│   ├── app.js         # Ctrl+Z / Ctrl+Y, paste an image, click image to enlarge
+│   └── style.css      # image and table styling inside definitions
 ├── data/
 │   ├── seed.json      # snapshot of the course content (committed)
-│   └── tree.db        # live SQLite database (not committed, created on first run)
+│   ├── images/        # pictures used in definitions (committed)
+│   └── tree.db        # live SQLite database + undo history (not committed)
 ├── tests/
 │   ├── test_tree.py
-│   └── test_storage.py
+│   ├── test_storage.py
+│   ├── test_images.py
+│   └── test_styles.py
 ├── requirements.txt
 ├── WORKFLOW.md
 └── README.md
@@ -122,10 +129,12 @@ Each step ends with something you can run or test. Commit after each one.
   lighter for deeper levels. Fit-to-screen button.
 - Still open: layout selector. Add Week 2, 3, … as you go through the course.
 
-**Step 8: Polish (optional)**
-- Image attachments per node (e.g. the body planes figure), export to PNG/HTML,
-  import from an outline text file, reordering siblings, moving a node to a new parent.
-  (Markdown and `$math$` in definitions are done.)
+**Step 8: Polish (partly done)**
+- DONE: Markdown and `$math$` in definitions; images in definitions (paste or upload, live
+  preview); undo/redo with Ctrl+Z / Ctrl+Y (history stored in the database); connector
+  lines coloured per week, with every sibling's horizontal line at the same height.
+- Still open: export to PNG/HTML, import from an outline text file, reordering siblings,
+  moving a node to a new parent (drag a node onto another), clean up unused images.
 
 ## 5. Day-to-day content workflow (once the app works)
 

@@ -1,0 +1,62 @@
+// Browser-side helpers that Dash callbacks cannot do: keyboard shortcuts, pasting images,
+// and opening a picture full size. Dash loads every file in assets/ automatically.
+(function () {
+  // Ctrl+Z undoes and Ctrl+Y (or Ctrl+Shift+Z) redoes a tree change by clicking the toolbar
+  // buttons. Inside a text field Ctrl+Z keeps its normal meaning (undo typing).
+  document.addEventListener('keydown', function (e) {
+    if (!(e.ctrlKey || e.metaKey) || e.altKey) return;
+    const target = e.target;
+    if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return;
+    const key = e.key.toLowerCase();
+    let buttonId = null;
+    if (key === 'z' && !e.shiftKey) buttonId = 'btn-undo';
+    else if (key === 'y' || (key === 'z' && e.shiftKey)) buttonId = 'btn-redo';
+    if (!buttonId) return;
+    e.preventDefault();
+    const button = document.getElementById(buttonId);
+    if (button && !button.disabled) button.click();
+  });
+
+  // Pasting a screenshot or copied picture into the definition box uploads it and inserts
+  // the Markdown for it at the cursor.
+  document.addEventListener('paste', async function (e) {
+    const area = e.target;
+    if (!area || area.id !== 'form-definition') return;
+    const items = Array.from((e.clipboardData && e.clipboardData.items) || []);
+    const item = items.find((i) => i.kind === 'file' && i.type.startsWith('image/'));
+    if (!item) return;
+    e.preventDefault();
+    const blob = item.getAsFile();
+    try {
+      const reply = await fetch('/upload-image', {
+        method: 'POST',
+        body: blob,
+        headers: { 'Content-Type': blob.type },
+      });
+      const result = await reply.json();
+      if (!reply.ok) throw new Error(result.error || 'upload failed');
+      insertAtCursor(area, '![pasted image](' + result.url + ')');
+    } catch (err) {
+      alert('Could not add the image: ' + err.message);
+    }
+  });
+
+  function insertAtCursor(area, text) {
+    const before = area.value.slice(0, area.selectionStart);
+    const after = area.value.slice(area.selectionEnd);
+    const spacer = before && !before.endsWith('\n\n') ? (before.endsWith('\n') ? '\n' : '\n\n') : '';
+    const inserted = spacer + text + '\n';
+    // Set the value the way a user edit would, so React (Dash) notices the change.
+    const setValue = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+    setValue.call(area, before + inserted + after);
+    area.dispatchEvent(new Event('input', { bubbles: true }));
+    const cursor = (before + inserted).length;
+    area.setSelectionRange(cursor, cursor);
+  }
+
+  // Click a picture in a definition to open it full size in a new tab.
+  document.addEventListener('click', function (e) {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && img.closest('#definition')) window.open(img.src, '_blank');
+  });
+})();

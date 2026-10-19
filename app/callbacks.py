@@ -1,11 +1,13 @@
 """Dash callbacks. Two main ones: `handle_event` changes state, `render` draws it."""
 
+import re
 import time
+from pathlib import Path
 
 from dash import Input, Output, State, ctx, no_update
 from dash.exceptions import PreventUpdate
 
-from . import storage, tree
+from . import images, storage, tree
 
 ADD_ID = "__add__"  # id of the '+' ghost node shown next to the selected node
 SHOW = {"display": "block"}
@@ -68,6 +70,8 @@ def register(app) -> None:
         Input("btn-collapse-all", "n_clicks"),
         Input("btn-expand-all", "n_clicks"),
         Input("search", "value"),
+        Input("btn-undo", "n_clicks"),
+        Input("btn-redo", "n_clicks"),
         State("selected", "data"),
         State("mode", "data"),
         State("version", "data"),
@@ -78,7 +82,7 @@ def register(app) -> None:
     )
     def handle_event(
         tap, _add, _edit, _cancel, _save, _confirm, _toggle, _collapse_all, _expand_all, search,
-        selected, mode, version, collapsed, label, definition,
+        _undo, _redo, selected, mode, version, collapsed, label, definition,
     ):
         trigger, status = ctx.triggered_id, ""
         collapsed, focus, search_value = set(collapsed or []), no_update, no_update
@@ -132,6 +136,18 @@ def register(app) -> None:
             selected = _visible_ancestor(root, selected, collapsed)
         elif trigger == "btn-expand-all":
             collapsed = set()
+        elif trigger in ("btn-undo", "btn-redo"):
+            before = storage.load()
+            old_path = [n.id for n in tree.find_path(before, selected) or [before]]
+            undoing = trigger == "btn-undo"
+            done = storage.undo() if undoing else storage.redo()
+            if done is None:
+                raise PreventUpdate
+            after = storage.load()
+            # the selected node may no longer exist (undoing its creation): fall back to its closest parent
+            selected = next(i for i in reversed(old_path) if tree.find(after, i) is not None)
+            mode, version = "view", version + 1
+            status = f"{'Undid' if undoing else 'Redid'}: {done}"
         elif trigger == "search":
             root = storage.load()
             path = tree.find_path(root, search) if search else None
@@ -192,6 +208,31 @@ def register(app) -> None:
         Input("cy", "elements"),
     )
 
+    @app.callback(
+        Output("form-definition", "value", allow_duplicate=True),
+        Output("image-upload", "contents"),  # cleared so the same file can be picked again
+        Output("status", "children", allow_duplicate=True),
+        Input("image-upload", "contents"),
+        State("image-upload", "filename"),
+        State("form-definition", "value"),
+        prevent_initial_call=True,
+    )
+    def add_image(contents, filename, definition):
+        """Save the chosen picture and append its Markdown to the definition being edited."""
+        if not contents:
+            raise PreventUpdate
+        try:
+            name = images.save_image(images.decode_data_url(contents))
+        except ValueError as err:
+            return no_update, None, f"Could not add the image: {err}"
+        caption = re.sub(r"[_\-]+", " ", Path(filename or "").stem).strip()
+        updated = images.append_markdown(definition or "", images.markdown_for(name, caption))
+        return updated, None, "Image added. Press Save to keep it."
+
+    @app.callback(Output("form-preview", "children"), Input("form-definition", "value"))
+    def preview(definition):
+        return definition or "*Nothing to preview yet.*"
+
     @app.callback(Output("confirm-delete", "displayed"), Input("btn-delete", "n_clicks"), prevent_initial_call=True)
     def ask_to_delete(_clicks):
         return True
@@ -213,6 +254,10 @@ def register(app) -> None:
         Output("form-label", "value"),
         Output("form-definition", "value"),
         Output("search", "options"),
+        Output("btn-undo", "disabled"),
+        Output("btn-undo", "title"),
+        Output("btn-redo", "disabled"),
+        Output("btn-redo", "title"),
         Input("selected", "data"),
         Input("mode", "data"),
         Input("version", "data"),
@@ -225,6 +270,7 @@ def register(app) -> None:
         node = path[-1]
         n_children = len(node.children)
         n_desc = tree.count_descendants(node)
+        undo_desc, redo_desc = storage.history_state()
 
         # fit is False so zoom/pan survive clicks; the camera is fitted by the clientside
         # callback above, on first load and on the Fit button.
@@ -265,4 +311,8 @@ def register(app) -> None:
             label,
             definition,
             _search_options(root),
+            undo_desc is None,
+            f"Undo: {undo_desc} (Ctrl+Z)" if undo_desc else "Nothing to undo",
+            redo_desc is None,
+            f"Redo: {redo_desc} (Ctrl+Y)" if redo_desc else "Nothing to redo",
         )

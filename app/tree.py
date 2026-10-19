@@ -147,10 +147,18 @@ def to_elements(root: Node, collapsed: Collection[str] = ()) -> list[dict]:
         if hide_children:
             return
         for i, child in enumerate(node.children):
+            child_branch = i if depth == 0 else branch
             elements.append(
-                {"data": {"source": node.id, "target": child.id, "id": f"{node.id}->{child.id}"}}
+                {
+                    "data": {
+                        "source": node.id,
+                        "target": child.id,
+                        "id": f"{node.id}->{child.id}",
+                        "branch": child_branch,  # an edge takes its week's colour
+                    }
+                }
             )
-            visit(child, depth + 1, i if depth == 0 else branch)
+            visit(child, depth + 1, child_branch)
 
     visit(root, 0, -1)
     return elements
