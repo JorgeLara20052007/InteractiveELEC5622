@@ -36,21 +36,31 @@ box jumps to any node, and each week has its own colour.
   Markdown (`![caption](/images/...)`) and shown in a live preview. Click a picture in a
   definition to open it full size. Pictures are stored in `data/images/`.
 
+## Several trees (one per course)
+
+The dropdown at the top left switches between trees, and **+ New tree** starts a completely
+separate one (type a name, press Create). Every tree has its own database and its own JSON
+file in `data/trees/`:
+
+```
+data/trees/elec5622.db     live database + undo history (not committed)
+data/trees/elec5622.json   snapshot of the tree (committed)
+```
+
+Creating a tree writes its `.json` straight away (just the root node). The app remembers
+which tree you were looking at. Undo history is kept per tree. Pictures in `data/images/`
+are shared by all trees.
+
 ## Data
 
-Changes are saved straight into the SQLite database `data/tree.db` (created on first run
-from `data/seed.json`, not committed). To save a versioned copy:
+Changes are saved straight into the tree's SQLite database. The JSON snapshots are only
+updated when you export, so to save a versioned copy of every tree:
 
 ```powershell
 python -m app.export_json
-git add data/seed.json data/images
-git commit -m "Update course tree"
+git add data/trees data/images
+git commit -m "Update course trees"
 ```
 
-`data/images/` is committed too, because definitions in `seed.json` refer to those files.
-
-## Test
-
-```powershell
-python -m pytest
-```
+`data/images/` is committed too, because definitions refer to those files. On a fresh
+clone the databases are rebuilt from the JSON files the first time the app starts.

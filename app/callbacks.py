@@ -7,7 +7,7 @@ from pathlib import Path
 from dash import Input, Output, State, ctx, no_update
 from dash.exceptions import PreventUpdate
 
-from . import images, storage, tree
+from . import images, storage, tree, trees
 
 ADD_ID = "__add__"  # id of the '+' ghost node shown next to the selected node
 SHOW = {"display": "block"}
@@ -60,6 +60,7 @@ def register(app) -> None:
         Output("collapsed", "data"),
         Output("focus", "data"),
         Output("search", "value"),
+        Output("active-tree", "data"),
         Input("cy", "tapNode"),
         Input("btn-add", "n_clicks"),
         Input("btn-edit", "n_clicks"),
@@ -72,6 +73,12 @@ def register(app) -> None:
         Input("search", "value"),
         Input("btn-undo", "n_clicks"),
         Input("btn-redo", "n_clicks"),
+        Input("tree-select", "value"),
+        Input("btn-new-tree", "n_clicks"),
+        Input("btn-create-tree", "n_clicks"),
+        Input("btn-cancel-tree", "n_clicks"),
+        State("active-tree", "data"),
+        State("new-tree-name", "value"),
         State("selected", "data"),
         State("mode", "data"),
         State("version", "data"),
@@ -82,13 +89,26 @@ def register(app) -> None:
     )
     def handle_event(
         tap, _add, _edit, _cancel, _save, _confirm, _toggle, _collapse_all, _expand_all, search,
-        _undo, _redo, selected, mode, version, collapsed, label, definition,
+        _undo, _redo, chosen_tree, _new_tree, _create_tree, _cancel_tree,
+        active, new_tree_name, selected, mode, version, collapsed, label, definition,
     ):
         trigger, status = ctx.triggered_id, ""
-        collapsed, focus, search_value = set(collapsed or []), no_update, no_update
+        collapsed, focus, search_value, active_out = set(collapsed or []), no_update, no_update, no_update
+        db = trees.db_path(trees.resolve(active))
+        if tree.find(storage.load(db), selected) is None:  # e.g. first load, or the other tree's node
+            selected = storage.load(db).id
 
         def result():
-            return selected, mode, version, status, sorted(collapsed), focus, search_value
+            return selected, mode, version, status, sorted(collapsed), focus, search_value, active_out
+
+        def switch_to(slug: str) -> None:
+            """Make `slug` the active tree, with a clean view state."""
+            nonlocal selected, mode, version, collapsed, focus, search_value, active_out, db
+            db = trees.db_path(slug)
+            storage.init(db, trees.seed_path(slug))
+            active_out, selected, mode, collapsed = slug, storage.load(db).id, "view", set()
+            version += 1
+            search_value = None
 
         if trigger == "cy":
             node_id = tap["data"]["id"]
@@ -110,18 +130,18 @@ def register(app) -> None:
             try:
                 if mode == "add":
                     collapsed.discard(selected)  # show the parent's children, including the new one
-                    selected = storage.add_node(selected, label, definition).id
+                    selected = storage.add_node(selected, label, definition, db).id
                 else:
-                    storage.update_node(selected, label, definition)
+                    storage.update_node(selected, label, definition, db)
             except (KeyError, ValueError) as err:
                 status = f"Could not save: {err}"
                 return result()
             mode, version = "view", version + 1
         elif trigger == "confirm-delete":
-            root = storage.load()
+            root = storage.load(db)
             path = tree.find_path(root, selected)
             try:
-                removed = storage.delete_node(selected)
+                removed = storage.delete_node(selected, db)
             except (KeyError, ValueError) as err:
                 status = f"Could not delete: {err}"
                 return result()
@@ -131,25 +151,25 @@ def register(app) -> None:
         elif trigger == "btn-toggle":
             collapsed ^= {selected}
         elif trigger == "btn-collapse-all":
-            root = storage.load()
+            root = storage.load(db)
             collapsed = {n.id for n in tree.walk(root) if n.children and n is not root}
             selected = _visible_ancestor(root, selected, collapsed)
         elif trigger == "btn-expand-all":
             collapsed = set()
         elif trigger in ("btn-undo", "btn-redo"):
-            before = storage.load()
+            before = storage.load(db)
             old_path = [n.id for n in tree.find_path(before, selected) or [before]]
             undoing = trigger == "btn-undo"
-            done = storage.undo() if undoing else storage.redo()
+            done = storage.undo(db) if undoing else storage.redo(db)
             if done is None:
                 raise PreventUpdate
-            after = storage.load()
+            after = storage.load(db)
             # the selected node may no longer exist (undoing its creation): fall back to its closest parent
             selected = next(i for i in reversed(old_path) if tree.find(after, i) is not None)
             mode, version = "view", version + 1
             status = f"{'Undid' if undoing else 'Redid'}: {done}"
         elif trigger == "search":
-            root = storage.load()
+            root = storage.load(db)
             path = tree.find_path(root, search) if search else None
             if path is None:
                 raise PreventUpdate
@@ -157,14 +177,31 @@ def register(app) -> None:
             selected, mode = search, "view"
             focus = {"id": search, "n": time.time()}
             search_value = None  # clear the box so the same result can be picked again
+        elif trigger == "tree-select":
+            if not chosen_tree or chosen_tree == trees.resolve(active):
+                raise PreventUpdate  # also fires when render() sets the dropdown to the active tree
+            switch_to(trees.resolve(chosen_tree))
+        elif trigger == "btn-new-tree":
+            mode = "new-tree"
+        elif trigger == "btn-cancel-tree":
+            mode = "view"
+        elif trigger == "btn-create-tree":
+            try:
+                slug = trees.create_tree(new_tree_name or "")
+            except ValueError as err:
+                status = f"Could not create the tree: {err}"
+                return result()
+            switch_to(slug)
+            status = f"Created a new tree in data/trees/{slug}.json"
         return result()
 
     # dash-cytoscape resets zoom/pan to its own props after a layout, so move the camera
     # directly on the Cytoscape instance: fit once when the first elements arrive, then on the button.
     app.clientside_callback(
         """
-        function(clicks, elements) {
+        function(clicks, elements, activeTree) {
             const trigger = dash_clientside.callback_context.triggered_id;
+            if (trigger === 'active-tree') window.__treeFitted = false;  // fit again once the new tree arrives
             const first = trigger === 'cy' && !window.__treeFitted && elements && elements.length;
             if (trigger === 'btn-fit' || first) {
                 window.__treeFitted = true;
@@ -179,6 +216,7 @@ def register(app) -> None:
         Output("fit-dummy", "data"),
         Input("btn-fit", "n_clicks"),
         Input("cy", "elements"),
+        Input("active-tree", "data"),
     )
 
     # Zoom to the node picked in the search box. The node may only exist (and be laid out)
@@ -258,19 +296,26 @@ def register(app) -> None:
         Output("btn-undo", "title"),
         Output("btn-redo", "disabled"),
         Output("btn-redo", "title"),
+        Output("new-tree", "style"),
+        Output("new-tree-name", "value"),
+        Output("tree-select", "options"),
+        Output("tree-select", "value"),
         Input("selected", "data"),
         Input("mode", "data"),
         Input("version", "data"),
         Input("collapsed", "data"),
+        Input("active-tree", "data"),
     )
-    def render(selected, mode, _version, collapsed):
+    def render(selected, mode, _version, collapsed, active):
         collapsed = set(collapsed or [])
-        root = storage.load()
+        slug = trees.resolve(active)
+        db = trees.db_path(slug)
+        root = storage.load(db)
         path = tree.find_path(root, selected) or [root]
         node = path[-1]
         n_children = len(node.children)
         n_desc = tree.count_descendants(node)
-        undo_desc, redo_desc = storage.history_state()
+        undo_desc, redo_desc = storage.history_state(db)
 
         # fit is False so zoom/pan survive clicks; the camera is fitted by the clientside
         # callback above, on first load and on the Fit button.
@@ -285,6 +330,7 @@ def register(app) -> None:
         }
 
         editing = mode in ("add", "edit")
+        creating = mode == "new-tree"
         if mode == "add":
             form_title, label, definition = f"Add child to “{node.label}”", "", ""
         elif mode == "edit":
@@ -305,7 +351,7 @@ def register(app) -> None:
             f"Delete “{node.label}”"
             + (f" and its {n_desc} descendant(s)" if n_desc else "")
             + "? This cannot be undone.",
-            HIDE if editing else SHOW,
+            HIDE if editing or creating else SHOW,
             SHOW if editing else HIDE,
             form_title,
             label,
@@ -315,4 +361,8 @@ def register(app) -> None:
             f"Undo: {undo_desc} (Ctrl+Z)" if undo_desc else "Nothing to undo",
             redo_desc is None,
             f"Redo: {redo_desc} (Ctrl+Y)" if redo_desc else "Nothing to redo",
+            SHOW if creating else HIDE,
+            "",
+            trees.options(),
+            slug,
         )

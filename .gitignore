@@ -5,7 +5,8 @@ __pycache__/
 .idea/
 .vscode/
 
-# data/tree.db is the live SQLite database. data/seed.json is the tracked snapshot:
-# refresh it with `python -m app.export_json` before committing.
+# data/trees/<name>.db is a tree's live SQLite database. data/trees/<name>.json is the
+# tracked snapshot: refresh them with `python -m app.export_json` before committing.
+data/trees/*.db
+data/trees/*.db-journal
 data/*.db
-data/*.db-journal

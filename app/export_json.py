@@ -1,7 +1,7 @@
-"""Write the current database to data/seed.json so it can be committed to git."""
+"""Write every tree's database to its JSON snapshot in data/trees/ so it can be committed."""
 
-from . import storage
+from . import trees
 
 if __name__ == "__main__":
-    storage.export_json()
-    print(f"Wrote {storage.SEED_FILE}")
+    for slug in trees.export_all():
+        print(f"Wrote {trees.seed_path(slug)}")

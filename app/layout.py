@@ -3,6 +3,7 @@
 import dash_cytoscape as cyto
 from dash import dcc, html
 
+from . import trees
 from .styles import STYLESHEET
 
 PANEL_WIDTH = "clamp(300px, 35vw, 440px)"
@@ -26,7 +27,8 @@ def build_layout() -> html.Div:
             dcc.Store(id="focus-dummy"),
             dcc.Store(id="collapsed", data=[]),  # ids of nodes whose children are hidden
             dcc.Store(id="focus"),  # {"id": ..., "n": ...}: "zoom to this node" request
-            dcc.Store(id="selected", data="elec5622"),
+            dcc.Store(id="active-tree", storage_type="local"),  # slug of the tree being shown, remembered
+            dcc.Store(id="selected", data=None),  # None = the root of the active tree
             dcc.Store(id="mode", data="view"),  # "view" | "add" | "edit"
             dcc.Store(id="version", data=0),  # bumped after every database write
             dcc.ConfirmDialog(id="confirm-delete"),
@@ -57,6 +59,13 @@ def build_layout() -> html.Div:
                             "pointerEvents": "none",  # let drags through the empty toolbar area
                         },
                         children=[
+                            dcc.Dropdown(
+                                id="tree-select",
+                                options=trees.options(),
+                                clearable=False,
+                                style={"width": "200px", "pointerEvents": "auto", "color": "#1f2328"},
+                            ),
+                            html.Button("+ New tree", id="btn-new-tree", style=_tool),
                             html.Button("↶ Undo", id="btn-undo", disabled=True, style=_tool),
                             html.Button("↷ Redo", id="btn-redo", disabled=True, style=_tool),
                             html.Button("Fit to screen", id="btn-fit", style=_tool),
@@ -127,6 +136,27 @@ def build_layout() -> html.Div:
                             html.Button("Cancel", id="btn-cancel", style=_button),
                             html.Div("Preview", style={"margin": "16px 0 4px", "color": "#57606a", "fontSize": "12px"}),
                             dcc.Markdown(id="form-preview", mathjax=True, style={"borderTop": "1px solid #d0d7de"}),
+                        ],
+                    ),
+                    html.Div(
+                        id="new-tree",
+                        style={"display": "none"},
+                        children=[
+                            html.H3("New tree", style={"marginTop": 0}),
+                            html.P(
+                                "Start a completely separate tree, for another course or any other "
+                                "subject. It gets its own database and its own JSON file in data/trees/.",
+                                style={"color": "#57606a", "fontSize": "13px"},
+                            ),
+                            html.Label("Name (becomes the root node)"),
+                            dcc.Input(
+                                id="new-tree-name",
+                                type="text",
+                                placeholder="e.g. ELEC5xxx Signal Processing",
+                                style=_field,
+                            ),
+                            html.Button("Create", id="btn-create-tree", style=_button),
+                            html.Button("Cancel", id="btn-cancel-tree", style=_button),
                         ],
                     ),
                     html.Div(id="status", style={"marginTop": "12px", "color": "#8a4b00"}),

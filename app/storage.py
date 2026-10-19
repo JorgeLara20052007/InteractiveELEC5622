@@ -1,8 +1,8 @@
 """SQLite persistence for the course tree.
 
-The database (data/tree.db) is the live store the UI reads and writes. A JSON snapshot
-(data/seed.json) is the git-friendly copy: it seeds an empty database, and
-`python -m app.export_json` writes the current database back to it.
+Each tree is a SQLite database (data/trees/<name>.db) that the UI reads and writes, with a
+JSON snapshot next to it (data/trees/<name>.json): the git-friendly copy that seeds an empty
+database, and that `python -m app.export_json` writes the current database back to.
 
 Undo/redo: after every change the whole tree is saved as a snapshot row in `history`,
 and `meta.cursor` points at the snapshot that matches the live tree. Undo/redo just move
@@ -19,8 +19,9 @@ from . import tree
 from .tree import Node
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-DB_FILE = DATA_DIR / "tree.db"
-SEED_FILE = DATA_DIR / "seed.json"
+TREES_DIR = DATA_DIR / "trees"  # one <name>.db and one <name>.json per tree (see trees.py)
+DB_FILE = TREES_DIR / "elec5622.db"  # defaults used when no tree is given: the original course
+SEED_FILE = TREES_DIR / "elec5622.json"
 MAX_HISTORY = 200  # snapshots kept; the oldest are dropped first
 
 _SCHEMA = """
