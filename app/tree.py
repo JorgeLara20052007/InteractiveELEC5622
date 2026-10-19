@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Iterator
+from collections.abc import Collection, Iterator
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -120,17 +120,37 @@ def delete(root: Node, node_id: str) -> int:
     return 1 + count_descendants(target)
 
 
-def to_elements(root: Node) -> list[dict]:
-    """Flatten to Cytoscape elements: one node entry and one edge per parent-child link."""
+def iter_paths(root: Node) -> Iterator[list[Node]]:
+    """Yield the path from the root to every node, parents before children."""
+    yield [root]
+    for child in root.children:
+        for sub in iter_paths(child):
+            yield [root, *sub]
+
+
+def to_elements(root: Node, collapsed: Collection[str] = ()) -> list[dict]:
+    """Flatten to Cytoscape elements: one node entry and one edge per parent-child link.
+
+    Each node carries its `depth` and `branch` (index of the root child it sits under,
+    -1 for the root itself) so the stylesheet can colour per week. Children of a node
+    whose id is in `collapsed` are left out, and the node shows how many it hides.
+    """
     elements: list[dict] = []
 
-    def visit(node: Node, depth: int) -> None:
-        elements.append({"data": {"id": node.id, "label": node.label, "depth": depth}})
-        for child in node.children:
+    def visit(node: Node, depth: int, branch: int) -> None:
+        data = {"id": node.id, "label": node.label, "depth": depth, "branch": branch}
+        hide_children = node.id in collapsed and bool(node.children)
+        if hide_children:
+            data["label"] = f"{node.label}  ▸ {count_descendants(node)}"
+            data["collapsed"] = True
+        elements.append({"data": data})
+        if hide_children:
+            return
+        for i, child in enumerate(node.children):
             elements.append(
                 {"data": {"source": node.id, "target": child.id, "id": f"{node.id}->{child.id}"}}
             )
-            visit(child, depth + 1)
+            visit(child, depth + 1, i if depth == 0 else branch)
 
-    visit(root, 0)
+    visit(root, 0, -1)
     return elements

@@ -23,7 +23,9 @@ python -m app.main
 ```
 Then open http://127.0.0.1:8050. Scroll to zoom, drag to pan, click a node to read its
 definition. Select a node and click the yellow `+` next to it (or "+ Add child") to add
-a child; use Edit and Delete in the side panel.
+a child; use Edit and Delete in the side panel. "Collapse" / "Expand" hide or show the
+selected node's subtree (also "Collapse all" / "Expand all" above the graph), the search
+box jumps to any node, and each week has its own colour.
 
 ## Data
 

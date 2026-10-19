@@ -3,8 +3,8 @@
 Goal: a big zoomable tree of the course. Click a node to see its definition. Add new
 children (with explanations) from the UI, saved in a database.
 
-**Status:** Steps 1 to 6 are built and working (Week 1 content, viewer, definitions,
-`+` to add children, edit, delete). Steps 7 and 8 are still to do.
+**Status:** Steps 1 to 7 are built and working (Week 1 content, viewer, definitions,
+`+` to add children, edit, delete, collapse, search, colour per week). Step 8 is optional.
 
 ## 1. Stack (and why)
 
@@ -112,10 +112,15 @@ Each step ends with something you can run or test. Commit after each one.
 - Edit button in the panel to change label/definition. Delete with a confirm dialog
   (warn how many descendants go with it). Root cannot be deleted.
 
-**Step 7: Usability for a big tree**
-- Collapse/expand a subtree (double-click). Search box that zooms to a matching node.
-- Colour per week. Layout selector. (Fit-to-screen button and colour per depth are done.)
-- Add Week 2, 3, … as you go through the course.
+**Step 7: Usability for a big tree** (DONE)
+- Collapse/expand a subtree with the Collapse/Expand button in the panel (a collapsed
+  node shows `▸ N` for the N hidden nodes), plus Collapse all / Expand all above the graph.
+  (Not double-click: dash-cytoscape has no double-click event.)
+- Search box above the graph: pick a node and its ancestors expand, it is selected and the
+  camera zooms to it.
+- Colour per week: each child of the root gets its own hue (8 hues, then they repeat),
+  lighter for deeper levels. Fit-to-screen button.
+- Still open: layout selector. Add Week 2, 3, … as you go through the course.
 
 **Step 8: Polish (optional)**
 - Image attachments per node (e.g. the body planes figure), export to PNG/HTML,

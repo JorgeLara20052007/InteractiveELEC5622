@@ -80,3 +80,28 @@ def test_to_elements(root):
     edges = [(e["data"]["source"], e["data"]["target"]) for e in elements if "source" in e["data"]]
     assert [(n["id"], n["depth"]) for n in nodes] == [("root", 0), ("w1", 1), ("w1-a", 2), ("w2", 1)]
     assert edges == [("root", "w1"), ("w1", "w1-a"), ("root", "w2")]
+
+
+def test_to_elements_branch_is_the_week_index(root):
+    branches = {e["data"]["id"]: e["data"]["branch"] for e in tree.to_elements(root) if "source" not in e["data"]}
+    assert branches == {"root": -1, "w1": 0, "w1-a": 0, "w2": 1}
+
+
+def test_to_elements_collapsed_hides_children_and_counts_them(root):
+    tree.add_child(root, "w1-a", "B")
+    elements = tree.to_elements(root, collapsed={"w1"})
+    nodes = {e["data"]["id"]: e["data"] for e in elements if "source" not in e["data"]}
+    assert set(nodes) == {"root", "w1", "w2"}
+    assert nodes["w1"]["collapsed"] is True
+    assert nodes["w1"]["label"].endswith("▸ 2")
+    assert "collapsed" not in nodes["w2"]  # a leaf is never shown as collapsed
+    assert "collapsed" not in tree.to_elements(root, collapsed={"w2"})[-1]["data"]
+
+
+def test_iter_paths(root):
+    assert [[n.id for n in p] for p in tree.iter_paths(root)] == [
+        ["root"],
+        ["root", "w1"],
+        ["root", "w1", "w1-a"],
+        ["root", "w2"],
+    ]

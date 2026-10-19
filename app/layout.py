@@ -8,6 +8,7 @@ from .styles import STYLESHEET
 PANEL_WIDTH = "clamp(300px, 35vw, 440px)"
 
 _button = {"marginRight": "8px", "padding": "6px 12px", "cursor": "pointer"}
+_tool = {**_button, "marginRight": 0, "pointerEvents": "auto"}
 _field = {"width": "100%", "boxSizing": "border-box", "marginBottom": "10px", "fontSize": "14px"}
 
 
@@ -22,6 +23,9 @@ def build_layout() -> html.Div:
         },
         children=[
             dcc.Store(id="fit-dummy"),
+            dcc.Store(id="focus-dummy"),
+            dcc.Store(id="collapsed", data=[]),  # ids of nodes whose children are hidden
+            dcc.Store(id="focus"),  # {"id": ..., "n": ...}: "zoom to this node" request
             dcc.Store(id="selected", data="elec5622"),
             dcc.Store(id="mode", data="view"),  # "view" | "add" | "edit"
             dcc.Store(id="version", data=0),  # bumped after every database write
@@ -39,10 +43,30 @@ def build_layout() -> html.Div:
                         wheelSensitivity=0.3,
                         style={"width": "100%", "height": "100%"},
                     ),
-                    html.Button(
-                        "Fit to screen",
-                        id="btn-fit",
-                        style={"position": "absolute", "top": "12px", "left": "12px", **_button},
+                    html.Div(
+                        style={
+                            "position": "absolute",
+                            "top": "12px",
+                            "left": "12px",
+                            "right": "12px",
+                            "zIndex": 5,
+                            "display": "flex",
+                            "alignItems": "center",
+                            "gap": "8px",
+                            "flexWrap": "wrap",
+                            "pointerEvents": "none",  # let drags through the empty toolbar area
+                        },
+                        children=[
+                            html.Button("Fit to screen", id="btn-fit", style=_tool),
+                            html.Button("Collapse all", id="btn-collapse-all", style=_tool),
+                            html.Button("Expand all", id="btn-expand-all", style=_tool),
+                            dcc.Dropdown(
+                                id="search",
+                                options=[],
+                                placeholder="Search nodes…",
+                                style={"width": "280px", "pointerEvents": "auto", "color": "#1f2328"},
+                            ),
+                        ],
                     ),
                 ],
             ),
@@ -64,6 +88,7 @@ def build_layout() -> html.Div:
                             dcc.Markdown(id="definition", mathjax=True),
                             html.Div(id="children-info", style={"color": "#57606a", "margin": "12px 0"}),
                             html.Button("+ Add child", id="btn-add", style=_button),
+                            html.Button("Collapse", id="btn-toggle", style=_button),
                             html.Button("Edit", id="btn-edit", style=_button),
                             html.Button("Delete", id="btn-delete", style=_button),
                         ],
