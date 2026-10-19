@@ -16,12 +16,25 @@ python -m pip install -r requirements.txt
 this machine because plain pip failed with `CERTIFICATE_VERIFY_FAILED` (a network or
 antivirus proxy re-signs HTTPS traffic).
 
-## Run (once the app exists)
+## Run
 
 ```powershell
 python -m app.main
 ```
-Then open http://127.0.0.1:8050.
+Then open http://127.0.0.1:8050. Scroll to zoom, drag to pan, click a node to read its
+definition. Select a node and click the yellow `+` next to it (or "+ Add child") to add
+a child; use Edit and Delete in the side panel.
+
+## Data
+
+Changes are saved straight into the SQLite database `data/tree.db` (created on first run
+from `data/seed.json`, not committed). To save a versioned copy:
+
+```powershell
+python -m app.export_json
+git add data/seed.json
+git commit -m "Update course tree"
+```
 
 ## Test
 

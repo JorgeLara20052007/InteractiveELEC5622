@@ -1,7 +1,10 @@
 # Workflow: Interactive ELEC5622 course tree
 
 Goal: a big zoomable tree of the course. Click a node to see its definition. Add new
-children (with explanations) from the UI. Nothing is coded yet; this is the plan.
+children (with explanations) from the UI, saved in a database.
+
+**Status:** Steps 1 to 6 are built and working (Week 1 content, viewer, definitions,
+`+` to add children, edit, delete). Steps 7 and 8 are still to do.
 
 ## 1. Stack (and why)
 
@@ -9,8 +12,9 @@ children (with explanations) from the UI. Nothing is coded yet; this is the plan
 |---|---|---|
 | UI framework | **Dash** | Pure Python, runs a local web app, no JavaScript needed |
 | Tree widget | **dash-cytoscape** | Built-in zoom/pan, click events, tree layouts, styling |
-| Storage | **`data/tree.json`** | Human-readable, tracked in git, easy to hand-edit or diff |
-| Validation | **pydantic** | Catches malformed nodes before they corrupt the file |
+| Storage | **SQLite (`data/tree.db`)** | Built into Python, one file, instant saves and deletes, `ON DELETE CASCADE` removes a whole subtree |
+| Git snapshot | **`data/seed.json`** | Readable copy of the tree: seeds an empty database, refreshed with `python -m app.export_json` |
+| Validation | **pydantic** | Catches malformed nodes (blank labels, duplicate ids) before they are saved |
 | Tests | **pytest** | Tree logic (add/edit/delete/load/save) is testable without a browser |
 
 Alternatives rejected: `pyvis` (hard to edit interactively), Streamlit (reruns the whole
@@ -18,7 +22,9 @@ script on each click, awkward for graph interaction), plain D3 (needs JavaScript
 
 ## 2. Data model
 
-One JSON file, a nested tree. Every node has a stable id so edits and deletes are safe.
+One table, `nodes(id, parent_id, label, definition, position)`; `parent_id` is NULL for
+the single root. In memory (and in `seed.json`) it is a nested tree. Every node has a
+stable id so edits and deletes are safe.
 
 ```json
 {
@@ -39,7 +45,8 @@ One JSON file, a nested tree. Every node has a stable id so edits and deletes ar
 ```
 
 Rules: `id` unique across the whole tree; `label` short (shown on the node);
-`definition` free text (shown in the side panel); `children` may be empty.
+`definition` Markdown text with `$math$` support (shown in the side panel); `children`
+may be empty.
 Optional later: `week`, `tags`, `source` (slide/page reference), `collapsed`.
 
 ## 3. Proposed project layout
@@ -51,10 +58,12 @@ InteractiveELEC5622/
 │   ├── layout.py      # page layout: graph on the left, detail panel on the right
 │   ├── callbacks.py   # click, add, edit, delete handlers
 │   ├── tree.py        # pure tree logic: find/add/edit/delete node, ids, to-cytoscape
-│   ├── storage.py     # load/save tree.json, backup before save
+│   ├── storage.py     # SQLite: init/seed, load, add/update/delete node, export
+│   ├── export_json.py # `python -m app.export_json`: database -> data/seed.json
 │   └── styles.py      # cytoscape stylesheet (colours per depth, sizes)
 ├── data/
-│   └── tree.json      # the course content (committed)
+│   ├── seed.json      # snapshot of the course content (committed)
+│   └── tree.db        # live SQLite database (not committed, created on first run)
 ├── tests/
 │   ├── test_tree.py
 │   └── test_storage.py
@@ -69,67 +78,68 @@ InteractiveELEC5622/
 
 Each step ends with something you can run or test. Commit after each one.
 
-**Step 1: Data + logic (no UI)** (DONE: 13 tests pass)
+**Step 1: Data + logic (no UI)** (DONE: 16 tests pass)
 - Define the pydantic `Node` model and write `tree.py`: `find`, `add_child`, `update`,
-  `delete`, `generate_id`, `flatten_to_elements` (nested JSON → cytoscape nodes + edges).
-- Write `storage.py`: load, validate, save atomically (write temp file then rename),
-  copy the old file to `data/backups/` first.
-- Tests: add/delete/edit, duplicate ids rejected, round-trip load/save.
+  `delete`, `generate_id`, `to_elements` (nested tree → cytoscape nodes + edges).
+- Write `storage.py` on SQLite: init and seed, load, add/update/delete, JSON export.
+- Tests: add/delete/edit, duplicate ids rejected, cascade delete, round-trip.
 - Done when: `python -m pytest` passes.
 
-**Step 2: Seed content for Week 1**
-- Write `data/tree.json` with the root, Week 1 "Introduction", and its six children:
-  Anatomical imaging, Functional imaging, Purpose of medical imaging, DICOM format,
-  Body planes, Efficiency of predictive modelling.
-- Give each of those their own children and definitions (see section 6).
-- Done when: the file validates and loads in a test.
+**Step 2: Seed content for Week 1** (DONE: 30 nodes in `data/seed.json`, from your LaTeX notes)
+- Root, Week 1 "Introduction", its six children (Anatomical imaging, Functional imaging,
+  Purpose of medical imaging, DICOM format, Body planes, Efficiency of predictive
+  modelling) and their sub-nodes with definitions.
 
-**Step 3: Read-only viewer**
+**Step 3: Read-only viewer** (DONE)
 - `main.py` + `layout.py`: render the tree with cytoscape, using a top-down (dagre) or
   radial layout. Mouse-wheel zoom, drag to pan, drag nodes.
 - Done when: the whole Week 1 tree shows and zooms anywhere.
 
-**Step 4: Click to see the definition**
-- Callback on `tapNodeData`: show the node's label, definition, path from root
+**Step 4: Click to see the definition** (DONE)
+- Callback on `tapNode`: show the node's label, definition, path from root
   (e.g. ELEC5622 › Week 1 › Anatomical imaging) and children list in a side panel.
 - Highlight the selected node and its direct neighbours.
 - Done when: clicking "Anatomical imaging" shows its definition.
 
-**Step 5: Add children with the `+`**
+**Step 5: Add children with the `+`** (DONE)
 - When a node is selected, show a small `+` ghost node attached to it (a canvas can't
   hold real buttons, so a styled clickable node does the job).
 - Clicking `+` opens a form in the side panel: label + definition, then **Add**.
-- Callback: `tree.add_child` → `storage.save` → refresh elements → select the new node.
+- Callback: `storage.add_node` (writes to SQLite) → refresh elements → select the new node.
 - Done when: you can add a child and it is still there after restarting the app.
 
-**Step 6: Edit and delete**
+**Step 6: Edit and delete** (DONE)
 - Edit button in the panel to change label/definition. Delete with a confirm dialog
   (warn how many descendants go with it). Root cannot be deleted.
 
 **Step 7: Usability for a big tree**
 - Collapse/expand a subtree (double-click). Search box that zooms to a matching node.
-- Fit-to-screen button. Colour per week / depth. Layout selector.
+- Colour per week. Layout selector. (Fit-to-screen button and colour per depth are done.)
 - Add Week 2, 3, … as you go through the course.
 
 **Step 8: Polish (optional)**
-- Markdown (and LaTeX) in definitions, image attachments per node, export to PNG/HTML,
-  import from an outline text file.
+- Image attachments per node (e.g. the body planes figure), export to PNG/HTML,
+  import from an outline text file, reordering siblings, moving a node to a new parent.
+  (Markdown and `$math$` in definitions are done.)
 
 ## 5. Day-to-day content workflow (once the app works)
 
 1. Activate the venv, run `python -m app.main`, open http://127.0.0.1:8050.
 2. After a lecture: pick the week node, press `+`, add each concept with a definition.
 3. Add sub-concepts under those the same way.
-4. Commit `data/tree.json` with the week in the message (`git commit -m "Add week 2"`).
-   Git history is your undo for content.
+4. Everything saves to `data/tree.db` immediately. To keep a versioned copy, run
+   `python -m app.export_json` and then
+   `git add data/seed.json; git commit -m "Add week 2"`.
+   (Careful: if `data/tree.db` is deleted, the app re-seeds from `seed.json`, so anything
+   not exported is lost.)
 
-## 6. Open questions to decide before coding
+## 6. Decisions
 
-- **Top-level shape:** DECIDED: one root `ELEC5622` with a child per week.
-- **Layout:** DECIDED: top-down hierarchy.
-- **Content source:** do you want to type definitions yourself, or should Claude draft
-  them from your lecture slides (put the PDFs in a `source/` folder)?
-- **Definition format:** plain text, or Markdown with formulas?
+- **Top-level shape:** one root `ELEC5622` with a child per week.
+- **Layout:** top-down hierarchy.
+- **Storage:** SQLite database, with a JSON snapshot for git.
+- **Definition format:** Markdown with `$math$`.
+- **Content source:** you supply LaTeX notes and Claude converts them into nodes.
 
 ## 7. Environment notes
 

@@ -1,0 +1,187 @@
+{
+  "id": "elec5622",
+  "label": "ELEC5622",
+  "definition": "Course notes for ELEC5622. Click a node to read its definition. Select a node and press **+** to add a child.",
+  "children": [
+    {
+      "id": "w1",
+      "label": "Week 1: Introduction",
+      "definition": "Introduction to medical imaging: anatomical vs functional imaging, why we image, the DICOM standard, body planes, and how to measure the efficiency of a predictive model.",
+      "children": [
+        {
+          "id": "w1-anatomical-imaging",
+          "label": "Anatomical imaging",
+          "definition": "Provides information about the **anatomy or structure** of the body.",
+          "children": [
+            {
+              "id": "w1-anatomical-imaging-x-rays",
+              "label": "X-rays",
+              "definition": "X-ray beams are absorbed differently by various structures in the body, such as bones and soft tissues. This property is used to recreate an image of the inner body.",
+              "children": []
+            },
+            {
+              "id": "w1-anatomical-imaging-computed-tomography-ct",
+              "label": "Computed Tomography (CT)",
+              "definition": "Uses x-ray techniques to create 2D and 3D images of the body. More detailed than plain x-rays, and better for analysing soft tissues.",
+              "children": []
+            },
+            {
+              "id": "w1-anatomical-imaging-mri-t1-t2",
+              "label": "MRI (T1 / T2)",
+              "definition": "T1- and T2-weighted MRIs are considered anatomical imaging. Uses strong magnetic fields ($\\vec{B}_0$) and radio waves to create pictures of internal body structures.",
+              "children": []
+            },
+            {
+              "id": "w1-anatomical-imaging-ultrasound",
+              "label": "Ultrasound",
+              "definition": "Uses high-frequency sound waves and a handheld transducer to create real-time, non-invasive images of soft tissues.",
+              "children": []
+            },
+            {
+              "id": "w1-anatomical-imaging-optical-imaging-oct",
+              "label": "Optical imaging (OCT)",
+              "definition": "A diverse class of light-based techniques used to capture structural, functional and anatomical information of biological tissues. Includes OCT (optical coherence tomography).",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "w1-functional-imaging",
+          "label": "Functional imaging",
+          "definition": "Detecting or measuring changes in **metabolism, blood flow, regional chemical composition and absorption**.",
+          "children": [
+            {
+              "id": "w1-functional-imaging-positron-emission-tomography-pet",
+              "label": "Positron Emission Tomography (PET)",
+              "definition": "Uses radioactive substances known as radio-tracers to visualise and measure changes in metabolism.",
+              "children": []
+            },
+            {
+              "id": "w1-functional-imaging-spect",
+              "label": "SPECT",
+              "definition": "Single photon emission computed tomography. A 3D reconstruction is made from injected radio-tracers and gamma detection.",
+              "children": []
+            },
+            {
+              "id": "w1-functional-imaging-optical-fluorescence",
+              "label": "Optical fluorescence",
+              "definition": "Tracks biological activity by measuring light emitted from fluorescent indicators.",
+              "children": []
+            },
+            {
+              "id": "w1-functional-imaging-functional-mri-fmri",
+              "label": "Functional MRI (fMRI)",
+              "definition": "Measures and maps brain activity by detecting changes in blood flow.",
+              "children": []
+            },
+            {
+              "id": "w1-functional-imaging-diffusion-tensor-imaging-dti",
+              "label": "Diffusion Tensor Imaging (DTI)",
+              "definition": "Advanced MRI that uses the micro-structural movement of water molecules to visualise white matter tracts and neural pathways in the brain.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "w1-purpose-of-medical-imaging",
+          "label": "Purpose of medical imaging",
+          "definition": "Medical imaging has four main purposes.",
+          "children": [
+            {
+              "id": "w1-purpose-of-medical-imaging-diagnosis",
+              "label": "Diagnosis",
+              "definition": "Using images to diagnose disease.",
+              "children": []
+            },
+            {
+              "id": "w1-purpose-of-medical-imaging-research",
+              "label": "Research",
+              "definition": "Provide information to study anatomical and functional structures for research purposes.",
+              "children": []
+            },
+            {
+              "id": "w1-purpose-of-medical-imaging-preoperative-surgical-planning",
+              "label": "Preoperative surgical planning",
+              "definition": "Using images to plan a surgery before it happens.",
+              "children": []
+            },
+            {
+              "id": "w1-purpose-of-medical-imaging-image-guided-therapy",
+              "label": "Image-guided therapy",
+              "definition": "Using images to guide a treatment as it is delivered, like cancer treatment.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "w1-dicom-format",
+          "label": "DICOM format",
+          "definition": "**Digital Imaging and Communications in Medicine**: the standard to treat medical images. The communication is based on TCP/IP.",
+          "children": []
+        },
+        {
+          "id": "w1-body-planes",
+          "label": "Body planes",
+          "definition": "Imaginary planes that cut the body into sections so images can be described consistently. There are three standard planes.",
+          "children": [
+            {
+              "id": "w1-body-planes-sagittal-plane",
+              "label": "Sagittal plane",
+              "definition": "Divides the body into left and right parts.",
+              "children": []
+            },
+            {
+              "id": "w1-body-planes-coronal-plane",
+              "label": "Coronal plane",
+              "definition": "Divides the body into front (anterior) and back (posterior) parts.",
+              "children": []
+            },
+            {
+              "id": "w1-body-planes-axial-transverse-plane",
+              "label": "Axial (transverse) plane",
+              "definition": "Divides the body into upper (superior) and lower (inferior) parts.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "w1-efficiency-of-predictive-modelling",
+          "label": "Efficiency of predictive modelling",
+          "definition": "Measuring how good a predictive model or test is, using the counts in the confusion matrix.",
+          "children": [
+            {
+              "id": "w1-efficiency-of-predictive-modelling-confusion-matrix",
+              "label": "Confusion matrix",
+              "definition": "| | Truth: Positive | Truth: Negative |\n|---|---|---|\n| **Test: Positive** | TP | FP |\n| **Test: Negative** | FN | TN |\n\nTP = true positive, FP = false positive, FN = false negative, TN = true negative.",
+              "children": []
+            },
+            {
+              "id": "w1-efficiency-of-predictive-modelling-sensitivity",
+              "label": "Sensitivity",
+              "definition": "True positive rate: of all truly positive cases, the fraction the test catches.\n\n$$\\text{Sensitivity} = \\frac{TP}{TP + FN}$$",
+              "children": []
+            },
+            {
+              "id": "w1-efficiency-of-predictive-modelling-specificity",
+              "label": "Specificity",
+              "definition": "True negative rate: of all truly negative cases, the fraction the test correctly clears.\n\n$$\\text{Specificity} = \\frac{TN}{TN + FP}$$",
+              "children": []
+            },
+            {
+              "id": "w1-efficiency-of-predictive-modelling-ppv",
+              "label": "PPV",
+              "definition": "Positive predictive value (precision): given a positive test, the probability the case is truly positive.\n\n$$\\text{PPV} = \\frac{TP}{TP + FP}$$",
+              "children": []
+            },
+            {
+              "id": "w1-efficiency-of-predictive-modelling-npv",
+              "label": "NPV",
+              "definition": "Negative predictive value: given a negative test, the probability the case is truly negative.\n\n$$\\text{NPV} = \\frac{TN}{TN + FN}$$",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,56 +1,85 @@
-import pytest
-from pydantic import ValidationError
+import sqlite3
 
-from app import storage, tree
+import pytest
+
+from app import storage
 from app.tree import Node
 
 
 def make_root() -> Node:
-    return Node(id="root", label="ELEC5622", children=[Node(id="w1", label="Week 1", definition="d")])
+    return Node(
+        id="root",
+        label="ELEC5622",
+        children=[
+            Node(id="w1", label="Week 1", definition="d", children=[Node(id="w1-a", label="A")]),
+            Node(id="w2", label="Week 2"),
+        ],
+    )
 
 
-def test_round_trip(tmp_path):
-    path = tmp_path / "tree.json"
-    storage.save(make_root(), path)
-    assert storage.load(path) == make_root()
+@pytest.fixture
+def db(tmp_path):
+    path = tmp_path / "tree.db"
+    storage.init(path, seed=None)
+    storage.import_tree(make_root(), path)
+    return path
 
 
-def test_save_backs_up_previous_version(tmp_path):
-    path = tmp_path / "tree.json"
-    root = make_root()
-    storage.save(root, path)
-    assert not (tmp_path / "backups").exists()
-
-    tree.add_child(root, "w1", "A")
-    storage.save(root, path)
-    backups = list((tmp_path / "backups").iterdir())
-    assert len(backups) == 1
-    assert storage.load(backups[0]) == make_root()
-    assert storage.load(path) == root
+def test_import_then_load_round_trip(db):
+    assert storage.load(db) == make_root()
 
 
-def test_backups_are_capped(tmp_path, monkeypatch):
-    monkeypatch.setattr(storage, "MAX_BACKUPS", 3)
-    path = tmp_path / "tree.json"
-    root = make_root()
-    for _ in range(6):
-        storage.save(root, path)
-    assert len(list((tmp_path / "backups").iterdir())) == 3
+def test_init_seeds_empty_db_only_once(tmp_path):
+    seed = tmp_path / "seed.json"
+    seed.write_text(make_root().model_dump_json(), encoding="utf-8")
+    path = tmp_path / "tree.db"
+    storage.init(path, seed)
+    storage.add_node("w2", "Extra", db=path)
+    storage.init(path, seed)  # must not overwrite the user's additions
+    assert storage.load(path).children[1].children[0].label == "Extra"
 
 
-def test_save_rejects_duplicate_ids_and_keeps_old_file(tmp_path):
-    path = tmp_path / "tree.json"
-    storage.save(make_root(), path)
-    bad = make_root()
-    bad.children.append(Node(id="w1", label="dup"))
+def test_add_node_persists_with_order(db):
+    first = storage.add_node("w2", "Body planes", "three planes", db)
+    second = storage.add_node("w2", "Body planes", db=db)
+    assert (first.id, second.id) == ("w2-body-planes", "w2-body-planes-2")
+    w2 = storage.load(db).children[1]
+    assert [c.label for c in w2.children] == ["Body planes", "Body planes"]
+    assert w2.children[0].definition == "three planes"
+
+
+def test_add_node_rejects_bad_input(db):
+    with pytest.raises(KeyError):
+        storage.add_node("missing", "X", db=db)
     with pytest.raises(ValueError):
-        storage.save(bad, path)
-    assert storage.load(path) == make_root()
-    assert list(tmp_path.glob("*.tmp")) == []
+        storage.add_node("w1", "   ", db=db)
 
 
-def test_load_rejects_malformed_file(tmp_path):
-    path = tmp_path / "tree.json"
-    path.write_text('{"id": "root"}', encoding="utf-8")
-    with pytest.raises(ValidationError):
-        storage.load(path)
+def test_update_node(db):
+    storage.update_node("w1-a", "New", "new def", db)
+    node = storage.load(db).children[0].children[0]
+    assert (node.label, node.definition) == ("New", "new def")
+    with pytest.raises(ValueError):
+        storage.update_node("w1-a", "", "x", db)
+
+
+def test_delete_node_removes_subtree(db):
+    assert storage.delete_node("w1", db) == 2
+    assert [c.id for c in storage.load(db).children] == ["w2"]
+    with sqlite3.connect(db) as conn:
+        assert conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0] == 2
+
+
+def test_delete_root_or_missing_fails(db):
+    with pytest.raises(ValueError):
+        storage.delete_node("root", db)
+    with pytest.raises(KeyError):
+        storage.delete_node("missing", db)
+    assert storage.load(db) == make_root()
+
+
+def test_export_json_round_trip(db, tmp_path):
+    storage.add_node("w2", "Added", db=db)
+    out = tmp_path / "snap.json"
+    storage.export_json(out, db)
+    assert Node.model_validate_json(out.read_text(encoding="utf-8")) == storage.load(db)

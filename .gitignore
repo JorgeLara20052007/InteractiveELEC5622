@@ -5,6 +5,7 @@ __pycache__/
 .idea/
 .vscode/
 
-# Tree data is the thing you are building: keep data/tree.json tracked.
-# Automatic backups written before each save are not.
-data/backups/
+# data/tree.db is the live SQLite database. data/seed.json is the tracked snapshot:
+# refresh it with `python -m app.export_json` before committing.
+data/*.db
+data/*.db-journal
