@@ -182,6 +182,12 @@
           ]
         }
       ]
+    },
+    {
+      "id": "elec5622-week-2-mri",
+      "label": "Week 2: MRI",
+      "definition": "Magnetic Resonance Imaging",
+      "children": []
     }
   ]
 }
