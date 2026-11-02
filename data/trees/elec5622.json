@@ -42,6 +42,12 @@
               "label": "Optical imaging (OCT)",
               "definition": "A diverse class of light-based techniques used to capture structural, functional and anatomical information of biological tissues. Includes OCT (optical coherence tomography).",
               "children": []
+            },
+            {
+              "id": "w1-anatomical-imaging-asd",
+              "label": "asd",
+              "definition": "",
+              "children": []
             }
           ]
         },
@@ -187,7 +193,46 @@
       "id": "elec5622-week-2-mri",
       "label": "Week 2: MRI",
       "definition": "Magnetic Resonance Imaging",
-      "children": []
+      "children": [
+        {
+          "id": "elec5622-week-2-mri-hydrogen-atoms",
+          "label": "Hydrogen Atoms",
+          "definition": "MRI uses $^1\\mathrm{H}$ nuclei to change its magnetic field direction\n\n$\\mathrm{H}$ is used over other atoms because:\n\n- Biological tissues contain many $^1\\mathrm{H}$\n- is the only major atom that is MR sensitive\n- Most abundant atom in the body\n- majority of hydrogen is in water\n- Essentially all MRI is hydrogen imaging",
+          "children": [
+            {
+              "id": "elec5622-week-2-mri-hydrogen-atoms-precession",
+              "label": "Precession",
+              "definition": "Imagine a spinning top leaning at an angle: its axis sweeps around the vertical, tracing a cone. That motion is **precession**\n\n![Precession](/images/c2a686dd6a03c48e.png)\n",
+              "children": [
+                {
+                  "id": "elec5622-week-2-mri-hydrogen-atoms-precession-larmor-frequency",
+                  "label": "Larmor Frequency",
+                  "definition": "Precession occurs at the **Larmor frequency**. Therefore we can define it as **the rate or frequency of this precession wobbling motion**:\n\n$$\n\\omega_0=\\gamma B_0\n$$\n\n",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-2-mri-hydrogen-atoms-magnetic-moment",
+              "label": "Magnetic Moment",
+              "definition": "Informal definition: \"Tells us how strong a tiny magnet is and which way it points\"\n\nWe represent it with an arrow \"$\\mu$\". For a proton, its directly proportional to spin:\n\n$$\n\\mu=\\gamma S\n$$\n\nWhere $\\gamma$ is **gyromagnetic ratio**, a specific constant of a particle. For a proton its positive.\n\n![magneticMoment](/images/21cf55c3f899ee04.jpg)\n",
+              "children": []
+            },
+            {
+              "id": "elec5622-week-2-mri-hydrogen-atoms-spin",
+              "label": "Spin",
+              "definition": "In mechanics, a rotating object has angular momentum. but a proton has a **intrinsic angular momentum**, called **spin**, even though we should not picture it literally rotating like a little ball.\n\nWecan say that the spin of a proton is:\n\n$$\nS_z=\\pm\\frac{\\hbar}{2}\n$$\n\n![Spin](/images/d24993725a7a7fca.jpg)\n",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-2-mri-mri-process",
+          "label": "MRI Process",
+          "definition": "1. Hydrogen atoms are randomly oriented\n2. Protons align with $B_0$ (Strong Magnetic Field)\n3. A radiofrequency pulse (RF pulse) flips the magnetic moments of the protons to the transverse plane\n4. After some $t$, the relax and return to equilibrium (same direction as $B_0$)\n\n![MRI process](/images/d4ab6f2d44fafe1b.png)\n",
+          "children": []
+        }
+      ]
     }
   ]
 }
