@@ -35,6 +35,51 @@
     el.click();
   });
 
+  // Drag the bar between the tree and the side panel to resize the panel. The width is a CSS
+  // variable on <html> (React never touches it) and is remembered in this browser.
+  // Double-click the bar to go back to the default width.
+  const PANEL_KEY = 'panel-width';
+  const MIN_PANEL = 280;
+  const MIN_GRAPH = 200;
+  const setPanelWidth = (px) => {
+    if (px === null) {
+      document.documentElement.style.removeProperty('--panel-width');
+    } else {
+      const max = Math.max(MIN_PANEL, window.innerWidth - MIN_GRAPH);
+      document.documentElement.style.setProperty('--panel-width', Math.min(max, Math.max(MIN_PANEL, px)) + 'px');
+    }
+    const el = document.getElementById('cy');
+    if (el && el._cyreg && el._cyreg.cy) el._cyreg.cy.resize(); // keep the graph's canvas in step
+  };
+  try {
+    const saved = parseInt(localStorage.getItem(PANEL_KEY), 10);
+    if (saved) setPanelWidth(saved);
+  } catch (err) { /* storage unavailable: use the default width */ }
+
+  document.addEventListener('mousedown', function (e) {
+    if (!e.target || e.target.id !== 'splitter' || e.button !== 0) return;
+    e.preventDefault();
+    document.body.classList.add('resizing-panel');
+    const move = (ev) => setPanelWidth(window.innerWidth - ev.clientX);
+    const up = () => {
+      document.body.classList.remove('resizing-panel');
+      document.removeEventListener('mousemove', move);
+      document.removeEventListener('mouseup', up);
+      const panel = document.getElementById('side-panel');
+      try {
+        if (panel) localStorage.setItem(PANEL_KEY, String(Math.round(panel.getBoundingClientRect().width)));
+      } catch (err) { /* not remembered, still resized */ }
+    };
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+  });
+
+  document.addEventListener('dblclick', function (e) {
+    if (!e.target || e.target.id !== 'splitter') return;
+    try { localStorage.removeItem(PANEL_KEY); } catch (err) { /* ignore */ }
+    setPanelWidth(null);
+  });
+
   // Pasting a screenshot or copied picture into the definition box uploads it and inserts
   // the Markdown for it at the cursor.
   document.addEventListener('paste', async function (e) {

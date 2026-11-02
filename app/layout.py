@@ -6,7 +6,9 @@ from dash import dcc, html
 from . import trees
 from .styles import STYLESHEET
 
-PANEL_WIDTH = "clamp(300px, 35vw, 440px)"
+# The side panel can be resized by dragging the bar on its left edge (assets/app.js sets
+# --panel-width and remembers it); this is the width until you do.
+PANEL_WIDTH = "var(--panel-width, clamp(300px, 35vw, 440px))"
 
 _button = {"marginRight": "8px", "padding": "6px 12px", "cursor": "pointer"}
 _tool = {**_button, "marginRight": 0, "pointerEvents": "auto"}
@@ -33,7 +35,7 @@ def build_layout() -> html.Div:
             dcc.Store(id="version", data=0),  # bumped after every database write
             dcc.ConfirmDialog(id="confirm-delete"),
             html.Div(
-                style={"flex": "1", "position": "relative", "background": "#f7f9fb"},
+                style={"flex": "1", "minWidth": 0, "overflow": "hidden", "position": "relative", "background": "#f7f9fb"},
                 children=[
                     cyto.Cytoscape(
                         id="cy",
@@ -89,12 +91,16 @@ def build_layout() -> html.Div:
                 ],
             ),
             html.Div(
+                id="splitter",
+                title="Drag to resize the panel · double-click to reset",
+            ),
+            html.Div(
+                id="side-panel",
                 style={
                     "width": PANEL_WIDTH,
                     "flexShrink": 0,
                     "padding": "16px",
                     "overflowY": "auto",
-                    "borderLeft": "1px solid #d0d7de",
                     "boxSizing": "border-box",
                 },
                 children=[
@@ -120,7 +126,7 @@ def build_layout() -> html.Div:
                             html.Label("Definition (Markdown, $math$ and images supported)"),
                             dcc.Textarea(
                                 id="form-definition",
-                                style={**_field, "height": "200px", "fontFamily": "Consolas, monospace"},
+                                style={**_field, "height": "260px", "resize": "vertical", "fontFamily": "Consolas, monospace"},
                             ),
                             dcc.Upload(
                                 id="image-upload",

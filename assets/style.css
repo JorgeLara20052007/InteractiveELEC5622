@@ -25,3 +25,22 @@
 button:disabled {
   cursor: not-allowed !important;
 }
+
+/* Bar between the tree and the side panel: drag it to make the panel wider or narrower. */
+#splitter {
+  flex: 0 0 8px;
+  cursor: col-resize;
+  background: #d0d7de;
+  transition: background 0.15s;
+}
+#splitter:hover,
+body.resizing-panel #splitter {
+  background: #3a5a98;
+}
+body.resizing-panel {
+  cursor: col-resize;
+  user-select: none;
+}
+body.resizing-panel #cy {
+  pointer-events: none; /* the graph must not grab the mouse while dragging */
+}

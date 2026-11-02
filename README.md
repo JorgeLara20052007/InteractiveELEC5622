@@ -27,6 +27,10 @@ a child; use Edit and Delete in the side panel. "Collapse" / "Expand" hide or sh
 selected node's subtree (also "Collapse all" / "Expand all" above the graph), the search
 box jumps to any node, and each week has its own colour.
 
+- **Resize the side panel:** drag the grey bar between the tree and the panel to give
+  the label/definition editor more room (or the tree). The width is remembered; double-click
+  the bar to go back to the default. The definition box can also be made taller by dragging
+  its bottom-right corner.
 - **Undo / redo:** the Undo and Redo buttons (or Ctrl+Z / Ctrl+Y) revert or re-apply adding,
   editing and deleting nodes, including a whole deleted subtree. The history is kept in the
   database (last 200 changes), so it survives restarting the app. In a text box Ctrl+Z
