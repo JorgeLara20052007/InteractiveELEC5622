@@ -36,6 +36,21 @@ box jumps to any node, and each week has its own colour.
   Markdown (`![caption](/images/...)`) and shown in a live preview. Click a picture in a
   definition to open it full size. Pictures are stored in `data/images/`.
 
+## Study mode (flashcards)
+
+Press **📚 Study** in the toolbar (or open http://127.0.0.1:8050/study/). It opens in its own
+window, so you can keep the tree open next to it.
+
+1. Pick the tree and the week (the weeks are the root's direct children).
+2. A random concept from that week appears as a card with just its title.
+3. Click the card (or press Space) to see the definition, then mark yourself:
+   **✓ I knew it** (→ or Y) or **✗ I didn't know it** (← or N). The next random card follows.
+4. After the last card you get your score, the list of concepts you missed, and buttons to
+   retry only those or start again.
+
+Tick **Include sub-concepts** to be tested on every level below the week, not just its
+direct children. Study mode only reads the tree; it never changes it.
+
 ## Several trees (one per course)
 
 The dropdown at the top left switches between trees, and **+ New tree** starts a completely

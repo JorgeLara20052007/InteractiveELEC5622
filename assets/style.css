@@ -1,6 +1,7 @@
 /* Pictures inside definitions fit the side panel; click one to open it full size. */
 #definition img,
-#form-preview img {
+#form-preview img,
+#study-definition img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;

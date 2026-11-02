@@ -17,6 +17,24 @@
     if (button && !button.disabled) button.click();
   });
 
+  // Study page: Space flips the card, → / Y = "I knew it", ← / N = "I didn't".
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('study-card') || e.ctrlKey || e.metaKey || e.altKey) return;
+    const target = e.target;
+    if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return;
+    const visible = (id) => {
+      const el = document.getElementById(id);
+      return el && el.offsetParent !== null ? el : null;
+    };
+    let el = null;
+    if (e.key === ' ' || e.key === 'Enter') el = visible('study-card');
+    else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'y') el = visible('btn-right');
+    else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'n') el = visible('btn-wrong');
+    if (!el) return;
+    e.preventDefault();
+    el.click();
+  });
+
   // Pasting a screenshot or copied picture into the definition box uploads it and inserts
   // the Markdown for it at the cursor.
   document.addEventListener('paste', async function (e) {

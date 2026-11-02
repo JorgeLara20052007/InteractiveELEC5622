@@ -66,6 +66,13 @@ def build_layout() -> html.Div:
                                 style={"width": "200px", "pointerEvents": "auto", "color": "#1f2328"},
                             ),
                             html.Button("+ New tree", id="btn-new-tree", style=_tool),
+                            html.A(
+                                html.Button("📚 Study", style=_tool),
+                                href="/study/",
+                                target="_blank",  # flashcards open in their own window/tab
+                                title="Flashcards: test yourself on one week",
+                                style={"pointerEvents": "auto"},
+                            ),
                             html.Button("↶ Undo", id="btn-undo", disabled=True, style=_tool),
                             html.Button("↷ Redo", id="btn-redo", disabled=True, style=_tool),
                             html.Button("Fit to screen", id="btn-fit", style=_tool),

@@ -60,6 +60,8 @@ InteractiveELEC5622/
 │   ├── tree.py        # pure tree logic: find/add/edit/delete node, ids, to-cytoscape
 │   ├── storage.py     # SQLite: init/seed, load, add/update/delete node, undo/redo, export
 │   ├── images.py      # save/serve/upload pictures for definitions
+│   ├── study.py       # flashcard session logic (shuffle, flip, answer, score)
+│   ├── study_page.py  # the /study/ page: a second Dash app on the same server
 │   ├── trees.py       # the set of trees: list, create, export (one .db + .json each)
 │   ├── export_json.py # `python -m app.export_json`: every database -> its JSON file
 │   └── styles.py      # cytoscape stylesheet (colour per week, edges, '+' node)
@@ -76,6 +78,7 @@ InteractiveELEC5622/
 │   ├── test_storage.py
 │   ├── test_images.py
 │   ├── test_trees.py
+│   ├── test_study.py
 │   └── test_styles.py
 ├── requirements.txt
 ├── WORKFLOW.md
@@ -144,6 +147,13 @@ Each step ends with something you can run or test. Commit after each one.
   new JSON file in `data/trees/`, named after the tree (`Signal Processing` ->
   `signal-processing.json`). The chosen tree is remembered in the browser.
 - Still open: rename or delete a whole tree, copy a tree as a template.
+
+**Step 10: Study mode** (DONE)
+- `/study/` page, opened from the **📚 Study** button in a new window: pick a week, get its
+  concepts as shuffled flashcards (title only), flip to see the definition, mark yourself
+  right or wrong, see the score at the end and retry the ones you missed.
+- Still open: remember scores between sessions and show weak concepts more often
+  (spaced repetition).
 
 ## 5. Day-to-day content workflow (once the app works)
 

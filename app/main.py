@@ -6,7 +6,7 @@ from pathlib import Path
 import dash_cytoscape as cyto
 from dash import Dash
 
-from . import callbacks, images, trees
+from . import callbacks, images, study_page, trees
 from .layout import build_layout
 
 cyto.load_extra_layouts()  # enables the 'dagre' top-down tree layout
@@ -20,6 +20,7 @@ def create_app() -> Dash:
     app.layout = build_layout  # a function: the tree list is read fresh on every page load
     callbacks.register(app)
     images.register_routes(app.server)
+    study_page.create(app.server, ASSETS_DIR)  # flashcards at /study/
     return app
 
 
