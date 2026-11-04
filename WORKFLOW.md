@@ -66,7 +66,8 @@ InteractiveELEC5622/
 │   ├── export_json.py # `python -m app.export_json`: every database -> its JSON file
 │   └── styles.py      # cytoscape stylesheet (colour per week, edges, '+' node)
 ├── assets/
-│   ├── app.js         # Ctrl+Z / Ctrl+Y, paste an image, click image to enlarge
+│   ├── app.js         # Ctrl+Z / Ctrl+Y, paste an image, click image to enlarge, panel splitter
+│   ├── pdf.js         # floating, draggable PDF viewer windows on the tree page
 │   └── style.css      # image and table styling inside definitions
 ├── data/
 │   ├── trees/
@@ -154,6 +155,12 @@ Each step ends with something you can run or test. Commit after each one.
   right or wrong, see the score at the end and retry the ones you missed.
 - Still open: remember scores between sessions and show weak concepts more often
   (spaced repetition).
+
+**Step 11: PDF windows** (DONE)
+- **📄 PDF** button (or drop a PDF on the page) opens a local PDF in a floating window that
+  can be dragged, resized, minimised, popped out and closed; several at once. Shown by the
+  browser's own PDF viewer from a local object URL, so nothing is uploaded.
+- Still open: reopen the same PDFs automatically after a reload, link a PDF page to a node.
 
 ## 5. Day-to-day content workflow (once the app works)
 

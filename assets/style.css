@@ -44,3 +44,74 @@ body.resizing-panel {
 body.resizing-panel #cy {
   pointer-events: none; /* the graph must not grab the mouse while dragging */
 }
+
+/* Floating PDF windows (assets/pdf.js). */
+.pdf-window {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #8c959f;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  font-family: system-ui, "Segoe UI", sans-serif;
+}
+.pdf-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 4px 3px 10px;
+  background: #1d3557;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: move;
+  user-select: none;
+}
+.pdf-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pdf-bar button {
+  width: 26px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.pdf-bar button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.pdf-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+}
+.pdf-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 55%, #8c959f 55%);
+}
+.pdf-window.minimized {
+  height: auto !important;
+}
+.pdf-window.minimized .pdf-frame,
+.pdf-window.minimized .pdf-resize {
+  display: none;
+}
+body.pdf-dragging {
+  user-select: none;
+}
+body.pdf-dragging iframe,
+body.pdf-dragging #cy {
+  pointer-events: none; /* keep the mouse while dragging over a PDF or the graph */
+}

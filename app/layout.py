@@ -75,6 +75,13 @@ def build_layout() -> html.Div:
                                 title="Flashcards: test yourself on one week",
                                 style={"pointerEvents": "auto"},
                             ),
+                            # Handled in assets/pdf.js: opens PDFs from this computer in floating windows.
+                            html.Button(
+                                "📄 PDF",
+                                id="btn-pdf",
+                                title="Open a PDF from your computer in a floating window",
+                                style=_tool,
+                            ),
                             html.Button("↶ Undo", id="btn-undo", disabled=True, style=_tool),
                             html.Button("↷ Redo", id="btn-redo", disabled=True, style=_tool),
                             html.Button("Fit to screen", id="btn-fit", style=_tool),
