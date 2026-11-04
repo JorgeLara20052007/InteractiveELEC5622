@@ -32,9 +32,10 @@ box jumps to any node, and each week has its own colour.
   the bar to go back to the default. The definition box can also be made taller by dragging
   its bottom-right corner.
 - **PDF windows:** press **📄 PDF** (or drag a PDF file onto the page) to open a PDF from
-  your computer in a small floating window over the tree. Drag it by its title bar, resize
-  it from the bottom-right corner, minimise it with `–` (or double-click the title bar), pop
-  it out to a full tab with `↗`, and close it with `×`. You can open several at once. The
+  your computer in a small floating window over the tree. Drag it by its title bar and
+  resize it from any edge or corner. `□` maximises it to fill the browser window (or
+  double-click the title bar), `–` minimises it to just the title bar, `↗` pops it out to a
+  full tab, and `×` closes it. You can open several at once. The
   file stays in your browser: nothing is uploaded or saved, so after a page reload you
   open it again.
 - **Undo / redo:** the Undo and Redo buttons (or Ctrl+Z / Ctrl+Y) revert or re-apply adding,

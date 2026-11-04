@@ -48,6 +48,7 @@ body.resizing-panel #cy {
 /* Floating PDF windows (assets/pdf.js). */
 .pdf-window {
   position: fixed;
+  box-sizing: border-box; /* width/height include the border, so resizing does not drift */
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -92,12 +93,44 @@ body.resizing-panel #cy {
   width: 100%;
   border: 0;
 }
-.pdf-resize {
+/* Invisible grab areas on every edge and corner for resizing; the bottom-right one shows a grip. */
+.pdf-edge {
   position: absolute;
-  right: 0;
+  z-index: 2;
+}
+.pdf-edge-n,
+.pdf-edge-s {
+  left: 12px;
+  right: 12px;
+  height: 7px;
+  cursor: ns-resize;
+}
+.pdf-edge-n { top: 0; }
+.pdf-edge-s { bottom: 0; }
+.pdf-edge-e,
+.pdf-edge-w {
+  top: 12px;
+  bottom: 12px;
+  width: 7px;
+  cursor: ew-resize;
+}
+.pdf-edge-e { right: 0; }
+.pdf-edge-w { left: 0; }
+.pdf-edge-ne,
+.pdf-edge-nw,
+.pdf-edge-se,
+.pdf-edge-sw {
+  width: 16px;
+  height: 16px;
+}
+.pdf-edge-ne { top: 0; right: 0; cursor: nesw-resize; }
+.pdf-edge-sw { bottom: 0; left: 0; cursor: nesw-resize; }
+.pdf-edge-nw { top: 0; left: 0; cursor: nwse-resize; }
+.pdf-edge-se {
   bottom: 0;
-  width: 18px;
-  height: 18px;
+  right: 0;
+  width: 20px;
+  height: 20px;
   cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, #8c959f 55%);
 }
@@ -105,8 +138,16 @@ body.resizing-panel #cy {
   height: auto !important;
 }
 .pdf-window.minimized .pdf-frame,
-.pdf-window.minimized .pdf-resize {
-  display: none;
+.pdf-window.minimized .pdf-edge-s,
+.pdf-window.minimized .pdf-edge-n,
+.pdf-window.minimized .pdf-edge-ne,
+.pdf-window.minimized .pdf-edge-nw,
+.pdf-window.minimized .pdf-edge-se,
+.pdf-window.minimized .pdf-edge-sw {
+  display: none; /* a minimised window can still be made wider or narrower */
+}
+.pdf-window.maximized {
+  border-radius: 4px;
 }
 body.pdf-dragging {
   user-select: none;

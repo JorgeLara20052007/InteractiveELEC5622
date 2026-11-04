@@ -158,7 +158,8 @@ Each step ends with something you can run or test. Commit after each one.
 
 **Step 11: PDF windows** (DONE)
 - **📄 PDF** button (or drop a PDF on the page) opens a local PDF in a floating window that
-  can be dragged, resized, minimised, popped out and closed; several at once. Shown by the
+  can be dragged, resized from any edge or corner, maximised, minimised, popped out and
+  closed; several at once. Shown by the
   browser's own PDF viewer from a local object URL, so nothing is uploaded.
 - Still open: reopen the same PDFs automatically after a reload, link a PDF page to a node.
 
