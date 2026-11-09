@@ -1,109 +1,47 @@
-# InteractiveELEC5622
+# Course Tree (InteractiveELEC5622)
 
-Interactive, zoomable tree of the ELEC5622 course content. Click a node to read its
-definition; use `+` to add new child nodes. See [WORKFLOW.md](WORKFLOW.md) for the plan.
+An interactive, zoomable tree of course notes, built for ELEC5622 and usable for any course.
+Each week is a branch, each concept a node with a definition (Markdown, formulas and
+pictures), and every node can be studied as a flashcard.
 
-## Setup (Windows, PowerShell)
+- **[SETUP.md](SETUP.md)**: install and run it on your own computer.
+- **[USAGE.md](USAGE.md)**: how to use the app.
+- [WORKFLOW.md](WORKFLOW.md): how it was designed and built, step by step.
 
-```powershell
+## What it does
+
+- Zoom and pan around the whole course; click a node to read its definition.
+- Add, edit and delete nodes from the page (the yellow **+** adds a child), with a live
+  preview, LaTeX formulas, and pictures you can paste in.
+- Search, collapse branches, and pick a colour for each week.
+- Undo / redo every change (Ctrl+Z / Ctrl+Y), even after a restart.
+- **Study mode:** shuffled flashcards per week, self-marking, a score at the end and a retry
+  of the ones you missed. Choose which nodes are flashcards.
+- Floating, resizable PDF windows to read your slides while taking notes.
+- Several trees, one per course.
+
+## Quick start
+
+```bash
+git clone https://github.com/<your-account>/InteractiveELEC5622.git
+cd InteractiveELEC5622
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --use-feature=truststore --upgrade pip
+.venv\Scripts\activate            # macOS / Linux: source .venv/bin/activate
 python -m pip install -r requirements.txt
-```
-
-`--use-feature=truststore` makes pip use the Windows certificate store. It was needed on
-this machine because plain pip failed with `CERTIFICATE_VERIFY_FAILED` (a network or
-antivirus proxy re-signs HTTPS traffic).
-
-## Run
-
-```powershell
 python -m app.main
 ```
-Then open http://127.0.0.1:8050. Scroll to zoom, drag to pan, click a node to read its
-definition. Select a node and click the yellow `+` next to it (or "+ Add child") to add
-a child; use Edit and Delete in the side panel. "Collapse" / "Expand" hide or show the
-selected node's subtree (also "Collapse all" / "Expand all" above the graph), the search
-box jumps to any node, and each week has its own colour.
 
-- **Resize the side panel:** drag the grey bar between the tree and the panel to give
-  the label/definition editor more room (or the tree). The width is remembered; double-click
-  the bar to go back to the default. The definition box can also be made taller by dragging
-  its bottom-right corner.
-- **PDF windows:** press **📄 PDF** (or drag a PDF file onto the page) to open a PDF from
-  your computer in a small floating window over the tree. Drag it by its title bar and
-  resize it from any edge or corner. `□` maximises it to fill the browser window (or
-  double-click the title bar), `–` minimises it to just the title bar, `↗` pops it out to a
-  full tab, and `×` closes it. You can open several at once. The
-  file stays in your browser: nothing is uploaded or saved, so after a page reload you
-  open it again.
-- **Week colours:** every week has its own colour, and the nodes inside it get lighter shades
-  of it. To choose one, click a week node: the side panel shows **Week colour** with 16
-  swatches, **Automatic**, and a box where you can type any colour like `#e76f51` (press
-  **Use**). Dark or light colours both work: the text switches between white and dark to stay
-  readable. Ctrl+Z undoes a colour change, and chosen colours are saved in the JSON export.
-- **Editing with a live preview:** while you edit a node, the label and definition boxes stay
-  in place and only the preview below them scrolls, so you can read a long preview without
-  losing the editor. After you type, the preview scrolls to the part you are editing: adding
-  text at the end of the definition shows the bottom of the preview, and so does adding an
-  image. Make the definition box taller or shorter by dragging its bottom-right corner; the
-  preview takes the rest of the panel.
-- **Undo / redo:** the Undo and Redo buttons (or Ctrl+Z / Ctrl+Y) revert or re-apply adding,
-  editing and deleting nodes, including a whole deleted subtree. The history is kept in the
-  database (last 200 changes), so it survives restarting the app. In a text box Ctrl+Z
-  keeps undoing your typing instead.
-- **Images:** while editing a definition, paste a screenshot into the text box, or drop a
-  file on the "Add an image" area (PNG, JPEG, GIF or WebP, up to 10 MB). It is inserted as
-  Markdown (`![caption](/images/...)`) and shown in a live preview. Click a picture in a
-  definition to open it full size. Pictures are stored in `data/images/`.
+Open **http://127.0.0.1:8050**. Details and troubleshooting are in [SETUP.md](SETUP.md).
 
-## Study mode (flashcards)
-
-Press **📚 Study** in the toolbar (or open http://127.0.0.1:8050/study/). It opens in its own
-window, so you can keep the tree open next to it.
-
-1. Pick the tree and the week (the weeks are the root's direct children).
-2. A random concept from that week appears as a card with just its title.
-3. Click the card (or press Space) to see the definition, then mark yourself:
-   **✓ I knew it** (→ or Y) or **✗ I didn't know it** (← or N). The next random card follows.
-4. After the last card you get your score, the list of concepts you missed, and buttons to
-   retry only those or start again.
-
-**Choosing what becomes a flashcard:** select a node in the tree and press **🃏 Flashcard: on**
-in the side panel to switch it to **🚫 Flashcard: off**. That node is then skipped in study mode
-and looks faded with a dotted outline in the tree. Press it again to include it. Its children are
-not affected (with "Include sub-concepts" they can still be cards). This can be undone with Ctrl+Z
-like any other change, and it is saved in the JSON export.
-
-Tick **Include sub-concepts** to be tested on every level below the week, not just its
-direct children. Study mode only reads the tree; it never changes it.
-
-## Several trees (one per course)
-
-The dropdown at the top left switches between trees, and **+ New tree** starts a completely
-separate one (type a name, press Create). Every tree has its own database and its own JSON
-file in `data/trees/`:
+## Project layout
 
 ```
-data/trees/elec5622.db     live database + undo history (not committed)
-data/trees/elec5622.json   snapshot of the tree (committed)
+app/          Python code: tree logic, SQLite storage, Dash pages and callbacks
+assets/       browser-side scripts and styles (shortcuts, PDF windows, panel splitter)
+data/trees/   one <name>.json per tree (committed) and its <name>.db database (local only)
+data/images/  pictures used in definitions
+tests/        pytest tests (python -m pytest)
 ```
 
-Creating a tree writes its `.json` straight away (just the root node). The app remembers
-which tree you were looking at. Undo history is kept per tree. Pictures in `data/images/`
-are shared by all trees.
-
-## Data
-
-Changes are saved straight into the tree's SQLite database. The JSON snapshots are only
-updated when you export, so to save a versioned copy of every tree:
-
-```powershell
-python -m app.export_json
-git add data/trees data/images
-git commit -m "Update course trees"
-```
-
-`data/images/` is committed too, because definitions refer to those files. On a fresh
-clone the databases are rebuilt from the JSON files the first time the app starts.
+Built with [Dash](https://dash.plotly.com/) and
+[dash-cytoscape](https://dash.plotly.com/cytoscape).
