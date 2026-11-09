@@ -80,6 +80,45 @@
     setPanelWidth(null);
   });
 
+  // Edit form: the preview has its own scroll box. After you type, it scrolls to the part you
+  // are editing (proportionally to the cursor in the text box), so adding text at the end
+  // shows the end. After adding an image with the upload area, it goes to the bottom, where
+  // the image was added. The preview renders after a round trip to the server (and MathJax
+  // or images can grow it later), so it follows for a short while after each edit.
+  let follow = null; // {mode: 'caret' | 'bottom', until: timestamp}
+  let watched = null;
+  function followPreview() {
+    if (!follow || Date.now() > follow.until) return;
+    const box = document.getElementById('preview-scroll');
+    const area = document.getElementById('form-definition');
+    if (!box || !area) return;
+    const max = box.scrollHeight - box.clientHeight;
+    if (max <= 0) return;
+    let ratio = 1;
+    if (follow.mode === 'caret' && area.value.length && area.value.slice(area.selectionEnd).trim() !== '') {
+      ratio = area.selectionEnd / area.value.length;
+    }
+    box.scrollTop = ratio * max;
+  }
+  function startFollowing(mode, ms) {
+    follow = { mode: mode, until: Date.now() + ms };
+    const box = document.getElementById('preview-scroll');
+    if (box && box !== watched) {
+      watched = box;
+      new MutationObserver(followPreview).observe(box, { childList: true, subtree: true, characterData: true });
+      box.addEventListener('load', followPreview, true); // pictures finishing loading make it taller
+    }
+    followPreview();
+  }
+  document.addEventListener('input', function (e) {
+    if (e.target && e.target.id === 'form-definition') startFollowing('caret', 2500);
+  }, true);
+  ['change', 'drop'].forEach(function (type) {
+    document.addEventListener(type, function (e) {
+      if (e.target && e.target.closest && e.target.closest('#image-upload')) startFollowing('bottom', 5000);
+    }, true);
+  });
+
   // Pasting a screenshot or copied picture into the definition box uploads it and inserts
   // the Markdown for it at the cursor.
   document.addEventListener('paste', async function (e) {

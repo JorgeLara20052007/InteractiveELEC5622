@@ -38,6 +38,12 @@ box jumps to any node, and each week has its own colour.
   full tab, and `×` closes it. You can open several at once. The
   file stays in your browser: nothing is uploaded or saved, so after a page reload you
   open it again.
+- **Editing with a live preview:** while you edit a node, the label and definition boxes stay
+  in place and only the preview below them scrolls, so you can read a long preview without
+  losing the editor. After you type, the preview scrolls to the part you are editing: adding
+  text at the end of the definition shows the bottom of the preview, and so does adding an
+  image. Make the definition box taller or shorter by dragging its bottom-right corner; the
+  preview takes the rest of the panel.
 - **Undo / redo:** the Undo and Redo buttons (or Ctrl+Z / Ctrl+Y) revert or re-apply adding,
   editing and deleting nodes, including a whole deleted subtree. The history is kept in the
   database (last 200 changes), so it survives restarting the app. In a text box Ctrl+Z

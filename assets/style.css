@@ -156,3 +156,8 @@ body.pdf-dragging iframe,
 body.pdf-dragging #cy {
   pointer-events: none; /* keep the mouse while dragging over a PDF or the graph */
 }
+
+/* The edit form: everything above the preview keeps its size; the preview takes the rest. */
+#form > :not(#preview-scroll) {
+  flex: 0 0 auto;
+}

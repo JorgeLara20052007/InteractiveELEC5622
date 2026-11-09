@@ -12,6 +12,8 @@ from . import images, storage, tree, trees
 ADD_ID = "__add__"  # id of the '+' ghost node shown next to the selected node
 SHOW = {"display": "block"}
 HIDE = {"display": "none"}
+# The edit form fills the side panel so its preview box can take the leftover height.
+FORM_SHOW = {"display": "flex", "flexDirection": "column", "flex": "1 1 auto", "minHeight": 0}
 
 
 def _elements(root: tree.Node, selected: str, collapsed: set[str]) -> list[dict]:
@@ -375,7 +377,7 @@ def register(app) -> None:
             + (f" and its {n_desc} descendant(s)" if n_desc else "")
             + "? This cannot be undone.",
             HIDE if editing or creating else SHOW,
-            SHOW if editing else HIDE,
+            FORM_SHOW if editing else HIDE,
             form_title,
             label,
             definition,

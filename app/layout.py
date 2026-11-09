@@ -109,6 +109,9 @@ def build_layout() -> html.Div:
                     "padding": "16px",
                     "overflowY": "auto",
                     "boxSizing": "border-box",
+                    # a column, so the edit form can fill the panel and give the preview the rest
+                    "display": "flex",
+                    "flexDirection": "column",
                 },
                 children=[
                     html.Div(
@@ -153,10 +156,28 @@ def build_layout() -> html.Div:
                                     "marginBottom": "12px",
                                 },
                             ),
-                            html.Button("Save", id="btn-save", style=_button),
-                            html.Button("Cancel", id="btn-cancel", style=_button),
-                            html.Div("Preview", style={"margin": "16px 0 4px", "color": "#57606a", "fontSize": "12px"}),
-                            dcc.Markdown(id="form-preview", mathjax=True, style={"borderTop": "1px solid #d0d7de"}),
+                            html.Div(
+                                [
+                                    html.Button("Save", id="btn-save", style=_button),
+                                    html.Button("Cancel", id="btn-cancel", style=_button),
+                                ]
+                            ),
+                            html.Div("Preview", style={"margin": "14px 0 4px", "color": "#57606a", "fontSize": "12px"}),
+                            # Only the preview scrolls; the editor above stays where it is. assets/app.js
+                            # scrolls it to what you are typing (to the bottom when you add at the end).
+                            html.Div(
+                                id="preview-scroll",
+                                style={
+                                    "flex": "1 1 0px",  # exactly the height left below the editor
+                                    "minHeight": "120px",
+                                    "overflowY": "auto",
+                                    "border": "1px solid #d0d7de",
+                                    "borderRadius": "6px",
+                                    "padding": "0 12px",
+                                    "background": "#fbfcfd",
+                                },
+                                children=dcc.Markdown(id="form-preview", mathjax=True),
+                            ),
                         ],
                     ),
                     html.Div(
