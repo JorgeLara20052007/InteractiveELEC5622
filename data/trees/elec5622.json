@@ -2,51 +2,60 @@
   "id": "elec5622",
   "label": "ELEC5622",
   "definition": "Course notes for ELEC5622. Click a node to read its definition. Select a node and press **+** to add a child.",
+  "flashcard": true,
   "children": [
     {
       "id": "w1",
       "label": "Week 1: Introduction",
       "definition": "Introduction to medical imaging: anatomical vs functional imaging, why we image, the DICOM standard, body planes, and how to measure the efficiency of a predictive model.",
+      "flashcard": true,
       "children": [
         {
           "id": "w1-anatomical-imaging",
           "label": "Anatomical imaging",
           "definition": "Provides information about the **anatomy or structure** of the body.",
+          "flashcard": true,
           "children": [
             {
               "id": "w1-anatomical-imaging-x-rays",
               "label": "X-rays",
               "definition": "X-ray beams are absorbed differently by various structures in the body, such as bones and soft tissues. This property is used to recreate an image of the inner body.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-anatomical-imaging-computed-tomography-ct",
               "label": "Computed Tomography (CT)",
               "definition": "Uses x-ray techniques to create 2D and 3D images of the body. More detailed than plain x-rays, and better for analysing soft tissues.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-anatomical-imaging-mri-t1-t2",
               "label": "MRI (T1 / T2)",
               "definition": "T1- and T2-weighted MRIs are considered anatomical imaging. Uses strong magnetic fields ($\\vec{B}_0$) and radio waves to create pictures of internal body structures.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-anatomical-imaging-ultrasound",
               "label": "Ultrasound",
               "definition": "Uses high-frequency sound waves and a handheld transducer to create real-time, non-invasive images of soft tissues.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-anatomical-imaging-optical-imaging-oct",
               "label": "Optical imaging (OCT)",
               "definition": "A diverse class of light-based techniques used to capture structural, functional and anatomical information of biological tissues. Includes OCT (optical coherence tomography).",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-anatomical-imaging-asd",
               "label": "asd",
               "definition": "",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -55,35 +64,41 @@
           "id": "w1-functional-imaging",
           "label": "Functional imaging",
           "definition": "Detecting or measuring changes in **metabolism, blood flow, regional chemical composition and absorption**.",
+          "flashcard": true,
           "children": [
             {
               "id": "w1-functional-imaging-positron-emission-tomography-pet",
               "label": "Positron Emission Tomography (PET)",
               "definition": "Uses radioactive substances known as radio-tracers to visualise and measure changes in metabolism.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-functional-imaging-spect",
               "label": "SPECT",
               "definition": "Single photon emission computed tomography. A 3D reconstruction is made from injected radio-tracers and gamma detection.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-functional-imaging-optical-fluorescence",
               "label": "Optical fluorescence",
               "definition": "Tracks biological activity by measuring light emitted from fluorescent indicators.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-functional-imaging-functional-mri-fmri",
               "label": "Functional MRI (fMRI)",
               "definition": "Measures and maps brain activity by detecting changes in blood flow.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-functional-imaging-diffusion-tensor-imaging-dti",
               "label": "Diffusion Tensor Imaging (DTI)",
               "definition": "Advanced MRI that uses the micro-structural movement of water molecules to visualise white matter tracts and neural pathways in the brain.",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -91,30 +106,35 @@
         {
           "id": "w1-purpose-of-medical-imaging",
           "label": "Purpose of medical imaging",
-          "definition": "Medical imaging has four main purposes.",
+          "definition": "Medical imaging has four main purposes:\n\n- Diagnosis\n- Research\n- Preoperative surgical planning\n- Image guided therapy",
+          "flashcard": true,
           "children": [
             {
               "id": "w1-purpose-of-medical-imaging-diagnosis",
               "label": "Diagnosis",
               "definition": "Using images to diagnose disease.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-purpose-of-medical-imaging-research",
               "label": "Research",
               "definition": "Provide information to study anatomical and functional structures for research purposes.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-purpose-of-medical-imaging-preoperative-surgical-planning",
               "label": "Preoperative surgical planning",
               "definition": "Using images to plan a surgery before it happens.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-purpose-of-medical-imaging-image-guided-therapy",
               "label": "Image-guided therapy",
               "definition": "Using images to guide a treatment as it is delivered, like cancer treatment.",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -123,29 +143,34 @@
           "id": "w1-dicom-format",
           "label": "DICOM format",
           "definition": "**Digital Imaging and Communications in Medicine**: the standard to treat medical images. The communication is based on TCP/IP.",
+          "flashcard": true,
           "children": []
         },
         {
           "id": "w1-body-planes",
           "label": "Body planes",
           "definition": "Imaginary planes that cut the body into sections so images can be described consistently. There are three standard planes.",
+          "flashcard": true,
           "children": [
             {
               "id": "w1-body-planes-sagittal-plane",
               "label": "Sagittal plane",
               "definition": "Divides the body into left and right parts.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-body-planes-coronal-plane",
               "label": "Coronal plane",
               "definition": "Divides the body into front (anterior) and back (posterior) parts.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-body-planes-axial-transverse-plane",
               "label": "Axial (transverse) plane",
               "definition": "Divides the body into upper (superior) and lower (inferior) parts.",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -154,35 +179,41 @@
           "id": "w1-efficiency-of-predictive-modelling",
           "label": "Efficiency of predictive modelling",
           "definition": "Measuring how good a predictive model or test is, using the counts in the confusion matrix.",
+          "flashcard": true,
           "children": [
             {
               "id": "w1-efficiency-of-predictive-modelling-confusion-matrix",
               "label": "Confusion matrix",
               "definition": "| | Truth: Positive | Truth: Negative |\n|---|---|---|\n| **Test: Positive** | TP | FP |\n| **Test: Negative** | FN | TN |\n\nTP = true positive, FP = false positive, FN = false negative, TN = true negative.",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-efficiency-of-predictive-modelling-sensitivity",
               "label": "Sensitivity",
               "definition": "True positive rate: of all truly positive cases, the fraction the test catches.\n\n$$\\text{Sensitivity} = \\frac{TP}{TP + FN}$$",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-efficiency-of-predictive-modelling-specificity",
               "label": "Specificity",
               "definition": "True negative rate: of all truly negative cases, the fraction the test correctly clears.\n\n$$\\text{Specificity} = \\frac{TN}{TN + FP}$$",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-efficiency-of-predictive-modelling-ppv",
               "label": "PPV",
               "definition": "Positive predictive value (precision): given a positive test, the probability the case is truly positive.\n\n$$\\text{PPV} = \\frac{TP}{TP + FP}$$",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "w1-efficiency-of-predictive-modelling-npv",
               "label": "NPV",
               "definition": "Negative predictive value: given a negative test, the probability the case is truly negative.\n\n$$\\text{NPV} = \\frac{TN}{TN + FN}$$",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -193,21 +224,40 @@
       "id": "elec5622-week-2-mri",
       "label": "Week 2: MRI",
       "definition": "Magnetic Resonance Imaging",
+      "flashcard": true,
       "children": [
         {
           "id": "elec5622-week-2-mri-hydrogen-atoms",
           "label": "Hydrogen Atoms",
           "definition": "MRI uses $^1\\mathrm{H}$ nuclei to change its magnetic field direction\n\n$\\mathrm{H}$ is used over other atoms because:\n\n- Biological tissues contain many $^1\\mathrm{H}$\n- is the only major atom that is MR sensitive\n- Most abundant atom in the body\n- majority of hydrogen is in water\n- Essentially all MRI is hydrogen imaging",
+          "flashcard": true,
           "children": [
             {
               "id": "elec5622-week-2-mri-hydrogen-atoms-precession",
               "label": "Precession",
               "definition": "Imagine a spinning top leaning at an angle: its axis sweeps around the vertical, tracing a cone. That motion is **precession**\n\n![Precession](/images/c2a686dd6a03c48e.png)\n",
+              "flashcard": true,
               "children": [
                 {
                   "id": "elec5622-week-2-mri-hydrogen-atoms-precession-larmor-frequency",
                   "label": "Larmor Frequency",
                   "definition": "Precession occurs at the **Larmor frequency**. Therefore we can define it as **the rate or frequency of this precession wobbling motion**:\n\n$$\n\\omega_0=\\gamma B_0\n$$\n\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-2-mri-hydrogen-atoms-precession-larmor-frequency-radio-frequency-pulses-at-larmor-frequency",
+                      "label": "Radio Frequency pulses at Larmor frequency",
+                      "definition": "When applying a RF pulse perpendicular to $B_0$ at $\\omega_0$, the magnetic moments of the nucleis Tilt to the transverse plane (away from $B_0$). Therefore net magnetic moment turns towrds the $xy$ plane.",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-2-mri-hydrogen-atoms-precession-precession-in-out-of-phase",
+                  "label": "Precession in/out of phase",
+                  "definition": "- When protons precess together, we say that they are in phase\n-When protons precess separately, we say that they are out of phase\n\n![precession on phas and out of phase](/images/32b6e8dd0606a318.png)\n",
+                  "flashcard": true,
                   "children": []
                 }
               ]
@@ -216,12 +266,14 @@
               "id": "elec5622-week-2-mri-hydrogen-atoms-magnetic-moment",
               "label": "Magnetic Moment",
               "definition": "Informal definition: \"Tells us how strong a tiny magnet is and which way it points\"\n\nWe represent it with an arrow \"$\\mu$\". For a proton, its directly proportional to spin:\n\n$$\n\\mu=\\gamma S\n$$\n\nWhere $\\gamma$ is **gyromagnetic ratio**, a specific constant of a particle. For a proton its positive.\n\n![magneticMoment](/images/21cf55c3f899ee04.jpg)\n",
+              "flashcard": true,
               "children": []
             },
             {
               "id": "elec5622-week-2-mri-hydrogen-atoms-spin",
               "label": "Spin",
               "definition": "In mechanics, a rotating object has angular momentum. but a proton has a **intrinsic angular momentum**, called **spin**, even though we should not picture it literally rotating like a little ball.\n\nWecan say that the spin of a proton is:\n\n$$\nS_z=\\pm\\frac{\\hbar}{2}\n$$\n\n![Spin](/images/d24993725a7a7fca.jpg)\n",
+              "flashcard": true,
               "children": []
             }
           ]
@@ -230,7 +282,1291 @@
           "id": "elec5622-week-2-mri-mri-process",
           "label": "MRI Process",
           "definition": "1. Hydrogen atoms are randomly oriented\n2. Protons align with $B_0$ (Strong Magnetic Field)\n3. A radiofrequency pulse (RF pulse) flips the magnetic moments of the protons to the transverse plane\n4. After some $t$, the relax and return to equilibrium (same direction as $B_0$)\n\n![MRI process](/images/d4ab6f2d44fafe1b.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-2-mri-mri-process-what-happens-between-transverse-flip-and-relaxation",
+              "label": "What happens between transverse flip and relaxation?",
+              "definition": "During this process the protons realign with $B_0$ and lose energy by **emitting their own RF signals**, which can be received using coils placed around he object being imaged.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-2-mri-mri-process-excitation-during-mri-process",
+              "label": "Excitation during MRI process",
+              "definition": "During excitation, protons \"jump\" to a high energy level, and the net magnetic moment vector spirals down to the transverse plane. \n\n(Excitation happens when RF pulse arrives)",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-2-mri-mri-process-relaxation-in-mri-process",
+              "label": "Relaxation in MRI Process",
+              "definition": "After excitation, the protons emit RF pulse of their own in the form of magnetic waves.\n\nWe have 2 types of relaxations:\n\n- Longitudinal\n- Transverse",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-2-mri-mri-process-relaxation-in-mri-process-t1-relaxation",
+                  "label": "T1 Relaxation",
+                  "definition": "Is the relaxation parallel to $B_0$:\n\nIs the process by which the net magnetisation returns to initial maximum value.\n\nT1 relaxation is modeled as exponential growth curve with time constant T1. $M$ reaches $63\\%$ of its maximum value ($M_0$) at $t=T1$ and is very close to maximal at $t=5\\times T1$\n\n![T1 Relaxation](/images/f65411e128b97fc1.png)\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-2-mri-mri-process-relaxation-in-mri-process-t1-relaxation-t1-weighted-mri",
+                      "label": "T1 Weighted MRI",
+                      "definition": "Emphasises in **how quickly a tissue recovers its longitudinal magnetisation** after excitation. Tissues with short $T1$ recover fast and appear bright.\n\nLower T1 implies bright image\nHigher T1 implies dark image",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-2-mri-mri-process-relaxation-in-mri-process-t2-relaxation",
+                  "label": "T2 Relaxation",
+                  "definition": "Refers to the process that the transverse components of magnetisation decay or dephase\n\nT2 is the time for $63\\%$ of protons to lose precessional phase coeherence\n\n![T2 elaxation](/images/6b893393daa4c0f1.png)\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-2-mri-mri-process-relaxation-in-mri-process-t2-relaxation-t2-weighted-mri",
+                      "label": "T2 Weighted MRI",
+                      "definition": "Emphises on how quickly the transverse magnetisation decays:\n\n- lower T2 implies dark images\n- higher T2 implies bright images",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-2-mri-mr-pulses",
+          "label": "MR Pulses",
+          "definition": "A single RF pulse generates a free induction decay, but 2 successive RF pulses produce a spin echo:\n\n![Spin Echo Signal](/images/7de2349deda2e37a.png)\n\nSpin Echo regenerates spin phase information apparently lost during the decay of the FID (free induction decay)\n\n$90^\\circ$ pulse tips the spins into the transverse plane; spins lose phase coherence; $180^\\circ$ pulse refocuses he spins.\n\n*Clinical MRI prefers spin echo sequences over raw Free Induction Decay (FID) signals primarily because FID suffers from rapid, uncontrollable signal loss and lacks the necessary image quality for diagnostic interpretation*.",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-2-mri-mr-pulses-overall-signal-intensity",
+              "label": "Overall Signal Intensity",
+              "definition": "$$\nS=K\\cdot [H]\\cdot (1-e^{-TR/T1})\\cdot e^{-TE/T2}\n$$\n\n$K$ is a proportionality constant accounting for scanner and measurement factors, such as receiver-coil sensitivity and system gain.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-2-mri-mr-pulses-overall-signal-intensity-tr-repetition-time",
+                  "label": "TR (Repetition time)",
+                  "definition": "Time between 90 degree RF pulse\n\n![TR and TE](/images/690e43353ebbfda0.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-2-mri-mr-pulses-overall-signal-intensity-te-echo-time",
+                  "label": "TE (Echo Time)",
+                  "definition": "The time between the initial 90 degree RF pulse and the echo\n\n![TR and TE](/images/690e43353ebbfda0.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-2-mri-types-of-mri-imaging-according-to-tr-and-te-combinations",
+          "label": "Types of MRI imaging according to TR and TE combinations",
+          "definition": "There are 4 types of MRI imaging outputs according to TR and TE combinations.\n\n- T1 weighted\n- T2 weighted\n- PD weighted\n- Poor contrast\n\n![types of MRI table](/images/4588506521b8ce5d.png)\n\nThe T1-weighted sequence uses a short TR and\nshort TE (TR < 1000msec, TE < 30msec).\n\nThe T2-weighted sequence uses a long TR and\nlong TE (TR > 2000msec, TE > 80msec)\n",
+          "flashcard": true,
           "children": []
+        },
+        {
+          "id": "elec5622-week-2-mri-mri-components",
+          "label": "MRI Components",
+          "definition": "![MRI compoments](/images/64bf783468c6dc91.png)\n\n4 main components:\n\n- Magnetic field: usually given by a superconducting magnet (sometimes resistive or permanent magnet)\n\n- Gradient coils: allow spatial encoding of the MR signal. When current is passed hrough these coils secondary magnetic field is created, mildly distort the main magnetic field in a predictable pattern, causing the resonance frequency of the protons to vary in as a function of position\n\n- RF coil: function as the antennae for both transmitting signals\nto and receiving signals from the tissue. They are located relatively close the patient’s\nbody. There are three basic types of RF coils, i.e., body, head and surface coils. The RF\npulses applied to a patient’s body are mostly absorbed by the tissue, while a small\namount of energy is emitted by the body to produce an image.\n\n- Computer: include user interface, the Fourier transformer, the signal converter\nand a preamplifier, etc.",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-mri-forming-images-in-mri",
+          "label": "Forming Images in MRI",
+          "definition": "To separate signals from different part of the body we use spatial localisation. Magnetic gradients (slightly change main magnetic field) and Larmor frequency vary with positions to map parts of the body.",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-2-mri-forming-images-in-mri-3d-localisation-algorithm",
+              "label": "3D localisation algorithm",
+              "definition": "1. Slice selected along z-axis\n2. Intra-slice segment selected along x-axis by frequency encoding\n3. Intra-slice segment selected along y-axis by phase encoding",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-2-mri-forming-images-in-mri-3d-localisation-algorithm-slice-selection",
+                  "label": "Slice selection",
+                  "definition": "Apply gradient to magnetic field on the $z$-axis\n\n![Slice selection](/images/9968c869e83739ba.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-2-mri-forming-images-in-mri-3d-localisation-algorithm-frequency-encoding-column-selection",
+                  "label": "Frequency Encoding Column selection",
+                  "definition": "Recall the Larmor Frequency:\n\n$$\n\\omega_0=\\gamma B_0\n$$\n\nAlter the magnetic field with gradient $G_f$ (now $B$ is dependent on $x$ position):\n\n$$\nB(x) = B_0 + xG_f\n$$\n\nThe resonant frequency $\\omega(x)$ (larmor frequency) becomes a function of $x$:\n\n$$\n\\omega(x)=\\gamma \\cdot B_0+\\gamma\\cdot x\\cdot G_f = \\omega_0+\\omega_g(x)\n$$ \n\n![pasted image](/images/efe6edd622a37067.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-2-mri-forming-images-in-mri-3d-localisation-algorithm-phase-encoding-row-selection",
+                  "label": "Phase encoding Row selection",
+                  "definition": "![pasted image](/images/7d817dcb8df5918c.png)\n\nLets say we have 2 signals $A$ and $B$. Phase encoding lets us separate them:\n\n- first measurement: both rows add so $s_0 = A+B$\n- second measurement: row $B$ receives a $180^\\circ$ phase shift, reversing its sign, so $S_1=A-B$.\n\nWe can isolate each row:\n\n$$\n\\frac{S_0+S_1}{2}=A \\text{ }(\\text{Adding cancels row }B)\n$$\n\n$$\n\\frac{S_0-S_1}{2}=B \\text{ }(\\text{Adding cancels row }A)\n$$\n\nThus, the rows are separated mathematically from combined measurements. For many rows, MRI uses many phase-encoding steps and an inverse **Fourier transform** to perform this separation.",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-2-mri-k-space-raw-data-space-of-mri-signals",
+          "label": "K-space: raw data space of MRI signals",
+          "definition": "K-space is a matrix of numbers, representing the spatial frequency information in two or three dimensions of an object.\n\nK-space = spatial Fourier transform \n\n![pasted image](/images/b53e75343dec26e2.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-2-mri-k-space-raw-data-space-of-mri-signals-restoring-image-from-k-space",
+              "label": "Restoring Image from K-space",
+              "definition": "**K-space stores the MRI measurements as spatial frequencies**: how rapidly image intensity varies across space. Each measurement combines signals from the whole slice.\n\nGradients give spins a position-dependent phase:\n\n$$\n\\phi(x,y)=2\\pi(k_xx+k_yy).\n$$\n\nThe receiver measures their combined signal:\n\n$$\nS(k_x,k_y)=\\iint m(x,y)\\,e^{-i2\\pi(k_xx+k_yy)}\\,dx\\,dy,\n$$\n\nwhere $m(x,y)$ is the image we want. **This equation is a 2D Fourier transform.**\n\nTo recover the image, apply the **inverse Fourier transform**:\n\n$$\n\\boxed{m(x,y)=\\mathcal F^{-1}_{2D}\\{S(k_x,k_y)\\}}.\n$$\n\nIt reverses the phase encoding and combines measurements so that signals reinforce at their correct positions—extending your $A+B,\\ A-B$ example to thousands of pixels.\n\nIn a standard acquisition, phase encoding chooses a **k-space row**, and frequency encoding samples along it. K-space’s **centre captures broad intensity variations**, while its **outer regions capture fine details and edges**.\n\n[Source: MRI spatial encoding](https://larsonlab.github.io/MRI-education-resources/Spatial%20Encoding.html)",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-2-mri-3-main-advantages-and-disadvantages-of-mri",
+          "label": "3 Main Advantages and Disadvantages of MRI",
+          "definition": "**Advantages**:\n\n1. **No exposure to radiation**, therefore can be safely used to people vulnerable to radiation effects, such as a pregnant women and babies.\n\n2. Useful for scanning soft tissues structures and organs.\n\n3. Can provide information about the blood circulation through the body and blood vessels.\n\n**Disadvantages**:\n\n1. Performed in an enclosed space with loud noise, so people who are claustrophobic are facing problems with MRI.\n\n2. MRI scans are very expensive: a single scanner can cost million dollars.\n\n3. People who have internal metal objects, such as surgical clips, plates or screws may not be eligible for an MRI xam due to its strong magnet.",
+          "flashcard": true,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-2-tutorial",
+      "label": "Week 2: Tutorial",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-2-tutorial-whole-brain-analysis",
+          "label": "Whole Brain Analysis",
+          "definition": "1. **Registration:** Align the brain scan with a reference brain or other scans so corresponding structures match.\n2. **Segmentation:** Divide the scan into tissues or structures, such as grey matter, white matter and cerebrospinal fluid.\n3. **ROI (Region of Interest):** Select a brain area and measure something within it, such as its volume or average signal.\n\n**Align → identify structures → measure selected regions.**\n\n![pasted image](/images/94e381616032cbf6.png)\n\n",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps",
+          "label": "Brain Image Pre-processing Steps",
+          "definition": "- Brain extraction (skull stripping)\n- Brain Image Alignment (registration)\n- Brain parcellation\n- Brain Tissue segmentation\n\n(Note: FSL & Nifty Neg are brain image processing softwares)",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-brain-extraction-skull-stripping",
+              "label": "Brain Extraction (skull stripping)",
+              "definition": "Is the process in which  the brain is segmented from non brain tissues.\n\n![pasted image](/images/64b26fac1c1ccf4c.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system",
+              "label": "Image Alignment (MNI Coordinate System)",
+              "definition": "The MNI coordinate system (MNI space) is the standard brains from Montreal Neurological Institute. It serves as a template to generalise the forms of the brains.\n\n![pasted image](/images/36a0872ff8e8ec8c.png)",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration",
+                  "label": "Registration",
+                  "definition": "Allows multiple mathematical processes to align the scanned brain to a certain standard brain.\n\nRegistration consists of:\n\n1. Input the brains before registration\n2. Compute linear registration \n3. Compute non-linear registration\n\nDo this according to a reference like **MNI152**",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration-rotation",
+                      "label": "Rotation",
+                      "definition": "Its considered a linear rigid transform\n\n![pasted image](/images/0fd380b3449b90c7.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration-translation",
+                      "label": "Translation",
+                      "definition": "Its considered a linear rigid transform \n\n![pasted image](/images/9f984edd8619da5c.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration-scaling",
+                      "label": "Scaling",
+                      "definition": "Its considered a linear affine transformation.\n\n![pasted image](/images/8cb16586cc5c21a2.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration-mathematical-linear-transform",
+                      "label": "Mathematical Linear Transform",
+                      "definition": "# Linear Transform\n\n$\\mathbf{X}$ is an image points original coordinates, and $\\mathbf{X}'$ is its transformed coordinates.\n\n$$\n\\mathbf{X}'=\\mathbf{A}\\mathbf{X}+\\mathbf{t}\n$$\n\nUsing homogeneous coordinates:\n\n$$\n\\begin{bmatrix}\n\\mathbf{X}'\\\\\n1\n\\end{bmatrix}\n=\n\\underbrace{\n\\begin{bmatrix}\n\\mathbf{A} & \\mathbf{t}\\\\\n\\mathbf{0}^{\\mathsf T} & 1\n\\end{bmatrix}\n}_{\\mathbf{T}}\n\\begin{bmatrix}\n\\mathbf{X}\\\\\n1\n\\end{bmatrix}\n$$\n\n$$\n\\mathbf{T}=\n\\begin{bmatrix}\na_{11} & a_{12} & a_{13} & a_{14}\\\\\na_{21} & a_{22} & a_{23} & a_{24}\\\\\na_{31} & a_{32} & a_{33} & a_{34}\\\\\n0 & 0 & 0 & 1\n\\end{bmatrix}\n$$\n\n## Translation\n\n$$\n\\mathbf{T}_{\\text{translation}}=\n\\begin{bmatrix}\n\\mathbf{I} & \\mathbf{t}\\\\\n\\mathbf{0}^{\\mathsf T} & 1\n\\end{bmatrix}\n$$\n\n## Scale\n\n$$\n\\mathbf{T}_{\\text{scale}}=\n\\begin{bmatrix}\n\\operatorname{diag}(s_x,s_y,s_z) & \\mathbf{0}\\\\\n\\mathbf{0}^{\\mathsf T} & 1\n\\end{bmatrix}\n$$\n\n## Rotation\n\n$$\n\\mathbf{T}_{\\text{rotation}}=\n\\begin{bmatrix}\n\\mathbf{R} & \\mathbf{0}\\\\\n\\mathbf{0}^{\\mathsf T} & 1\n\\end{bmatrix}\n$$",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-registration-deformable-transforamation",
+                      "label": "Deformable transforamation",
+                      "definition": "Its a nonlinear method of alignment.\n\n![pasted image](/images/8f4792b3a313239c.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-2-tutorial-brain-image-pre-processing-steps-image-alignment-mni-coordinate-system-interpolation-3-methods",
+                  "label": "Interpolation (3 methods)",
+                  "definition": "During image alignment, **interpolation estimates intensities at transformed positions that fall between voxels**.\n\n- **Nearest neighbour (NN):** Copies the closest voxel’s value. Fast and preserves discrete labels, but can look blocky.\n\n![pasted image](/images/d08676dc5382c871.png)\n\n- **Trilinear:** Takes a weighted average of the eight surrounding voxels, with closer voxels contributing more.\n\n![pasted image](/images/5483f23c20592209.png)\n\n- **Spline:** Uses smooth, piecewise polynomial functions fitted to nearby voxel values to estimate intensity. Produces smoother results but requires more computation.\n\n![pasted image](/images/0b491efe877df368.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-2-mentimiter",
+      "label": "Week 2 Mentimiter",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-2-mentimiter-after-a-90-degree-rf-pulse-at-the-larmor-frequency-what-happens-to-net-magnetisation",
+          "label": "After a 90 degree RF pulse at the Larmor frequency, what happens to net magnetisation?",
+          "definition": "**Moves towards the transverse plane**",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-mentimiter-tissue-a-has-t1-3000-ms-tissue-b-has-t1-240-ms-which-recovers-longitudinal-magnetization-faster",
+          "label": "Tissue A has T1 = 3000 ms; Tissue B has T1 = 240 ms. Which recovers longitudinal magnetization faster?",
+          "definition": "**Tissue B**",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-mentimiter-what-is-the-purpose-of-the-180-pulse-in-a-spin-echo-sequence",
+          "label": "What is the purpose of the 180° pulse in a spin-echo sequence?",
+          "definition": "**Refocus dephased spins**",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-mentimiter-which-settings-would-emphasize-t2-differences-tr-and-te-combinations",
+          "label": "Which settings would emphasize T2 differences? (TR and TE combinations)",
+          "definition": "Long TR + long TE",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-2-mentimiter-a-gradient-makes-b-vary-with-x-position-what-does-this-enable",
+          "label": "A gradient makes B₀ vary with x-position. What does this enable?",
+          "definition": "**frequency encoding**",
+          "flashcard": true,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-3-mri-ii",
+      "label": "Week 3: MRI II",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-3-mri-ii-diffusion-mri",
+          "label": "Diffusion MRI",
+          "definition": "Diffusion weighted MRI generates contrast in MR images uses the diffusion of water molecules.\n\nMolecular diffusion in tissues is not free and restricted by surrounding obstacles, e.b. fibers, membranes and macromolecules. Therefore, water molecule diffusion patterns can reveal microscopic details of tissue architecture\n\n**Diffusion MRI (dMRI) is preferred not just for its absolute anatomical accuracy, but because it provides unique microscopic, functional, and structural connectivity information that conventional MRI cannot see**\n\n![pasted image](/images/6d42c95ebaeca60e.png)\n\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-3-mri-ii-diffusion-mri-brownian-motion",
+              "label": "Brownian Motion",
+              "definition": "**Brownian motion** is the random motion of particles suspended in a medium (a liquid or a gas).[2] The traditional mathematical formulation of Brownian motion is that of the Wiener process, which is often itself called \"Brownian motion\", even in mathematical sources.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-brownian-motion-isoptropic-diffusion",
+                  "label": "Isoptropic Diffusion",
+                  "definition": "Molecules has no restriction in movement\n\n![pasted image](/images/e22b3cc1ae337bef.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-brownian-motion-ansiotropic-diffusion",
+                  "label": "Ansiotropic diffusion",
+                  "definition": "Molecule is restricted to 1 primary direction:\n\n![pasted image](/images/eab52e06a9b1c55d.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-diffusion-mri-spin-echo-equation-for-diffusion-mri",
+              "label": "Spin echo equation for diffusion MRI",
+              "definition": "**Spin echo is a standard MRI method.** Your new equation adds the effect of **diffusion weighting** to the spin-echo equation you learned earlier.\n\nPreviously:\n\n$$\nS_0=K\\cdot PD(1-e^{-TR/T_1})e^{-TE/T_2}\n$$\n\nWith diffusion weighting:\n\n$$\n\\boxed{S=S_0e^{-bD}}\n$$\n\n- **$b$:** Strength of the diffusion weighting, controlled by the diffusion gradients.\n- **$D$:** Diffusion coefficient, describing how freely water molecules move.\n\nGreater diffusion causes more signal loss. When $b=0$, the diffusion factor equals 1, giving the original spin-echo signal.\n\nTR, TE and b are sequence dependent imaging parameters that could be controlled. Varying these parameters can change the contributions of T1, T2 and D terms.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-spin-echo-equation-for-diffusion-mri-unerstanding-b-in-dmri-equation",
+                  "label": "Unerstanding b in dMRI equation",
+                  "definition": "## Understanding b in the dMRI equation\n\n![pasted image](/images/657363eb24ba05ae.png)\n\n**The b-value controls how sensitive the signal is to water diffusion**, through the strength, duration and timing of the diffusion gradients.\n\nThe lower/higher-frequency arrows describe how gradients make spins at different positions precess at different rates:\n\n- **Dephasing:** Spins accumulate different phases.\n- **Rephasing:** The sequence cancels these phase differences for stationary spins.\n- **With diffusion:** Water molecules change position, so cancellation is incomplete, reducing the measured signal.\n\n$$\nS=S_0e^{-bD}\n$$\n\n**Higher b means greater signal loss for the same diffusion coefficient $D$.** Restricted diffusion therefore retains more signal than freely diffusing water.\n\nFor two rectangular diffusion-gradient pulses:\n\n$$\nb=\\gamma^2G^2\\delta^2\\left(\\Delta-\\frac{\\delta}{3}\\right),\n$$\n\nwhere $G$ is gradient strength, $\\delta$ is pulse duration, and $\\Delta$ is the time between pulse starts. Units are usually $\\mathrm{s/mm^2}$.\n\n[Source: ISMRM diffusion MRI acquisition basics](https://www.ismrm.org/dmff-uploads/2s.pdf)",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-diffusion-mri-how-to-measure-diffusion",
+              "label": "How to measure diffusion",
+              "definition": "It is impossible to extract the information about diffusion orientation from a single intensity value, but we can retrieve it by analysing 2 images with different $b$ while other parameters remain the same.\n\n$$\n\\begin{align}\nS_1 &= PD(1-e^{-TR/T1})e^{-TE/T2}e^{-b_1D}\\\\\nS_1 &= S_0e^{-b_1D} \\\\\nS_2 &= S_0e^{-b_2D} \\\\\n\\frac{S_2}{S_1} &=e^{-(b_2-b_1)D} \\\\\n\\therefore \\text{ } D &= -\\ln\\left( \\frac{S_2}{S_1} \\right) / (b_2-b_1)\n\\end{align}\n$$",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-diffusion-mri-apparent-diffusion-coefficient-adc",
+              "label": "Apparent Diffusion Coefficient (ADC)",
+              "definition": "By solving $D$ at each pixel, we can calculate a map of the diffusion coefficient, called **apparent diffusion coefficient**.\n\nIn ADC maps, the intensity of each pixel is proportional to the extent of diffusion: water molecules in birght regions diffuse faster than those in dark regions.\n\n| Diffusion | DWI | ADC map |\n|---|---|---|\n| Low / restricted | Bright | Dark |\n| High / unrestricted | Dark | Bright |\n\nADC maps are calculated by comparing signals acquired with different b-values, typically $b=0$ and a higher $b$:\n\n$$\nADC=-\\frac{1}{b}\\ln\\left(\\frac{S_b}{S_0}\\right)\n$$\n\nThis is calculated **for each voxel**. Greater signal loss with diffusion weighting gives a higher ADC.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-apparent-diffusion-coefficient-adc-why-do-adc-maps-of-different-gradient-orentations-could-be-remarkably-different",
+                  "label": "Why do ADC maps of different gradient orentations could be remarkably different?",
+                  "definition": "Due to **ansiotropic diffusion**.\n\nWater may move easily along one direction but be restricted along another. Therefore, changing the gradient direction can change the measured ADC in the same tissue.\n\nIf you point the gradient **across a fibre**, where water motion is more restricted, the signal usually **drops less** and the measured ADC is **lower** than when you point it along the fibre.\n\nOnly if there were **no motion at all** along that direction would there be no signal loss due to diffusion.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-apparent-diffusion-coefficient-adc-what-does-the-argest-adc-suggest",
+                  "label": "What does the argest ADC suggest?",
+                  "definition": "Water generally diffuses more easily along *axonal fibres* than across them. The direction with the greatest ADC estimes the **dominant fibre orientation** \n\n*axonal fibres*\n![pasted image](/images/94a8ee5c863b930e.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-apparent-diffusion-coefficient-adc-is-measuring-x-y-z-sufficient-for-full-directional-pattern-of-diffusion-reconstruction",
+                  "label": "Is measuring X, Y, Z sufficient for full directional pattern of diffusion reconstruction? If not, what calculation is necessary for fiber orientation?",
+                  "definition": "**NO**,  Fibres can point at any angle. Three axis measurements do not provide enough information to reconstruct the full directional pattern of diffusion.\n\n**Tensor Calculation** is required to determine fiber orientation precisely.",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti",
+              "label": "Diffusion Tensor Imaging DTI",
+              "definition": "Advanced magnetic resonance imaging (MRI) technique that maps the 3D diffusion of water molecules to visualize the microstructural organization of white matter in the brain\n\n![pasted image](/images/7f5d1d02e2bfdd59.png)\n\n![pasted image](/images/018360260505edeb.png)\n",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-what-does-dti-measure-and-how",
+                  "label": "What does DTI measure and how?",
+                  "definition": "Measurements of **how much water diffuses along different directions** in each voxel.\n\nFor each gradient direction, the scanner measures **signal loss** relative to a baseline and uses it to estimate a **directional ADC**. DTI combines these measurements to fit a 3D ellipsoid. Its longest axis points in the direction of greatest estimated diffusion.\n\nThe length and orientations of the longest,\nmiddle and shortest axis of the ellipsoid can\nbe determined b six parameters organised in\nto a 3x3 symmetric matrix called diffusion\ntensor.\n\n$$\n\\mathbf{D} =\n\\begin{bmatrix}\nD_{xx} & D_{xy} & D_{xz} \\\\\nD_{xy} & D_{yy} & D_{yz} \\\\\nD_{xz} & D_{yz} & D_{zz}\n\\end{bmatrix}\n$$",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-eigen-decompsition-in-dti",
+                  "label": "Eigen decompsition in DTI",
+                  "definition": "**Eigendecomposition** tells you which way the diffusion ellipsoid points and how stretched it is along each of its three axes.\n\n$$\n\\mathbf D\\mathbf v_i=\\lambda_i\\mathbf v_i\n$$\n\nThis means that applying the tensor $\\mathbf D$ to an eigenvector $\\mathbf v_i$ scales it by $\\lambda_i$ while preserving its direction.\n\n- **Eigenvector $\\mathbf v_i$:** The direction of an ellipsoid axis.\n- **Eigenvalue $\\lambda_i$:** How much water diffuses along that axis.\n\nThe **largest eigenvalue** gives the greatest diffusivity. Its eigenvector points along the ellipsoid’s longest axis and estimates the dominant fibre orientation.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-indeces-of-diffusion",
+                  "label": "Indeces of diffusion",
+                  "definition": "Gives us information about the total diffusivity of the molecule.\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-indeces-of-diffusion-fractional-anisotropy-fa",
+                      "label": "Fractional anisotropy (FA)",
+                      "definition": "**Fractional anisotropy (FA)** measures **how directional** diffusion is. FA is 0 when diffusion is equal in all directions and 1 when it occurs along only one axis.\n\n$$\n\\mathrm{FA} = \\sqrt{\\frac{(\\lambda_1-\\lambda_2)^2+(\\lambda_2-\\lambda_3)^2+(\\lambda_1-\\lambda_3)^2}{2(\\lambda_1^2+\\lambda_2^2+\\lambda_3^2)}}\n$$\n\n![pasted image](/images/b5f6d05a09f48bc1.png)\n\nFA does not discriminate between ellipsoid\norientation. For example, the two ellipsoids below\nhave the same FA with different directions:\n\n![pasted image](/images/b5ab6f01f3fe676c.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-indeces-of-diffusion-mean-diffusivity-md",
+                      "label": "Mean diffusivity (MD)",
+                      "definition": "**Mean diffusivity (MD)** measures **how much** water diffuses on average. It is the mean of the three principal diffusivities:\n\n$$\n\\mathrm{MD} = \\frac{\\lambda_1+\\lambda_2+\\lambda_3}{3}\n$$",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-deterministic-tratography",
+                  "label": "Deterministic Tratography",
+                  "definition": "For estimation of white matter pathways and exploring which brain regons may connect, we can use **deterministic tractography**:\n\nFollows one estimated fibre direction at each step. In DTI, that direction comes from the tensor’s principal eigenvector. It’s used to trace and visualise pathways.\n\n1. Assume largest eigevector reflects dominant fibre orientation.\n2. If $\\mathrm{FA} < 0.15$:\n   - stop tracking, else continue\n3. If $\\theta > 50^\\circ$\n   - stop tracking, else continue\n\nThe process does not allow branching fibers\n\n\n\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-deterministic-tratography-limits-of-deterministic-tratcography",
+                      "label": "Limits of Deterministic Tractography",
+                      "definition": "1. Fiber path across voxel is inferred based on a single diffusion orientation of each voxel.\n2. utilizing only one diffusion orientation per voxel may\nnot adequately characterize voxels\n3. deterministic FT can follow false tracts or may stop in\nregions with isotropic tensors",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-3-mri-ii-diffusion-mri-diffusion-tensor-imaging-dti-probabilisti-fibre-tracking",
+                  "label": "Probabilistic Fibre Tracking",
+                  "definition": "For estimation of white matter pathways and exploring which brain regons may connect, we can use **Probabilistic Fibre Tracking**:\n\n- dealing with the uncertainty along the track path\n- propagate a large number of pathways from the seed point.\n\n  - pathwys sample from he dstribution of directon\n  - output: proportion of pathways from seed point reach a given voxel\n  - high probability does not guarantee that the tract exists.\n\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-3-mri-ii-mri-preprocessing-ii",
+          "label": "MRI Preprocessing II",
+          "definition": "",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-3-mri-ii-mri-preprocessing-ii-what-is-geometric-distortion-and-how-do-you-approach-this",
+              "label": "What is geometric distortion and how do you approach this",
+              "definition": "**Geometric distortion** means parts of an MRI image appear shifted, stretched or compressed because the scanner assigns the signal to the wrong location.\n\n- **Gradient nonlinearity.** The scanner assumes the gradient field changes linearly with position. When it deviates from that straight-line relationship, the scanner miscalculates positions. A scanner calibration map can correct this warp.\n- **Main field inhomogeneity ($B_0$).** The scanner assumes the main magnetic field is uniform. Local variations shift the precession frequency, which can be mistaken for a change in position. In diffusion MRI acquired with EPI, this distortion occurs mainly along the phase-encoding direction. A field map or images acquired with opposite phase-encoding directions can help undo it.\n\n**Correct geometric distortion by estimating the warp and moving voxels back to their expected positions.** (Correction of geometric distortion often requires phantom scans (not\nvery commonly performed))\n\n![pasted image](/images/a783f4ede6a40aa2.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-mri-preprocessing-ii-intensity-non-uniformity-what-is-it-and-how-do-we-correct-it",
+              "label": "Intensity non-uniformity, what is it and how do we correct it?",
+              "definition": "Intensity variation irrelecant to anatomy.\n\nIntensity non-uniformity correction is the most common type of MRI preprocessing.\n\nOptimized calibration of intensity non-uniformity is difficult\nN3 algorithm (Non-parametric non-uniform intensity normalisation)\n\n![pasted image](/images/026061f8fc6cdbf5.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-mri-preprocessing-ii-noise-reduction",
+              "label": "Noise Reduction",
+              "definition": "Denoising increases Contrast-to-Noise Ratio. Denoising should be performed with caution (what is noise and what is edge). Level of denoising should depend on the study objectives",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-3-mri-ii-mri-preprocessing-ii-intensity-normalisation",
+              "label": "Intensity normalisation",
+              "definition": "Convential MRI intensities are cquired n arbitrary units. Images are not comparabe acros scanners, subjects and visits, even when the same protocol is used. This affects algorithm performance, prediction, inference, even simple things like thresholding an image.\n\n![pasted image](/images/beca44572a3633f4.png)\n",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-3-mentimiter",
+      "label": "Week 3: Mentimiter",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-3-mentimiter-why-acquire-images-with-different-b-values",
+          "label": "Why acquire images with different b-values?",
+          "definition": "To estimate diffusion",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-3-mentimiter-which-parameters-can-be-adjusted-to-change-t1-t2-and-diffusion-contributions-to-the-mr-signal",
+          "label": "Which parameters can be adjusted to change T1, T2 and diffusion contributions to the MR signal?",
+          "definition": "b, TR and TE",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-3-mentimiter-a-fbre-is-not-aligned-with-x-y-or-z-how-can-its-main-diffusion-direction-be-estimated",
+          "label": "A fibre is not aligned with x, y or z. How can its main diffusion direction be estimated?",
+          "definition": "Fit multi-direction measurements to a tensor",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-3-mentimiter-two-regions-are-compared-on-an-adc-map-region-a-is-brighter-than-region-b-what-can-we-conclude",
+          "label": "Two regions are compared on an ADC map. Region A is brighter than Region B. What can we conclude?",
+          "definition": "A has greater water diffusion and B restriced (low) diffusivity",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-3-mentimiter-the-same-tissue-appears-brighter-near-one-side-of-an-mr-image-without-an-anatomical-reason-which-problem-is-most-likely",
+          "label": "The same tissue appears brighter near one side of an MR image, without an anatomical reason. Which problem is most likely?",
+          "definition": "Intensity non-uniformity",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-3-mentimiter-what-is-a-key-advantage-of-probabilistic-over-deterministic-tractography",
+          "label": "What is a key advantage of probabilistic over deterministic tractography?",
+          "definition": "It accounts for uncertainty in fibre direction",
+          "flashcard": true,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-4-computed-tomography",
+      "label": "Week 4: Computed Tomography",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-4-computed-tomography-x-rays",
+          "label": "X-Rays",
+          "definition": "Form of high-energy electromagnetic radiation capable of passing through solid substances\n\n![pasted image](/images/62555ba6c1db4e31.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-x-ray-period-range",
+              "label": "X-Ray Period Range",
+              "definition": "$$\n0.01[\\mathrm{nm}]\\leq T \\leq10[\\mathrm{nm}]\n$$\n\n![pasted image](/images/bd2c12bbbd9e62ca.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-generating-x-rays",
+              "label": "Generating x-rays",
+              "definition": "![pasted image](/images/35965d8ee6b312b6.png)\n\n\nIn an X-ray tube, a heated cathode releases electrons. A high voltage accelerates them toward a metal target, usually tungsten. When the electrons hit the target, they generate X-rays in two ways:\n\n- **Bremsstrahlung:** Electrons slow down near nuclei, producing a continuous range of X-ray energies.\n- **Characteristic X-rays:** An incoming electron knocks out an inner-shell electron. An outer-shell electron fills the vacancy and emits an X-ray at a specific energy.\n\n![pasted image](/images/28bb343b7c30afb2.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-x-ray-equations",
+              "label": "X-Ray equations",
+              "definition": "- X-rays may be described as waves and perticles, having both wavelength $\\lambda$ and energy $E$.\n\n$$\n\\begin{align}\n\nE &= h\\nu\\\\\nE &= \\frac{hc}{\\lambda}\\\\\nE &= \\frac{12.398}{\\lambda} \\\\\n\\lambda \\min &= \\frac{hc}{V} = \\frac{12.398}{V}  \n\n\\end{align}\n$$",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-x-rays-interaction-with-human-bodies",
+              "label": "X-rays Interaction with Human Bodies (4 Possible interaction, what are they and how do they work?)",
+              "definition": "1. **Transmission**: The photon does not interact: it passes the tissue wthout meeting any atom.\n2. **Absorption**: The photon interacts and transfers all its energy to the tissues atoms (*Photoelectrical effect*).\n3. **Scattering**: the photon interacts and is diverted into a new direction wit or without loss of energy. (*Rayleigh scattering, compton scattering*)\n\n![pasted image](/images/5b0f7d2d5d0a6af1.png)\n",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-4-computed-tomography-x-rays-x-rays-interaction-with-human-bodies-compton-scattering",
+                  "label": "Compton Scattering",
+                  "definition": "**Produces no useful information to the X-Ray**\n\n- Is *independent* of the atomic number of tissue. The probability of Compton is the same for bone atoms and for soft tissue atoms.\n- The probability for Compton is more dependent on kVp or x-ray energy\n- Results in image fog by optical densities not representing diagnostic information.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-x-rays-x-rays-interaction-with-human-bodies-photoelectric-effect-absoprtion",
+                  "label": "Photoelectric effect (Absoprtion)",
+                  "definition": "**Produces the light areas on the image**\n\nA relatively low energy x-ray photon uses all its energy to eject an inner shell electron, leavin an orbital vacancy.\n\nAn electron from the shell above drops down to fill the vacancy and, in doing so, gives up energy in the form of a charateristic ray.\n\nThe **photoelectric effect** is more likely to occur in absorbers of high atomic number (like bones), and contributes significantly to patient dose, as all the photon energy is absorbed by the patient.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-x-rays-x-rays-interaction-with-human-bodies-what-do-transmitted-x-rays-look-like-in-an-x-ray-scan",
+                  "label": "What do transmitted x-rays look like in an x-ray scan",
+                  "definition": "It produces the gray/dark areas on the image",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-differential-absorption",
+              "label": "Differential Absorption",
+              "definition": "Differential absorption is the difference between those x-rays absorbed and those transmitted to the IR.\n\n![pasted image](/images/1709b80e75f6924b.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-atteniation",
+              "label": "Attenuation",
+              "definition": "The total reduction in the number of photons remaining in an x-ray beam after penetration through tissue.\n\n$$\n\\text{Absorption}+\\text{Scattering}=\\text{Attenuation}\n$$\n\nThe probability of radiation interaction is a function of tissue electron density / atomic number, tissue thickness/density and xrat energy\n\nDense material like bone and contrast dye attenuates more X-rays from the beam than less dense material.\n\n**The differential rate of attenuation provides the contrast necessary to form an image**",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-x-rays-clinical-use-of-x-rays-3",
+              "label": "Clinical use of x-rays (3)",
+              "definition": "1. Mammography\n2. Fluoroscopy\n3. Angiography\n\n![pasted image](/images/b2b8f85a237e8c15.png)\n",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-4-computed-tomography-computed-tomography-ct",
+          "label": "Computed Tomography (CT)",
+          "definition": "Its a medical imaging technique used to obtain detailed internal images of the body. They use x-rays to perform its scans.\n\nCT reconstructs a cross-sectional\nimage of the body from a ‘virtual pile of X-ray photographs’. A\ntomographic image is an image of a slice through the body. \n\n![pasted image](/images/d99fb2a4ae40d125.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-characteristics-of-a-ct-no-answer",
+              "label": "Characteristics of a CT (no answer)",
+              "definition": "",
+              "flashcard": false,
+              "children": [
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-characteristics-of-a-ct-no-answer-tomographic-image",
+                  "label": "Tomographic image",
+                  "definition": "picture of a slab of the patient's anatomy",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-characteristics-of-a-ct-no-answer-ct-slice-thickness",
+                  "label": "CT slice thickness",
+                  "definition": "Its very thin, around 1 to 10 mm and approximately uniform.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-characteristics-of-a-ct-no-answer-what-does-each-pixel-on-the-ct-image-display",
+                  "label": "What does each pixel on the CT image display?",
+                  "definition": "An average x-ray attenuation properties of the tissue in the corresponding voxel.",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer",
+              "label": "Generations of CT (no answer)",
+              "definition": "",
+              "flashcard": false,
+              "children": [
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-first-generation",
+                  "label": "First Generation CT",
+                  "definition": "*Refer to the image below*\n\nAt a time $t_0$ the scanner moves horizontally (from ref to gray, performing multiple scans). Then at a later time $t_1$, when the 1st horizontal scan is computed, the scanner is rotated slightly ($\\Delta\\theta$) and a lateral scan is performed again. \n\nThey were really slow (around 4.5 minutes/scan, with 1.5 minutes of reconstruction per slice)\n\nContrast resolution of internal structures was unprecedented, but images had poor spatial resolution.\n\n![pasted image](/images/9c38b1f525ba4026.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-second-generation",
+                  "label": "Second Generation CT",
+                  "definition": "*Refer to the image below*\n\nA fan beam with a linear array for detection (~30 elements) was used. This significantly reduced the time per slice to around 20 seconds compared to first generation.\n\nIt worked similarly to 1st generation, but it used the fan beam with a linear array for photon detection.\n\n![pasted image](/images/c9133c9e33e0a6c9.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-third-generation",
+                  "label": "Third Generation CT",
+                  "definition": "*Refer to image below*\n\n- 800 detectors where used, and the form of the array is concave\n- Angle of the fan beam increased\n- Detectors and xray tube move together\n- Scans are no about 0.5s\n- Cons:\n\n   - Very high performance detectors are needed to avoid ring artefacts and the system is more sensitive to alisasing than 1st or 2nd ones.\n\n![pasted image](/images/04dee887defb291d.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-fourth-generation",
+                  "label": "Fourth Generation CT",
+                  "definition": "*Refer to image below*\n\nDesigned to overcome the problems of ring artifacts.\n\n1. The detector is now a stationary ring\n2. the xray tube moves around the ring\n3. Reduced motion resulted in reduction in complexity\n4. Larger fan beam\n5. Even shorter scanning time (in comparison to 3rd generation)\n\n![pasted image](/images/978685609296411a.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-fifth-generation-ct",
+                  "label": "Fifth generation CT",
+                  "definition": "*Refer to image below*\n\nStationary source and detector. Its used for fast whole heart imaging. \n\nSource of x-ray moves around by steering an electron beam around X-ray tube anode.\n\n![pasted image](/images/2193862d7c1041bf.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-sixth-generation",
+                  "label": "Sixth Generation",
+                  "definition": "Allowed 3D image acquisition within a single breath hold. Design: x-ray tube rotates as a patient is moved smoothly into x-ray scan field.\n\nSimultaneous source rotation, table translation and data acquisition, produces one continuous volume set of data for entire region.\n\n![pasted image](/images/b5b3298d08b01164.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-generations-of-ct-no-answer-seventh-generation",
+                  "label": "Seventh Generation",
+                  "definition": "Design: multiple detector array. The collimator spacing is wider and more of the x-rays that are produced by the tube are used in producing image data.\n\nIt uses *Cone Beam* geometry\n\n![pasted image](/images/2ab67257aed32d52.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-ct-numbers",
+              "label": "CT numbers",
+              "definition": "A **CT number ($h$)** measures how strongly a voxel attenuates X-rays relative to water. It is expressed in **Hounsfield units (HU)**.\n\n$$\nh = 1000\\,\\frac{\\mu_{\\text{voxel}}-\\mu_{\\text{water}}}{\\mu_{\\text{water}}}\n$$\n\nHere, $\\mu$ is the linear attenuation coefficient.\n\n- **Air:** approximately $-1000$ HU\n- **Water:** $0$ HU\n- **Dense bone:** often around $+1000$ HU or higher\n\nA higher CT number means stronger X-ray attenuation.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-x-ray-photon-equations-in-ct",
+              "label": "X-ray photon equations in CT",
+              "definition": "$N_i$ is the number of incident X-ray photons, $N_o$ is the number transmitted, and $\\mu$ is the linear attenuation coefficient.\n\n1. **One layer.** For a uniform layer of thickness $\\Delta x$, the fraction of photons that pass through is $e^{-\\mu\\Delta x}$:\n\n   $$\n   N_o=N_i e^{-\\mu\\Delta x}.\n   $$\n\n![pasted image](/images/dfea91b9e3b00557.png)\n\n2. **Several layers.** Each layer attenuates the photons that survived the previous one. The fractions multiply, so the exponents add. For three layers of equal thickness:\n\n   $$\n   N_o=N_i e^{-(\\mu_1+\\mu_2+\\mu_3)\\Delta x}.\n   $$\n\n![pasted image](/images/14f851f0b0bcf73b.png)\n\n\n3. **Any number of layers.** Replace the three terms with a sum, then take the natural log of the incident-to-transmitted ratio:\n\n   $$\n   N_o=N_i e^{-\\sum_k\\mu_k\\Delta x}\n   \\qquad\\Longrightarrow\\qquad\n   \\ln\\frac{N_i}{N_o}=\\sum_k\\mu_k\\Delta x.\n   $$\n\n4. **Continuously varying tissue.** As the layers become infinitesimally thin, the sum becomes an integral along the ray:\n\n   $$\n   \\ln\\frac{N_i}{N_o}=\\int_{-\\infty}^{\\infty}\\mu(x)\\,\\mathrm dx.\n   $$\n\n**In CT, each ray gives one total attenuation value.** The scanner combines measurements from many rays and angles to reconstruct the local $\\mu$ values in the image.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-ct-projections",
+              "label": "CT projections",
+              "definition": "The total X-ray attenuation along one ray through a CT slice. This is the $\\ln(N_i/N_o)$.\n\nThe first equation **adds up attenuation along the ray**:\n\n$$\np_\\theta(t)=\\int_{(\\theta,t)\\,\\text{line}}\\mu(x,y)\\,ds.\n$$\n\nHere, $\\mu(x,y)$ is the local attenuation, $\\theta$ sets the ray’s orientation, $t$ is its signed offset from the origin, and $ds$ is a small step along the ray.\n\nThe second equation writes the same calculation as an integral over the whole slice. The **Dirac delta** $\\delta(x\\cos\\theta+y\\sin\\theta-t)$ selects only points on the ray:\n\n$$\nx\\cos\\theta+y\\sin\\theta=t.\n$$\n\nFor example, if $\\theta=0$, the ray is the vertical line $x=t$, so $p_0(t)=\\int_{-\\infty}^{\\infty}\\mu(t,y)\\,dy$.\n\nVarying $t$ at a fixed $\\theta$ gives one **parallel projection**. Collecting projections at many angles gives the **Radon transform** data used to reconstruct the CT slice.\n\n![pasted image](/images/bfaf6f8a50596b66.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-fourier-slice-theorem-in-ct",
+              "label": "Fourier Slice Theorem in CT",
+              "definition": " **From a projection to a Fourier slice.** At a fixed angle $\\theta$, the CT projection $p_\\theta(t)$ records the total attenuation along each of a set of parallel rays. Taking the **1D Fourier transform** of that projection gives one line through the centre of the image’s **2D Fourier spectrum**:\n\n   $$\n   \\mathcal F_{1D}\\{p_\\theta\\}(\\omega)\n   =\\widehat{\\mu}(\\omega\\cos\\theta,\\omega\\sin\\theta).\n   $$\n\n   Here, $\\theta$ is the angle of the detector axis, perpendicular to the X-ray rays.\n\n![pasted image](/images/3d1eb45f7c0d868a.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-how-ct-reconstructs-an-image",
+              "label": "How CT reconstructs an image",
+              "definition": "**From Fourier slices back to the CT image.** Repeat this at many angles. Each angle gives a different line in the 2D Fourier spectrum. Interpolate those samples onto a rectangular grid, then apply a **2D inverse FFT** to recover the attenuation image $\\mu(x,y)$\n\n![pasted image](/images/40552a37b01142c4.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-fourier-domain-reconstruction",
+              "label": "Fourier-domain Reconstruction",
+              "definition": "![pasted image](/images/cb1caa93a86c1d46.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-projection-and-backprojection-in-ct-scans",
+              "label": "Projection and Backprojection in CT scans",
+              "definition": "The backprojection process can be expressed mathematically. The reconstructed back-projection image $b_\\theta(x,y)$ at a particular viw $\\theta$ is:\n\n$$\nb_\\theta(x,y)=\\int p_\\theta(t)\\delta(x\\cos \\theta + y \\sin \\theta -t)\\mathrm{d} t\n$$\n\nAdding up the images at all angles $(0,\\pi)$:\n\n$$\n\\begin{align}\nf_b(x,y)&=\\int_0^\\pi b_\\theta(x,y)\\mathrm{d}\\theta\\\\\n&= \\int_0^\\pi \\int_{-\\infty}^{\\infty} p_\\theta(t)\\delta(x\\cos \\theta + y \\sin \\theta -t)\\mathrm{d} t \\mathrm{d}\\theta\n\\end{align}\n$$\n\n![pasted image](/images/a8458e776d4cc544.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-ct-advantages-3",
+              "label": "CT advantages (3)",
+              "definition": "1. CT eliminates superimposition of structures\n2. Small differences in physical desnity can be distinguished\n3. CT data can be viewed as images",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-4-computed-tomography-computed-tomography-ct-ct-disadvantages",
+              "label": "CT disadvantages",
+              "definition": "CT is a moderate to high radation diagnostic techinique, which leads to:\n\n1. Better radiation efficiency $\\implies$ lower dose\n2. Higher resolution imaging $\\implies$ higher dose\n3. More complex scan techniques $\\implies$ higher dose",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-4-computed-tomography-spatial-resolution",
+          "label": "Spatial resolution",
+          "definition": "Ability to detect 2 small objects located very close. Its dependent on slice thickness, detector width, focal spot size, matriz size, etc.",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-4-computed-tomography-contrast-resolution",
+          "label": "Contrast resolution",
+          "definition": "Is the ability to detect attenuation coefficients of adjacent areas",
+          "flashcard": true,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-5-medical-image-analysis",
+      "label": "Week 5: Medical Image Analysis",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-5-medical-image-analysis-what-is-medical-image-analysis",
+          "label": "What is medical image analysis?",
+          "definition": "1. Goal: discovery of biomedical knowledge, and diagnosis and monitoring of diseases.\n\n2. Approach: computer vision algorithms to measure and quantify biomedical images.\n\n3. Tasks to achieve this:\n\n   - Segmentation\n   - Classification",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis",
+          "label": "Segmentation on Medical Image Analysis",
+          "definition": "It separates the body part in target objects from an image based on a discontiuity or a similarity criterion.\n\nMedical image segmentation identifies organs and abnormal lesions like tumors.\n\n![pasted image](/images/7355066d0289ae06.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation",
+              "label": "Edge based segmentation",
+              "definition": "Detects and link edge pixels to form contours.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-advantage-of-edge-based-segmentation",
+                  "label": "Advantage of edge based segmentation",
+                  "definition": "Edges are an important feature in an image to separate regions.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm",
+                  "label": "Edge based segmentation algorithm",
+                  "definition": "1. Idetnify edge pixels\n2. Calculate gradient or (Prewitt operator, Sobel operator) or Canny operator\n3. Link adjacent edge pixels into edges.",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-gradient-based-edge-detection",
+                      "label": "Gradient Based Edge Detection",
+                      "definition": "The gradient of an image is given by:\n\n$$\n\\nabla f = \\left[ \\frac{\\partial f}{\\partial x},\\frac{\\partial f}{\\partial y} \\right]\n$$\n\nThe gradient points in the direction of the most rapid change intensity. And its direction is given by:\n\n$$\n\\theta=\\tan^{-1}\\left(  \\frac{\\partial f}{\\partial x}/\\frac{\\partial f}{\\partial y} \\right)\n$$\n\nThe edge strength is given by the gradient magnitude:\n\n$$\n\\|\\nabla f\\|\n$$",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-prewitt-operator-edge-based-segmentation",
+                      "label": "Prewitt Operator edge based segmentation",
+                      "definition": "Prewitt operator: is sensitive to noise when compared to sobel operator:\n\n- Calculate the Horizontal and Vertical edges of irignal image $A$:\n\n$$\n\\mathbf{G_x}=\\begin{bmatrix}\n1&0&-1\\\\1&0&-1\\\\1&0&-1\n\\end{bmatrix} * A \\text{ and } \\mathbf{G_y} = \\begin{bmatrix} 1&1&1\\\\0&0&0\\\\-1&-1&-1 \\end{bmatrix} * A\n$$\n\nCombine the 2 edges into final gradient magnitude:\n\n$$\n\\mathbf{G}=\\sqrt{\\mathbf{G_x}^2+\\mathbf{G_y}^2}\n$$\n\n![pasted image](/images/186980f8b58884f9.png)\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-sobel-operator-edge-based-segmentation-algorithm",
+                      "label": "Sobel operator edge based segmentation algorithm",
+                      "definition": "**Most commonly used** to emphasize edges. Really similar to prewitt operator:\n\nCalculate the horizontal and vertical edges of image $A$:\n\n$$\n\\mathbf{G_x}=\\begin{bmatrix}\n1&0&-1\\\\1&0&-1\\\\1&0&-1\n\\end{bmatrix} * A \\text{ and } \\mathbf{G_y} = \\begin{bmatrix} 1&1&1\\\\0&0&0\\\\-1&-1&-1 \\end{bmatrix} * A\n$$\n\nCombien the 2 edges into a final gradient magnitude\n\n$$\n\\mathbf{G} = \\sqrt{\\mathbf{G_x}^2+\\mathbf{G_y}^2}\n$$",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-canny-edge-detection-algorithm",
+                      "label": "Canny edge detection algorithm",
+                      "definition": "1. Smooth the image with a **Gaussian filter**\n2. Find the intensity gradients of the image\n3. Apply threshold to remove gradients of low magnitude\n4. Apply non maximal suppression to the gradient magnitude image\n5. Track edge by hysteresis",
+                      "flashcard": true,
+                      "children": [
+                        {
+                          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-canny-edge-detection-algorithm-non-maximal-suppression",
+                          "label": "Non-maximal Suppression",
+                          "definition": "![pasted image](/images/36679dc652861e5a.png)\n",
+                          "flashcard": true,
+                          "children": []
+                        },
+                        {
+                          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-edge-based-segmentation-edge-based-segmentation-algorithm-canny-edge-detection-algorithm-edge-tracking-by-hysteresis",
+                          "label": "Edge tracking by hysteresis",
+                          "definition": "![pasted image](/images/de9470c64cf0c9fd.png)",
+                          "flashcard": true,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-region-based-segmentation",
+              "label": "Region Based Segmentation",
+              "definition": "Find the regions that are homogeneous by criterions.\n\nRegion based methods are robust:\n\n- Regions cover more pixels than edges: more information available in order to characterise each region\n- Directly use texture information: compared to edge-based methods\n- Better in noisy images.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-region-based-segmentation-region-growing-region-based-segmentation",
+                  "label": "Region Growing (region-based segmentation)",
+                  "definition": "- Start with tiny regions, combine neighboring regions that are sufficiently similar to each other\n- **Requirement**: initialisation, similarity criterion.\n\n**Algorithm**:\n\n**Growing**\n\n1. Create a seed\n\n2. Grow region by merginf neighboring pixels until meet the criteria (e.g. based on intensity, texture)\n\n**Drawbacks**\n\n1. Seed point must be specified\n\n2. Different seed points give different results\n\n![pasted image](/images/4cbc353c74fd8c32.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-region-based-segmentation-region-splitting-region-based-segmentation",
+                  "label": "Region Splitting (region-based segmentation)",
+                  "definition": "Start with one big region, separate refions that are not suffiently homogeneous.\n\n- **Requirement** homogeneity criterion, split rule.\n\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation",
+              "label": "Classification based approach (segmentation)",
+              "definition": "Frames the pixel-level or region-level task of segmenting an image as a series of classification decisions",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification",
+                  "label": "Methods of classification",
+                  "definition": "![pasted image](/images/8d98c152b68ea5a9.png)\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-unsupervised-methods",
+                      "label": "Unsupervised Methods",
+                      "definition": "- No label about image data\n- presetting:\n   - Number of classes\n   - Number of iterations\n   - Convergence thresholds\n\nThe main algorithm is: **k-means**",
+                      "flashcard": true,
+                      "children": [
+                        {
+                          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-unsupervised-methods-k-means",
+                          "label": "K-Means",
+                          "definition": "**K-means** divides $n$ objects into $K$ groups based on their attributes. Each object is represented by a vector $x_i$, and each group has a centre called its **centroid** $\\mu_j$.\n\n1. **Choose $K$.** Decide how many groups you want.\n2. **Initialise the centroids.** Pick $K$ starting centres, for example by choosing $K$ data points.\n3. **Measure distances.** Calculate the distance from each object to every centroid.\n4. **Group by nearest centroid.** Assign each object to the group whose centroid is closest.\n5. **Check whether any object changed groups.** If none did, stop. Otherwise, recalculate each centroid as the **mean of the objects now in its group**, then return to step 3.\n\n![pasted image](/images/556e7ca88ffc6101.png)\n\nThe objective is\n\n$$\nJ=\\sum_{j=1}^{K}\\sum_{i\\in S_j}\\|x_i-\\mu_j\\|^2.\n$$\n\nFor each object, this adds its **squared distance to its own group's centroid**. Assigning objects to their nearest centroid reduces this cost for the current centres. Recalculating the means reduces it for the current groups.",
+                          "flashcard": true,
+                          "children": [
+                            {
+                              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-unsupervised-methods-k-means-applications-of-k-means",
+                              "label": "Applications of K-means",
+                              "definition": "![pasted image](/images/944b42ad77bf8604.png)\n\n- Column *a* displays the lung CT scan images.\n- k-means segmented images displaued in column *b*.\n- In column *c*, using a spehere shape structuring element, the tumors are segmented.\n\n**Detection of tumors**",
+                              "flashcard": true,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-supervised-methods-main-algorithms-and-characteristics",
+                      "label": "Supervised Methods (Main algorithms and Characteristics)",
+                      "definition": "**Characteristic**:\n\n1. Start the knowledge of class types.\n\n2. Training samples are created for each class.\n\n3. Groudn-truth used to verify the training samples.\n\n**Main algorithms**:\n\n- K-nearest neighbor\n- Bayes Classification\n- ANN (artificial neural networks)",
+                      "flashcard": true,
+                      "children": [
+                        {
+                          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-supervised-methods-main-algorithms-and-characteristics-parch-based-classification",
+                          "label": "Partch-based classification",
+                          "definition": "**Patch-based classification labels each pixel using a small window around it.** The neighbouring pixels give the classifier context, so two pixels with the same intensity can get different labels if their surroundings look different.\n\n1. **Extract a patch.** Take a small window, such as $5\\times5$ pixels, centred on the pixel you want to label. Slide the window one pixel at a time, so adjacent patches overlap.\n2. **Extract features.** Describe what the patch contains, for example its average intensity, texture or edges.\n3. **Classify the patch.** Use those features to predict a class, such as grey matter or white matter.\n4. **Label the centre pixel.** Assign the prediction to the centre pixel. The other 24 pixels provide context.\n5. **Build the segmentation.** Repeat across the image and put each predicted label in its original pixel location.\n\n![pasted image](/images/7ad35e1f518dbbae.png)\n",
+                          "flashcard": true,
+                          "children": []
+                        },
+                        {
+                          "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-supervised-methods-main-algorithms-and-characteristics-naive-bayes-classifier",
+                          "label": "Naive Bayes Classifier",
+                          "definition": "Its a supervised learning methods that assumes bayes theorem. It involves both, categorical and continuous valued attributes.\n\n**Bayes Theorem**\n\n$$\nP(b|a) = \\frac{P(a|b)P(b)}{P(a)}\n$$\n\n**Its definition as a classifier**\n\n- Set of tuples:\n   - Each tuple is an $n$ dimensional attribute vector:\n$$\nX:(x_1,x_2,...,x_n)\n$$\n\n- Let there are ",
+                          "flashcard": true,
+                          "children": [
+                            {
+                              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-supervised-methods-main-algorithms-and-characteristics-naive-bayes-classifier-why-use-naive-bayes-classifier-and-how-does-it-work",
+                              "label": "Why use Naive Bayes Classifier and how does it work?",
+                              "definition": "**Naive Bayes classifies a patch by asking how likely its features are under each possible class.** For MRI segmentation, the feature vector $X=(x_1,\\ldots,x_n)$ could contain the patch’s mean intensity and texture, and $C_i$ could be a tissue class such as grey matter.\n\nThe chain rule lets us break down the joint likelihood $P(X\\mid C_i)$. With just two features:\n\n$$\nP(x_1,x_2\\mid C_i)=P(x_1\\mid x_2,C_i)\\,P(x_2\\mid C_i).\n$$\n\nThe first term asks how likely $x_1$ is when we know **both** the class and the value of $x_2$. With many features, these combinations are hard to estimate from limited training data.\n\nNaive Bayes assumes that **once the class is known, the features are independent**. Under this assumption, knowing the texture adds no information about the intensity within that tissue class. So we can learn one distribution per feature per class and multiply their likelihoods:\n\n$$\nP(X\\mid C_i)=\\prod_{k=1}^{n}P(x_k\\mid C_i).\n$$\n\n**How it learns and predicts.** During training, labelled patches tell us which class each example belongs to. We use them to estimate the class prior $P(C_i)$ and each feature’s distribution within that class. For a new patch, we pick the class with the highest score:\n\n$$\n\\widehat C=\\arg\\max_{C_i}\\left[P(C_i)\\prod_{k=1}^{n}P(x_k\\mid C_i)\\right].\n$$\n\nBayes’ rule divides each score by the same $P(X)$, so we can skip that division when choosing the winning class.\n\n**Why it works well as a baseline.** Learning each feature separately requires fewer parameters than modelling all their relationships. That makes training and prediction fast and can help when labelled examples are limited. The trade-off is that strongly correlated features can effectively count the same evidence twice, making the model overconfident.",
+                              "flashcard": true,
+                              "children": []
+                            },
+                            {
+                              "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-supervised-methods-main-algorithms-and-characteristics-naive-bayes-classifier-naive-bayes-applications",
+                              "label": "Naive Bayes Applications",
+                              "definition": "Classification of Emphysema and Early smoking related Lung Pathologies on CT images.",
+                              "flashcard": true,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "elec5622-week-5-medical-image-analysis-segmentation-on-medical-image-analysis-classification-based-approach-segmentation-methods-of-classification-applications-of-medical-image-classification-3",
+                      "label": "Applications of medical image classification (3)",
+                      "definition": "- Disease detection: predict *high risk patients* and discrimante them from *low risk patients*.\n- Lesion detection: lung nodule detection\n- Patch based medical image segmentation: brain tumor segmentation",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-5-medical-image-analysis-linear-svm",
+          "label": "Linear SVM",
+          "definition": "**A linear SVM draws a boundary between two classes and chooses the boundary with the widest gap between them.** In two dimensions the boundary is a line. With more features, it is called a hyperplane.\n\nSVMs find a hyperplane to separate 2 category data, and it maximises the margin, which is the distance between the canonical hyperplane\n\n### 1. How the boundary classifies a point\n\nFor an input feature vector $\\mathbf{x}$, the classifier computes\n\n$$\ng(\\mathbf{x})=\\mathbf{w}^{T}\\mathbf{x}+w_0.\n$$\n\nThe weights $\\mathbf{w}$ determine the boundary’s orientation, and the bias $w_0$ shifts its position. The boundary itself is where $g(\\mathbf{x})=0$. A positive score predicts class $+1$, and a negative score predicts class $-1$.\n\nFor example, if $\\mathbf{x}$ contains a patch’s **mean intensity** and **texture**, each patch is a point on a 2D plot. Its predicted class depends on which side of the line it falls on.\n\n### 2. What the training constraint means\n\n$$\ny_i\\bigl(\\mathbf{w}^{T}\\mathbf{x}_i+w_0\\bigr)>0\n\\qquad \\text{for every training point } i.\n$$\n\nThis checks that the score and the true label have the **same sign**. A $+1$ point needs a positive score. A $-1$ point needs a negative score. In either case their product is positive.\n\n### 3. What makes it an SVM\n\nSeveral lines might classify every training point correctly. The SVM chooses the one that **maximises the distance to the closest training points**. Those closest points are the **support vectors**.\n\nWe can scale $\\mathbf{w}$ and $w_0$ without moving the boundary, so the SVM sets the two edges of the margin at $g(\\mathbf{x})=+1$ and $g(\\mathbf{x})=-1$. The total width between them is $2/\\|\\mathbf{w}\\|$. Thus, a **hard-margin SVM** solves\n\n$$\n\\min_{\\mathbf{w},\\,w_0}\\frac{1}{2}\\|\\mathbf{w}\\|^2\n\\qquad\n\\text{subject to }\ny_i\\bigl(\\mathbf{w}^{T}\\mathbf{x}_i+w_0\\bigr)\\ge 1\n\\quad \\forall i.\n$$\n\nWhen the classes overlap, a **soft-margin SVM** allows some points inside the margin or on the wrong side of the boundary, with a penalty for those violations.\n\n![pasted image](/images/7e8ca1eefa96e346.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-5-medical-image-analysis-linear-svm-classification-margin-of-svm",
+              "label": "Classification Margin of SVM",
+              "definition": "The criteria with margin:\n\n$$\ny_i(w^tx_i+w_0)\\geq b\n$$\n\nAll data points at a distance greater than $\\frac{b}{\\|w\\|}$ from the separating hyperplane.\n\nIt is convenient to make $b=1$.\n\nThis defines the canonical hyperplanes:\n\n$$\n\\begin{align}\n&H1:w^tx_i+w_0=+1\\\\\n&H2:w^tx_i+w_0=-1\\\\\n\\end{align}\n$$\n\nand the constraints are:\n\n$$\n\\begin{align}\n&w^tx_i+w_0\\geq+1 \\text{ for }y_i=+1\\\\\n&w^tx_i+w_0\\leq+1 \\text{ for }y_i=-1\\\\\n\\end{align}\n$$",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-5-medical-image-analysis-linear-svm-prime-optimisation-of-hard-margin-svm",
+              "label": "Prime Optimisation of Hard-margin SVM",
+              "definition": "## Primal optimisation of a hard-margin SVM\n\nThe **primal optimisation problem** minimises over both the weight vector $\\mathbf{w}$ and the intercept $w_0$.\n\n$$\n\\begin{aligned}\n\\min_{\\mathbf{w},w_0}\\quad &\\frac{1}{2}\\|\\mathbf{w}\\|^2\\\\\n\\text{subject to}\\quad &y_i(\\mathbf{w}^{\\top}\\mathbf{x}_i+w_0)\\geq 1\n\\qquad \\text{for every } i.\n\\end{aligned}\n$$\n\nTo match the convention $g_i\\leq 0$, write each constraint as\n\n$$\ng_i(\\mathbf{w},w_0)=1-y_i(\\mathbf{w}^{\\top}\\mathbf{x}_i+w_0)\\leq 0.\n$$\n\nWith one multiplier $\\alpha_i\\geq 0$ per training example, the **primal Lagrangian** is\n\n$$\n\\mathcal{L}_p(\\mathbf{w},w_0,{\\alpha})\n=\\frac{1}{2}\\|\\mathbf{w}\\|^2\n+\\sum_{i=1}^{n}\\alpha_i\n\\left[1-y_i(\\mathbf{w}^{\\top}\\mathbf{x}_i+w_0)\\right].\n$$\n\nThe equivalent Lagrangian form of the primal problem is\n\n$$\n\\min_{\\mathbf{w},w_0}\\ \\sup_\\alpha\\geq 0}\n\\mathcal{L}_p(\\mathbf{w},w_0,\\alpha).\n$$\n\nAt a feasible $(\\mathbf{w},w_0)$, the inner supremum is attained at\n\\alpha=\\mathbf{0}$ and equals $\\frac{1}{2}\\|\\mathbf{w}\\|^2$.\nIf any constraint is violated, its multiplier can grow without bound,\nmaking the inner supremum $+\\infty$. This is how the inner optimisation\nenforces the hard-margin constraints.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-5-medical-image-analysis-linear-svm-optimisation-problem-solution-of-a-linear-svm",
+              "label": "Optimisation Problem Solution of a Linear SVM",
+              "definition": "**What a linear SVM learns during training** and how it uses that result to classify a new point. Here, $b$ is the bias, previously called $w_0$.\n\n1. **The support vectors determine the boundary.** Training gives each point $\\mathbf{x}_i$ a nonnegative weight $\\alpha_i$. The SVM builds the boundary’s normal vector as\n\n   $$\n   \\mathbf{w}=\\sum_{i=1}^{n}\\alpha_i y_i\\mathbf{x}_i.\n   $$\n\n   Points with $\\alpha_i=0$ contribute nothing to the sum. Points with $\\alpha_i>0$ are the **support vectors**. In a hard-margin SVM, they lie on the edges of the margin.\n\n2. **A support vector fixes the bias.** A support vector $\\mathbf{x}_k$ on the margin has a score of $+1$ or $-1$, matching its label $y_k$. So\n\n   $$\n   \\mathbf{w}^{T}\\mathbf{x}_k+b=y_k\n   \\qquad\\Rightarrow\\qquad\n   b=y_k-\\mathbf{w}^{T}\\mathbf{x}_k.\n   $$\n\n   For this step, choose a point with **$\\alpha_k>0$**. The slide’s $\\alpha_i\\geq 0$ is the general constraint on the weights.\n\n3. **A new point is classified using dot products.** Substitute the sum for $\\mathbf{w}$ into the decision function:\n\n   $$\n   f(\\mathbf{x})\n   =\\sum_{i:\\,\\alpha_i>0}\\alpha_i y_i\n   \\bigl(\\mathbf{x}_i^{T}\\mathbf{x}\\bigr)+b.\n   $$\n\n   Each support vector contributes a dot product with the new point, weighted by $\\alpha_i$ and signed by its class $y_i$. The **sign of the final score** determines the predicted class.",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-6-positron-emission-tomography-pet",
+      "label": "Week 6: Positron Emission Tomography (PET)",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography",
+          "label": "What is PET (Positron Emission Tomography)?",
+          "definition": "PET is a noninvasive diagnostic imaging technique for measuring the metabolic activity of cells in the human body. (**Funcitonal Imaging**)\n\nPET measures the 2 annihilation photons that are produced back-to-back after positron emission from a radionuclide tagged tracer molecule.\n\n![pasted image](/images/fc6dd0200166521a.png)",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-characteristics-of-pet-3",
+              "label": "Characteristics of PET (3)",
+              "definition": "- Only extremely small amounts of imaging substrate need to be injected because of the high sensitivity of PET.\n- Many isotopes can be incorporated into biological substrates (glucose, $H_2O$, $NH_3$, $CO_2$, $O_2$, etc.) and pharmaceuticals, without altering their biological activity.\n- Compared to CT images, PET images appear much blurrier and or noisier:\n\n   - Spatial resolution of CT: $1\\mathrm{mm}$\n   - Spatial resolution of PET: $4-5\\mathrm{mm}$",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-radioactive-decay-beta-positron-decay",
+              "label": "Radioactive Decay - Positron decay",
+              "definition": "## $\\beta +$ decay:\n\n![pasted image](/images/3d9372a804960fcb.png)\n\nThe rate of decay $A$ can be calculated by:\n\n$$\nA(t)=A(0)e^{-t(\\ln 2/\\tau)} \\text{ }\\tau\\text{ is half life of the nuclide}\n$$",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-radioactive-decay-beta-positron-decay-annihilation-of-positron-and-electron",
+                  "label": "Annihilation of positron and electron",
+                  "definition": "**PET maps where a radioactive tracer accumulates** by detecting pairs of photons.\n\n1. **Positron emission.** A radioactive nucleus in the tracer decays and emits a positron ($\\beta^+$), the positively charged counterpart of an electron.\n2. **Travel through tissue.** The positron travels a short distance, scattering and losing energy along the way.\n3. **Annihilation.** The positron meets an electron. Their annihilation typically produces two photons, each with an energy of $511\\,\\mathrm{keV}$, travelling in nearly opposite directions.\n4. **Coincidence detection.** When two detectors register the photons almost simultaneously, the scanner estimates that the annihilation occurred somewhere along the line connecting them. It combines many such detections to reconstruct the tracer distribution.\n\n![pasted image](/images/af4378dd39255066.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-how-does-pet-work",
+              "label": "How does PET work?",
+              "definition": "PET is a gamma ray imaging technique that uses radiotracers that emit positrons. The gamma rays used for imaging are produced when a positron meets an electron inseide the patients body, which annihilates both electron and positron and produces two gamma rays travelling in opposite directions.\n\nThe dominant annihilation photon interaction in human tissue is Compton scatter. The photon experiences a loss of energy and an associated change of direction, typically out of the detector, and so is unavailable for image formation.\n\n![pasted image](/images/09b7d73485abb558.png)\n\n![pasted image](/images/7566daca9c93b8bc.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-raw-data-acquisition-of-pet",
+              "label": "Raw data acquisition of PET",
+              "definition": "![pasted image](/images/6490ddd2ac33ec9d.png)\n\n![pasted image](/images/43dde6da8b4e44a8.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-coincident-events-in-pet-no-answer",
+              "label": "Coincident Events in PET (No answer)",
+              "definition": "",
+              "flashcard": false,
+              "children": [
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-coincident-events-in-pet-no-answer-accidental-coincidence-in-pet",
+                  "label": "Accidental Coincidence in PET",
+                  "definition": "occurs when two photons from completely different positron annihilation events are detected by the scanner within a very short time interval—known as the time coincidence window (TCW) and are mistakenly recorded as a single true pair.\n\n![pasted image](/images/eacd2c948d3ec617.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-coincident-events-in-pet-no-answer-scattered-coincidence-pet",
+                  "label": "Scattered Coincidence PET",
+                  "definition": "A scattered coincidence in a Positron Emission Tomography (PET) scan occurs when at least one of the two 511-keV annihilation photons undergoes Compton scattering inside the patient's body before being detected. **This makes the scan understand the anhilitation photon in a wrong line**.\n\n![pasted image](/images/7211f45d9dbd83d9.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-detector-properties-of-pet",
+              "label": "Detector Properties of PET",
+              "definition": "- Spatial Resolution\n- Energy Resolution\n- Time Resolution",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-detector-properties-of-pet-spatial-resolution-pet",
+                  "label": "Spatial resolution PET",
+                  "definition": "PET directly controls spatial resolution in reconstructed image.\n\n- Detector size is between $1$ to $5$ $\\mathrm{mm}$.\n- Light output: the number of scintillation photons produced by each incident photon.\n\n*Scintillation*: brief light emission.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-detector-properties-of-pet-energy-resolution-pet",
+                  "label": "Energy resolution PET",
+                  "definition": "**Energy resolution describes how precisely the detector measures a photon’s energy.**\n\n- **Why it matters.** An unscattered PET photon has an energy of $511\\,\\mathrm{keV}$. Compton scattering in tissue changes its direction and lowers its energy. Accepting it can place the detected event along the wrong line.\n- **Better energy resolution** helps distinguish these lower-energy photons from $511\\,\\mathrm{keV}$ photons. The scanner rejects events outside its accepted energy range, reducing scattered coincidences.\n- **Light output.** The detector crystal converts deposited energy into light. More detected light generally gives a more precise energy estimate.\n- **Intrinsic crystal resolution.** Even equal-energy photons produce slightly different light signals. Greater consistency gives better energy resolution.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-detector-properties-of-pet-time-resolution-pet",
+                  "label": "Time Resolution PET",
+                  "definition": "Affects acceptance of random coincidences. Therefore we admit intervals of photon detection between $1$ to $10$ $\\mathrm{ns}$. Depends on the decay time of the scintillation in the crystal and the processing time of the PMT signals.",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-2d-vs-3d-acquisitions-in-pet",
+              "label": "2D vs 3D Acquisitions in PET",
+              "definition": "PET scanners may or may not utilise collimation.\n\n1. If collimation is used, all data is acquaried in 2D slices. THe slices can be stacked and represented as 3D information.\n\n   - **Lower sensitivity and easier to reconstruct**\n\n2. Without collimation, coincidences from all axial angles in the field of volumen will be accepted, making a fully 3D aqcuisition.\n\n   - **Higher sensitivity and harder to reconstruct**\n\n![pasted image](/images/eb94d2388d064038.png)",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-image-formation",
+              "label": "Image Formation",
+              "definition": "1. **Identify lines of response (LORs).**  \n   Each detected coincidence defines a line connecting two detectors. The annihilation is assumed to have occurred somewhere along that line.\n\n2. **Form projections.**  \n   Group the counts from parallel LORs at the same angle. Together, they form a projection showing how detected activity varies across that direction.\n\n3. **Build the sinogram.**  \n   Arrange projections from different angles into rows. Each row represents one angle. A single point of activity traces a sinusoidal curve across the sinogram.\n\n4. **Correct for attenuation.**  \n   Some photons are absorbed or scattered before reaching the detectors, reducing the recorded counts. Use a transmission scan or a CT-derived attenuation map to compensate and estimate tracer uptake more accurately.\n\n5. **Reconstruct the tracer distribution.**  \n   The slides present three alternative approaches:\n\n| Method | How it forms the image |\n|---|---|\n| **Fourier reconstruction** | Fourier-transform each projection, place it into the 2D spectrum using the central slice theorem, then apply an inverse transform. |\n| **Filtered back projection (FBP)** | Filter the projections to compensate for blurring, then spread each projection back along its LORs and combine them. |\n| **Iterative reconstruction, such as OSEM** | Start with an estimated image, predict its projections, compare them with the measured data, and repeatedly update the image. It can incorporate noise and detector models. |\n\nThe final slide compares FBP and OSEM images. The OSEM example shows fewer visible streak artefacts.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-6-positron-emission-tomography-pet-what-is-pet-positron-emission-tomography-pet-ct-machine",
+              "label": "PET/CT Machine",
+              "definition": "![pasted image](/images/d312864aacdc7652.png)\n\n![pasted image](/images/5c01b7080c8ae5fa.png)\n\n",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-7-medical-image-analysis-ii",
+      "label": "Week 7: Medical Image Analysis II",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction",
+          "label": "Feature Extraction",
+          "definition": "",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-main-analytical-problem-in-medical-imaging-applications",
+              "label": "Main analytical problem in medical imaging applications",
+              "definition": "Medical imaging applications often have a \"small sample size\", the number of training samples is much less than the number of feature dimensions.\n\nSmall sample size problems lead to unreliable estimation of model parameters.\n\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-linear-model-and-dimensionality-reduction-in-feature-extraction-and-selection-of-mia",
+              "label": "Linear model and Dimensionality reduction in feature extraction and selection of MIA",
+              "definition": "**Dimensionality reduction represents each object using fewer features**, reducing computation and potentially removing redundant or irrelevant information.\n\nIf an object initially has $N$ features, we want a representation with $M<N$ features while preserving information useful for the task.\n\nFor a column vector $\\mathbf{x}_i$, your scalar linear model is\n\n$$\nf(\\mathbf{x}_i)=\\mathbf{w}^{T}\\mathbf{x}_i+w_0.\n$$\n\nOnly $\\mathbf{w}$ is transposed so that the multiplication produces a scalar.\n\n### 1. Feature extraction\n\n**Create new features from the original ones.** In linear feature extraction, each new feature is a weighted combination:\n\n$$\ny_j=\\sum_{k=1}^{N}w_{kj}x_k+b_j.\n$$\n\nCollecting $M$ such combinations gives\n\n$$\n\\mathbf{y}=\\mathbf{W}^{T}\\mathbf{x}+\\mathbf{b},\n\\qquad\n\\mathbf{W}\\in\\mathbb{R}^{N\\times M}.\n$$\n\nFor example, two correlated intensity measurements might be combined into one feature:\n\n$$\ny_1=\\frac{x_1+x_2}{2}.\n$$\n\n- **PCA** chooses combinations that preserve as much variation in the data as possible.\n- **LDA** uses class labels to find combinations that separate classes.\n\nThe new features can capture patterns spread across several measurements, although their meaning may be harder to interpret.\n\n### 2. Feature selection\n\n**Keep a subset of the original features.** Their definitions and values stay the same.\n\nFor example, from a patch described by mean intensity, variance, texture and edge strength, we might keep only\n\n$$\n\\mathbf{y}=\n\\begin{bmatrix}\n\\text{mean intensity}\\\\\n\\text{texture}\n\\end{bmatrix}.\n$$\n\nFeatures can be selected based on how informative they are about the class, how redundant they are with other features, or how well a classifier performs with them.\n\nThe selected features retain their original interpretation, but discarded features cannot contribute to the classifier.\n\nBoth approaches usually lose some information. Their success depends on preserving the information needed for the classification task.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-linear-model-and-dimensionality-reduction-in-feature-extraction-and-selection-of-mia-principal-component-analysis-pca",
+                  "label": "Principal Component Analysis (PCA)",
+                  "definition": "**PCA is a feature extraction technique**\n\nFor $N$ data samples:\n\n$$\n\\mathbf{x}_1,\\mathbf{x}_2,\\cdots,\\mathbf{x}_N\n$$\n\nFind a projection with direction $\\mathbf{u}$. After projection, we obtain a new set of features that are the linear combination of the original features:\n\n$$\nu(\\mathbf{x}_i)=\\mathbf{u}^{\\top}(\\mathbf{x}_i)\n$$\n\n*Find the direction* $\\mathbf{u}$ so that after the projection, data variance could be maximally preserved.\n\n---\n\n**You are choosing a line onto which all the data points will be projected.** The vector $\\mathbf{u}$ specifies that line’s direction.\n\nFor each point $\\mathbf{x}_i$, the dot product\n\n$$\nz_i=\\mathbf{u}^{T}\\mathbf{x}_i\n$$\n\ngives its **coordinate along the line**. A point with several features is therefore represented by one number.\n\nImagine an elongated cloud of points:\n\n- Projecting along its **long direction** keeps the projected points spread apart.\n- Projecting across its **narrow direction** bunches them together, losing much of their variation.\n\nPCA chooses the direction that gives the **largest variance of the projected coordinates**.\n\nAfter centring the data, this is\n\n$$\n\\begin{align}\n\\text{Maximise variance } var(u) &= \\frac{1}{N}\\sum_{i=1}^{N-1}\\mathbf{u}^\\top(\\mathbf{x}_i-\\mu)(\\mathbf{u}^{\\top}(\\mathbf{x}_i-\\mu))^{\\top}\\\\\n&=\\mathbf{u}^\\top\\sum\\mathbf{u} \n\\end{align}\n$$\n\nThe condition $\\|\\mathbf{u}\\|=1$ fixes the vector’s length, so we compare directions fairly. Otherwise, simply making $\\mathbf{u}$ longer would increase the projected variance.\n\nThe winning direction is the **first principal component**.",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-linear-model-and-dimensionality-reduction-in-feature-extraction-and-selection-of-mia-principal-component-analysis-pca-optimisation-problem-pca",
+                      "label": "Optimisation Problem PCA",
+                      "definition": "$$\n\\begin{align}\n&\\max \\mathbf{u}^\\top\\sum\\mathbf{u} \\\\\n&\\text{subject to }\\|\\mathbf{u}\\|=1\n\\end{align}\n$$\n\nUsing Lagrange multiplier:\n\n$$\n\\mathcal{L}(\\mathbf{u},\\lambda) = \\mathbf{u}^\\top\\sum\\mathbf{u}+\\lambda(1-\\mathbf{u}^{\\top}\\mathbf{u})\n$$",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-linear-model-and-dimensionality-reduction-in-feature-extraction-and-selection-of-mia-principal-component-analysis-pca-pca-example",
+                      "label": "PCA Further explanation and example (no answer)",
+                      "definition": "**A data point is whatever you choose to describe with features**.\n\nIn the next example a data point will be considered a *voxel*, and its 2 features are its intensities in an aligned T1 image and T2 image. So $N$ is the number of voxels and each $\\mathbf{x}_i$ contains 2 numbers.\n\nImage 3 voxels with these made up intensities:\n\n| Voxel | T1 intensity | T2 intensity | After subtracting the feature means |\n|---|---:|---:|---|\n| A | 10 | 20 | $(-10,-10)$ |\n| B | 20 | 30 | $(0,0)$ |\n| C | 30 | 40 | $(10,10)$ |\n\nFeature means are calculated by:\n\n$$\n\\mu=\\left(\\frac{10+20+30}{3},\\frac{20+30+40}{3}\\right)=(20,30).\n$$\n$$\n\\text{for voxel A: }\\mathbf{x}_A-\\mu=(10,20)-(20,30)=(-10,-10).\n$$\n\n",
+                      "flashcard": false,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-7-medical-image-analysis-ii-feature-extraction-linear-model-and-dimensionality-reduction-in-feature-extraction-and-selection-of-mia-principal-component-analysis-pca-general-pca-example-genes-in-mice",
+                      "label": "General PCA example (genes in mice)",
+                      "definition": "| | Mouse 1 | Mouse 2 | Mouse 3 | Mouse 4 | Mouse 5 | Mouse 6 |\n|---|---:|---:|---:|---:|---:|---|\n| **Gene 1** | 10 | 11 | 8 | 3 | 1 | 2 |\n| **Gene 2** | 6 | 4 | 5 | 3 | 2.8 | 1 |\n\nWe can plot in a 1D graph the quantity related to gene 1 for each mouseÑ\n\n![pasted image](/images/fc9bee047938faaf.png)\n\n**This shows that mouses 1,2,3 are more closely related than 5,4 and 6**.\n\nIf we plotted the data against gene 2 we could see that both groups of mouses cluster on different sides of the graph:\n\n![pasted image](/images/8d86db1423439bd6.png)\n\n*Note: this can be extrapolated to N dimensional space for N amount of genes*.\n\nFirst, get the average measurement for Gene 1 and 2, this will let us know the center of the data:\n\n$$\n(x_{\\text{center}},y_{\\text{center}}) = \\left(\\frac{10+11+8+3+1+2}{6},\\frac{6+4+5+3+2.8+1}{6} \\right) \\approx (5.83,3.63)\n$$\n\n![pasted image](/images/a89fb3c47f132a77.png)\n\nNow we shift the data si we can put the center in the origin of the graph:\n\n![pasted image](/images/65b694b488f48599.png)\n\nNow we try and fit a line through it, to do this we start by drawing a random line that goes through the origin, then we rotate it until it fits the data as well as it can:\n\n![pasted image](/images/26d68513b58d3633.png)\n\n### How does PCA know the line fits the data?\n\nPCA takes the 1st random line that goes through the origin and projects the data point to the line. And then it can either measure the distances from the data to the line and try to minimise those distances or it can try to find the line that maximises the distances from the projected points to the origin.\n\nLets consider 1 data points. Its fixed and so is its distance from the origin:\n\n![pasted image](/images/a39f460724cc02db.png)\n\nWhen the line we are approximating rotates, the distance between the origin and the point does not change.\n\nWhen we project the point into the line, we get a $90^\\circ$ angle:\n\n![pasted image](/images/9343f76891bcb3fb.png)\n\n*Notice that a will not change only b and c*. \n\nIf $b$ gets bigger, $c$ must get smaller ($a^2=b^2+c^2$) and viceversa.\n\nTherefore we are trying to minimise $b$ to have the line approach the data point. But, since its mathematically easier to maximise $c$ instead (which leads to minimising $b$) PCA will use this to get the correct line angle.\n\nGo back to step 1, PCA chooses a random line, it projects its data points and measures $c$, which now we will call distance $d_1,d_2,...$, since we will have multiple data points:\n\n![pasted image](/images/e0afc279d9a445a5.png)\n\n![pasted image](/images/d2f40ad83f300298.png)\n\nand so on.\n\nWe measured all $d_1,d_2,d_3,d_4,d_5,d_6$. The next step involves squaring all of them:\n\n$$\nd_1^2,d_2^2,d_3^2,d_4^2,d_5^2,d_6^2\n$$\n\nThis is because we dont want negative values to cancel positive values, then we add them up:\n\n$$\n\\text{Sum of squared distances}=\\text{SS distances}=\\sum_{i=1}^6 d_i^2=d_1^2+d_2^2+d_3^2+d_4^2+d_5^2+d_6^2\n$$\n\nNow repeat this process for multiple angles. Ultimately we will end up with the largest SS:\n\n![pasted image](/images/9d0af6304f173d8b.png)\n\nThe adjuasted red dotted line is called the **Princiapl Component 1** (**PC1**). In this case, the slop of PC1 is 0.25. In other words, for every 4 units that we go out along the Gene 1 axis, we go up 1 unit alogn the Gene 2 axis. **There is higher dispersion on Gene 1 than Gene 2**\n\nThe importance of the ratio (1/4) tells you that gene 1 is more important when it comes to describing how the data are spread out.\n\nNow we can calculate the vector that describes this ratio with pythagoras:\n\n![pasted image](/images/d6fc1fe0174b755a.png)\n\nWhich is $\\approx 4.12$\n\nWhen you do PCA with SVD (single value decomposition) the recipe for PC1 is scaled so that this length is 1 (so divide everythinng by $4.12$):\n\n![pasted image](/images/e17caf220fec2e3a.png)\n\nNow the ratio is the same, but how much Gene 1 to Gene 2 we are using is represented differently:\n\nTo make PC1 mix $0.97$ parts of Gene 1 with $0.242$ parts gene 2\n\nThe vector we calculated after normalisation is called: **Singular vector** or **Eigenvector for PC1**\n\n$$\n\\begin{align}\n\\frac{\\text{SS distances for PC1}}{n-1}&= \\text{Eigenvalue for PC1}\\\\\n\\sqrt{\\text{SS distances for PC1}}&= \\text{Singular Value for PC1}\n\\end{align}\n$$\n\n### Now, how to do PC2?\n\nIn the current example PC2 is simply the line through the origin that is oeroendicular to PC1, without any further optimisation that has to be done.\n\nThis means that the recipe for PC2 is:\n\n- $-1$ Parts Gene 1 $\\implies$ after scaling, $-0.242$ parts gene 1 \n- $4$ Parts Gene 2 $\\implies$ after scaling, $0.97$ parts gene 2\n\n### Drawing the final PCA plot\n\nRotate the PC1 and PC2 lines:\n\n![pasted image](/images/1ea415098a376bc4.png)\n\nTo\n\n![pasted image](/images/1e326cbb3810ffa5.png)\n\nThen we use the projected points to find where the samples go in the PCA plot\n\nNow use the crosses for each sample to go to its respective position in the graph:\n\n![pasted image](/images/e7331574c048ed28.png)\n\n![pasted image](/images/92b8632d5f013eeb.png)\n\n\n**This is how PCA is done using Singular Value decomposition.**\n\nRecall tat the variation for PC1 and PC2 are given by $SS_{PC 1|2}/n-1$. Lets say the variation for PC1 and PC2 are 15 and 3, therefore total variation of PC is 18 and PC1 accounts of $83/%$ of the variation. A scree plot shows this vairation graphically\n\n![pasted image](/images/138ce271d6b4f547.png)\n\n### N dimensional situation\n\nIf more genes are n the sample calculate N PCs. Then use eigenvalues to determinae the proportion of variation. Then use the 2 PCs that describe the vairation the most and check for clusters.\n\n",
+                      "flashcard": false,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-10-neural-network-basics",
+      "label": "Week 10 - Neural Network Basics",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-10-neural-network-basics-simple-networks",
+          "label": "Simple Networks",
+          "definition": "Single layer neuron net have limited representation power (**linear separability problem**)\n\nThreshold/step output functions hinders the effort to develop learning methods for multi layered nets - Linear or continuous output units are usually used instead.\n\nMulti-layer nets (with non-linear hidden units) may ivercome linear inseparability problem, and so learning methods for such nets are needed.\n\n$$\ng(\\mathbf{x})=f\\left(s=\\sum_{i=1}^dx_iw_i+w_0 \\right) = f(\\mathbf{w}^t\\mathbf{x})\n$$\n\n![pasted image](/images/6bfc5df3be8f35ef.png)\n\n![pasted image](/images/4060dc6cba78139d.png)\n",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-10-neural-network-basics-simple-networks-linear-separability-problem",
+              "label": "Linear Separability Problem",
+              "definition": "The linear separability problem is the task of determining whether two classes of data points can be completely separated by a straight line (in 2D) or a flat hyperplane (in higher-dimensional spaces)",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp",
+          "label": "Multi-layer Perceptron (MLP)",
+          "definition": "![pasted image](/images/506bb3bd7f49f9a6.png)\n\n## MLP\n\nSolves the linear separability problem.\n\nIt has an objective $J(\\mathbf{W})$ and an architecture of the form: input ($\\mathbf{x}$) $\\rightarrow$ hidden layers ($\\mathbf{h}=f(\\mathbf{W}_1\\mathbf{x})$) $\\rightarrow$ Output ($\\mathbf{y}=f(\\mathbf{W}_2\\mathbf{h})$).\n\nThe ativation function will be gven by all the related functions:\n\n$$\nf=(f_n\\circ f_{n-1}\\cdots\\circ f_1)(\\mathbf{x})\n$$\n\nAn MLP is a feedforward network of **fully connected layers**. Each layer applies a weighted sum, adds a bias and then applies activation. With one hidden layer:\n\n$$\n\\begin{align}\n\\mathbf{h}=\\phi_1(\\mathbf{W_1}\\mathbf{x}+\\mathbf{b}_1), \\ \\mathbf{\\hat{y}} = \\phi_2(\\mathbf{W_2}\\mathbf{x}+\\mathbf{b}_2)\n\\end{align}\n$$\n\nThe nonlinear hidden activation $\\phi_1$, such as ReLU, lets MLP learn nonlinear decision boundaries. The output activation depends on the task: sigmoid for binary classification, softmax for mutually exclusive classes or a linear outpur for regression.\n\nDuring training, the loss compares the prediction $\\mathbf{\\hat{y}}$ with the true target $\\mathbf{y}$. The objectiev $J$ typically averages that loss over the training examples. **Backpropagation** computes how the objective changes with each weight and bias, and an optimiser uses thos gradients to update parameters.",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-nonlinear-activation-functions-4",
+              "label": "Nonlinear Activation Functions (4)",
+              "definition": "![pasted image](/images/11f9899be2549820.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-objective-functions",
+              "label": "Objective Functions",
+              "definition": "**Least square loss for regression**:\n\n$$\nJ(\\mathbf{w})=\\sum_i(y_i-p_i)^2+0.5\\lambda\\|\\mathbf{w}\\|^2\n$$\n\n$0.5\\lambda\\|\\mathbf{w}\\|^2$ is a regularisation term. Magnitude of $\\mathbf{w}$ should not be too large.\n\n**Cross-entropy loss for multi-class classification**:\n\n$$\nJ(\\mathbf{w})=-\\sum_i\\sum_c y_{i,c}\\log p_{i,c}+0.5\\lambda\\|\\mathbf{w}\\|^2, \\ y_{i,c}=1 \\text{ or }0, \\ \\sum_cy_{i,c}=1\n$$\n\n$$\np(c_k=1|\\mathbf{x}_i)=\\frac{e^{o_k}}{\\sum_{j=1}^ce^{o_j}}\n$$\n\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-one-hot-encoding",
+              "label": "One hot encoding",
+              "definition": "Classify output as a 0 or a 1 in a vector:\n\n![pasted image](/images/a9140a127e1e2c7f.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training",
+              "label": "MLP Training",
+              "definition": "MLP is trained in a supervised fashion in 2 phases:\n\n- forward phase\n- backward phase\n\n**Backword phase** corresponds to the **gradient descent method**.",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-forward-phase-of-mlp-training",
+                  "label": "Forward phase of MLP Training",
+                  "definition": "## Forward phase of MLP training\n\nThe forward pass uses the current weights and biases to turn an input $\\mathbf{x}$ into a prediction $\\hat{\\mathbf{y}}$, then measures how far that prediction is from the target $\\mathbf{y}$.\n\n1. **Feed in the input.** The input features are the starting values:\n\n   $$\n   \\mathbf{h}^{(0)}=\\mathbf{x}.\n   $$\n\n2. **Compute each hidden layer.** For layer $\\ell$, take a weighted sum of the previous layer’s outputs, add a bias, and apply the activation:\n\n   $$\n   \\mathbf{z}^{(\\ell)}\n   =\\mathbf{W}^{(\\ell)}\\mathbf{h}^{(\\ell-1)}+\\mathbf{b}^{(\\ell)},\n   \\qquad\n   \\mathbf{h}^{(\\ell)}=\\phi_\\ell(\\mathbf{z}^{(\\ell)}).\n   $$\n\n   Here, $\\mathbf{z}^{(\\ell)}$ is the vector **before activation**, and $\\mathbf{h}^{(\\ell)}$ is the vector passed to the next layer. Repeat for every hidden layer.\n\n3. **Calculate the prediction.** If $L$ is the output layer, then\n\n   $$\n   \\hat{\\mathbf{y}}\n   =\\phi_L\\!\\left(\\mathbf{W}^{(L)}\\mathbf{h}^{(L-1)}+\\mathbf{b}^{(L)}\\right).\n   $$\n\n   For example, a sigmoid gives a probability $\\hat y$ for the positive class in binary classification.\n\n4. **Calculate the loss for each example.** Compare the prediction with its true target. For binary classification, binary cross-entropy is\n\n   $$\n   \\mathcal{L}(y,\\hat y)\n   =-\\left[y\\log(\\hat y)+(1-y)\\log(1-\\hat y)\\right].\n   $$\n\n5. **Average the losses to obtain $J$.** For a batch of $B$ examples,\n\n   $$\n   J(\\theta)=\\frac{1}{B}\\sum_{i=1}^{B}\\mathcal{L}(y_i,\\hat y_i),\n   $$\n\n   where $\\theta$ contains all weights and biases. The backward pass then computes the gradients of $J$ with respect to those parameters.\n\n![pasted image](/images/108aac5526f5e314.png)",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-forward-phase-of-mlp-training-example-forward-phase",
+                      "label": "Example Forward Phase",
+                      "definition": "## Forward phase — worked example\n\nWe’ll predict whether an image patch contains a lesion using two features, one hidden ReLU neuron, and one sigmoid output neuron. The input is $\\mathbf{x}=(2,1)^\\top$, and the true label is $y=1$.\n\n1. **Feed in the input.** The starting values are $\\mathbf{h}^{(0)}=\\mathbf{x}=(2,1)^\\top$.\n\n2. **Compute the hidden neuron.** Its weights are $(0.50,-0.25)$ and its bias is $0.25$. Multiply each input by its weight, add the bias, then apply ReLU:\n\n   $$\n   z^{(1)}=0.50(2)-0.25(1)+0.25=1,\n   \\qquad\n   h^{(1)}=\\max(0,z^{(1)})=1.\n   $$\n\n3. **Calculate the prediction.** The output weight is $0.80$ and its bias is $-0.80$. Apply sigmoid to the output score:\n\n   $$\n   z^{(2)}=0.80(1)-0.80=0,\n   \\qquad\n   \\hat y=\\frac{1}{1+e^{-z^{(2)}}}=0.50.\n   $$\n\n   The network predicts a $50\\%$ probability of a lesion.\n\n4. **Calculate the loss.** Since the true label is $y=1$, binary cross-entropy becomes\n\n   $$\n   \\mathcal{L}=-[y\\log(\\hat y)+(1-y)\\log(1-\\hat y)]\n   =-\\log(0.50)\\approx0.693.\n   $$\n\n5. **Calculate the batch objective.** The objective $J$ is the average loss. Here the batch has one example, so $J=\\mathcal{L}\\approx0.693$.",
+                      "flashcard": false,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-backward-phase-mlp-training",
+                  "label": "Backward phase MLP training",
+                  "definition": "## Backward phase of MLP training\n\nThe forward pass computes the prediction and loss. The **backward pass** uses the chain rule to find how each weight and bias affects that loss. **Gradient descent** then updates those parameters.\n\n1. **Define the objective.** For a batch of $B$ examples, training aims to find the parameters $\\theta$ (all weights and biases) that minimise the average loss:\n\n   $$\n   \\theta^*=\\arg\\min_\\theta J(\\theta),\n   \\qquad\n   J(\\theta)=\\frac{1}{B}\\sum_{i=1}^{B}\\mathcal{L}(y_i,\\hat y_i).\n   $$\n\n2. **Start at the output layer.** For one example, define $\\delta^{(L)}=\\partial\\mathcal{L}/\\partial z^{(L)}$. This measures how the loss changes when the output score **before activation** changes. For a sigmoid output with binary cross-entropy, it simplifies to\n\n   $$\n   \\delta^{(L)}=\\hat y-y.\n   $$\n\n3. **Work backwards through the hidden layers.** Use the next layer’s weights to pass its gradient back, then multiply by the derivative of the current layer’s activation:\n\n   $$\n   \\delta^{(\\ell)}\n   =\n   \\left[(\\mathbf{W}^{(\\ell+1)})^\\top\\delta^{(\\ell+1)}\\right]\n   \\odot\\phi_\\ell'(\\mathbf{z}^{(\\ell)}).\n   $$\n\n   Here, $\\odot$ means element-by-element multiplication. Repeat from the last hidden layer to the first.\n\n4. **Find the weight and bias gradients.** For each layer and each example:\n\n   $$\n   \\frac{\\partial\\mathcal{L}}{\\partial\\mathbf{W}^{(\\ell)}}\n   =\\delta^{(\\ell)}(\\mathbf{h}^{(\\ell-1)})^\\top,\n   \\qquad\n   \\frac{\\partial\\mathcal{L}}{\\partial\\mathbf{b}^{(\\ell)}}\n   =\\delta^{(\\ell)}.\n   $$\n\n   Each weight gradient is the receiving neuron’s $\\delta$ times the input to that weight. Average these gradients across the batch to get $\\nabla_\\theta J$.\n\n5. **Update the parameters.** The gradient points toward increasing loss, so subtract it:\n\n   $$\n   \\theta\\leftarrow\\theta-\\eta\\nabla_\\theta J,\n   $$\n\n   where $\\eta$ is the **learning rate**. The next forward pass uses the updated weights and biases.\n\n![pasted image](/images/dd58b31eb329de1e.png)\n",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-backward-phase-mlp-training-example-backward-phase",
+                      "label": "Example Backward Phase",
+                      "definition": "## Backward phase — worked example\n\nUse the same network and training example. The forward pass gave $h^{(1)}=1$, $\\hat y=0.50$, and $y=1$.\n\n1. **Set the objective.** Adjust the weights and biases to reduce $J$. With this one-example batch, the gradients of $J$ are the gradients of the example’s loss $\\mathcal{L}$.\n\n2. **Start at the output.** With sigmoid and binary cross-entropy, the gradient with respect to the output score is\n\n   $$\n   \\delta^{(2)}\n   =\\frac{\\partial\\mathcal{L}}{\\partial z^{(2)}}\n   =\\hat y-y=0.50-1=-0.50.\n   $$\n\n3. **Pass the gradient back to the hidden neuron.** Multiply by the output weight and the derivative of ReLU. Since $z^{(1)}=1>0$, the ReLU derivative is $1$:\n\n   $$\n   \\delta^{(1)}=0.80(-0.50)(1)=-0.40.\n   $$\n\n4. **Find the weight and bias gradients.** For each weight, multiply the receiving neuron’s $\\delta$ by the input to that weight. A bias has an effective input of $1$, so its gradient is just $\\delta$:\n\n   $$\n   \\begin{aligned}\n   \\text{Output weight:}\\quad &(-0.50)(1)=-0.50,\\\\\n   \\text{Output bias:}\\quad &-0.50,\\\\\n   \\text{Hidden weights:}\\quad &(-0.40)(2,1)=(-0.80,-0.40),\\\\\n   \\text{Hidden bias:}\\quad &-0.40.\n   \\end{aligned}\n   $$\n\n   With a larger batch, average each parameter’s gradient across the examples before updating.\n\n5. **Update the parameters.** Use $\\theta_{\\mathrm{new}}=\\theta_{\\mathrm{old}}-\\eta\\nabla_\\theta J$ with learning rate $\\eta=0.10$:\n\n   $$\n   \\begin{aligned}\n   \\text{Output weight:}\\quad &0.80-0.10(-0.50)=0.85,\\\\\n   \\text{Output bias:}\\quad &-0.80-0.10(-0.50)=-0.75,\\\\\n   \\text{Hidden weights:}\\quad &(0.50,-0.25)-0.10(-0.80,-0.40)=(0.58,-0.21),\\\\\n   \\text{Hidden bias:}\\quad &0.25-0.10(-0.40)=0.29.\n   \\end{aligned}\n   $$\n\n   The next forward pass on the same example gives $\\hat y\\approx0.575$. The prediction moves closer to $y=1$, and the loss drops from $0.693$ to about $0.553$.",
+                      "flashcard": false,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
