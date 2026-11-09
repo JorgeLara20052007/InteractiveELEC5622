@@ -114,3 +114,10 @@ def test_iter_paths(root):
         ["root", "w1", "w1-a"],
         ["root", "w2"],
     ]
+
+
+def test_to_elements_marks_nodes_left_out_of_flashcards(root):
+    tree.find(root, "w1-a").flashcard = False
+    nodes = {e["data"]["id"]: e["data"] for e in tree.to_elements(root) if "source" not in e["data"]}
+    assert nodes["w1-a"]["noflash"] is True
+    assert "noflash" not in nodes["w2"]

@@ -31,6 +31,15 @@ def _elements(root: tree.Node, selected: str, collapsed: set[str]) -> list[dict]
     return elements
 
 
+def _flashcard_button(node: tree.Node, depth: int) -> tuple[str, str, bool]:
+    """(text, tooltip, disabled) of the button that puts a node in or out of study mode."""
+    if depth < 2:  # the root and the weeks themselves are never cards
+        return "🃏 Flashcard", "The root and the weeks are not flashcards; the nodes inside a week are.", True
+    if node.flashcard:
+        return "🃏 Flashcard: on", "Shown in study mode. Click to leave it out.", False
+    return "🚫 Flashcard: off", "Left out of study mode. Click to include it again.", False
+
+
 def _search_options(root: tree.Node) -> list[dict]:
     """One entry per node (except the root): 'Label  ·  Week › Parent' so you can search by either."""
     options = []
@@ -77,6 +86,7 @@ def register(app) -> None:
         Input("btn-new-tree", "n_clicks"),
         Input("btn-create-tree", "n_clicks"),
         Input("btn-cancel-tree", "n_clicks"),
+        Input("btn-flashcard", "n_clicks"),
         State("active-tree", "data"),
         State("new-tree-name", "value"),
         State("selected", "data"),
@@ -89,7 +99,7 @@ def register(app) -> None:
     )
     def handle_event(
         tap, _add, _edit, _cancel, _save, _confirm, _toggle, _collapse_all, _expand_all, search,
-        _undo, _redo, chosen_tree, _new_tree, _create_tree, _cancel_tree,
+        _undo, _redo, chosen_tree, _new_tree, _create_tree, _cancel_tree, _flashcard,
         active, new_tree_name, selected, mode, version, collapsed, label, definition,
     ):
         trigger, status = ctx.triggered_id, ""
@@ -148,6 +158,15 @@ def register(app) -> None:
             collapsed.discard(selected)
             selected, mode, version = path[-2].id, "view", version + 1
             status = f"Deleted {removed} node(s)."
+        elif trigger == "btn-flashcard":
+            node = tree.find(storage.load(db), selected)
+            storage.set_flashcard(selected, not node.flashcard, db)
+            version += 1
+            status = (
+                f"“{node.label}” will no longer appear in study mode."
+                if node.flashcard
+                else f"“{node.label}” is a flashcard again."
+            )
         elif trigger == "btn-toggle":
             collapsed ^= {selected}
         elif trigger == "btn-collapse-all":
@@ -285,6 +304,9 @@ def register(app) -> None:
         Output("btn-delete", "disabled"),
         Output("btn-toggle", "children"),
         Output("btn-toggle", "disabled"),
+        Output("btn-flashcard", "children"),
+        Output("btn-flashcard", "title"),
+        Output("btn-flashcard", "disabled"),
         Output("confirm-delete", "message"),
         Output("view", "style"),
         Output("form", "style"),
@@ -348,6 +370,7 @@ def register(app) -> None:
             node is root,
             "Expand" if node.id in collapsed else "Collapse",
             n_children == 0,
+            *_flashcard_button(node, depth=len(path) - 1),
             f"Delete “{node.label}”"
             + (f" and its {n_desc} descendant(s)" if n_desc else "")
             + "? This cannot be undone.",

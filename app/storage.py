@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS nodes (
     parent_id  TEXT REFERENCES nodes(id) ON DELETE CASCADE,
     label      TEXT NOT NULL,
     definition TEXT NOT NULL DEFAULT '',
-    position   INTEGER NOT NULL DEFAULT 0
+    position   INTEGER NOT NULL DEFAULT 0,
+    flashcard  INTEGER NOT NULL DEFAULT 1  -- 0 = left out of study mode
 );
 CREATE INDEX IF NOT EXISTS nodes_parent ON nodes(parent_id);
 CREATE TABLE IF NOT EXISTS history (
@@ -44,6 +45,8 @@ CREATE TABLE IF NOT EXISTS meta (
 );
 """
 
+_COLUMNS = "(id, parent_id, label, definition, position, flashcard)"
+
 
 def _connect(db: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(db)
@@ -56,7 +59,10 @@ def _connect(db: Path) -> sqlite3.Connection:
 
 def _load(conn: sqlite3.Connection) -> Node:
     rows = conn.execute("SELECT * FROM nodes ORDER BY position, rowid").fetchall()
-    nodes = {r["id"]: Node(id=r["id"], label=r["label"], definition=r["definition"]) for r in rows}
+    nodes = {
+        r["id"]: Node(id=r["id"], label=r["label"], definition=r["definition"], flashcard=bool(r["flashcard"]))
+        for r in rows
+    }
     roots = []
     for r in rows:
         if r["parent_id"] is None:
@@ -73,13 +79,13 @@ def _replace_nodes(conn: sqlite3.Connection, root: Node) -> None:
     rows: list[tuple] = []
 
     def collect(node: Node, parent_id: str | None, position: int) -> None:
-        rows.append((node.id, parent_id, node.label, node.definition, position))
+        rows.append((node.id, parent_id, node.label, node.definition, position, int(node.flashcard)))
         for i, child in enumerate(node.children):
             collect(child, node.id, i)
 
     collect(root, None, 0)
     conn.execute("DELETE FROM nodes")
-    conn.executemany("INSERT INTO nodes VALUES (?, ?, ?, ?, ?)", rows)
+    conn.executemany(f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?)", rows)
 
 
 def _cursor(conn: sqlite3.Connection) -> int:
@@ -116,6 +122,9 @@ def init(db: Path = DB_FILE, seed: Path | None = SEED_FILE) -> None:
     db.parent.mkdir(parents=True, exist_ok=True)
     with closing(_connect(db)) as conn, conn:
         conn.executescript(_SCHEMA)
+        columns = {r["name"] for r in conn.execute("PRAGMA table_info(nodes)")}
+        if "flashcard" not in columns:  # database from before study-mode exclusions existed
+            conn.execute("ALTER TABLE nodes ADD COLUMN flashcard INTEGER NOT NULL DEFAULT 1")
         if conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0] == 0:
             if seed is None or not seed.exists():
                 return
@@ -143,8 +152,8 @@ def add_node(parent_id: str, label: str, definition: str = "", db: Path = DB_FIL
     position = len(tree.find(root, parent_id).children) - 1
     with closing(_connect(db)) as conn, conn:
         conn.execute(
-            "INSERT INTO nodes VALUES (?, ?, ?, ?, ?)",
-            (child.id, parent_id, child.label, child.definition, position),
+            f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?)",
+            (child.id, parent_id, child.label, child.definition, position, int(child.flashcard)),
         )
         _record(conn, f"Add “{child.label}”")
     return child
@@ -162,6 +171,20 @@ def update_node(node_id: str, label: str, definition: str, db: Path = DB_FILE) -
         )
         if not unchanged:
             _record(conn, f"Edit “{node.label}”")
+    return node
+
+
+def set_flashcard(node_id: str, on: bool, db: Path = DB_FILE) -> Node:
+    """Include the node in study mode (on=True) or leave it out (on=False)."""
+    node = tree.find(load(db), node_id)
+    if node is None:
+        raise KeyError(f"no node with id {node_id!r}")
+    if node.flashcard == on:
+        return node
+    with closing(_connect(db)) as conn, conn:
+        conn.execute("UPDATE nodes SET flashcard = ? WHERE id = ?", (int(on), node_id))
+        _record(conn, f"{'Include' if on else 'Exclude'} “{node.label}” {'in' if on else 'from'} flashcards")
+    node.flashcard = on
     return node
 
 

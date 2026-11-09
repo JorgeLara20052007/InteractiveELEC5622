@@ -120,6 +120,7 @@ def build_layout() -> html.Div:
                             html.Div(id="children-info", style={"color": "#57606a", "margin": "12px 0"}),
                             html.Button("+ Add child", id="btn-add", style=_button),
                             html.Button("Collapse", id="btn-toggle", style=_button),
+                            html.Button("🃏 Flashcard: on", id="btn-flashcard", style=_button),
                             html.Button("Edit", id="btn-edit", style=_button),
                             html.Button("Delete", id="btn-delete", style=_button),
                         ],

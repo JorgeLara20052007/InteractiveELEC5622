@@ -14,6 +14,7 @@ class Node(BaseModel):
     id: str
     label: str
     definition: str = ""
+    flashcard: bool = True  # False = left out of study mode
     children: list[Node] = Field(default_factory=list)
 
     @field_validator("id", "label")
@@ -143,6 +144,8 @@ def to_elements(root: Node, collapsed: Collection[str] = ()) -> list[dict]:
         if hide_children:
             data["label"] = f"{node.label}  ▸ {count_descendants(node)}"
             data["collapsed"] = True
+        if not node.flashcard:
+            data["noflash"] = True
         elements.append({"data": data})
         if hide_children:
             return

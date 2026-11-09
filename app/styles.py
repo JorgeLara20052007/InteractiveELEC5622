@@ -93,6 +93,11 @@ STYLESHEET = [
         "style": {"border-width": 5, "border-style": "double", "border-color": "#ffffff"},
     },
     {
+        # left out of study mode: faded, with a dotted outline
+        "selector": "node[?noflash]",
+        "style": {"background-opacity": 0.35, "color": "#1f2328", "border-width": 2, "border-style": "dotted", "border-color": "#57606a"},
+    },
+    {
         "selector": "node.sel",
         "style": {"border-width": 4, "border-style": "solid", "border-color": "#ffb703"},
     },

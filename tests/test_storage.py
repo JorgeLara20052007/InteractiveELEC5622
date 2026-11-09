@@ -165,3 +165,46 @@ def test_init_adds_history_to_a_database_from_before_undo_existed(tmp_path):
     storage.add_node("w2", "X", db=path)
     assert storage.undo(path) == "Add “X”"
     assert storage.load(path) == make_root()
+
+
+# --- flashcard on/off
+
+
+def test_set_flashcard_persists_and_can_be_undone(db):
+    assert storage.load(db).children[0].children[0].flashcard is True
+    storage.set_flashcard("w1-a", False, db)
+    assert storage.load(db).children[0].children[0].flashcard is False
+    assert storage.history_state(db)[0] == "Exclude “A” from flashcards"
+    storage.undo(db)
+    assert storage.load(db).children[0].children[0].flashcard is True
+    storage.redo(db)
+    assert storage.load(db).children[0].children[0].flashcard is False
+
+
+def test_set_flashcard_to_the_same_value_adds_no_history(db):
+    storage.set_flashcard("w1-a", True, db)
+    assert storage.history_state(db) == (None, None)
+    with pytest.raises(KeyError):
+        storage.set_flashcard("missing", False, db)
+
+
+def test_flashcard_flag_survives_json_export(db, tmp_path):
+    storage.set_flashcard("w2", False, db)
+    out = tmp_path / "snap.json"
+    storage.export_json(out, db)
+    assert Node.model_validate_json(out.read_text(encoding="utf-8")).children[1].flashcard is False
+
+
+def test_init_adds_the_flashcard_column_to_an_old_database(tmp_path):
+    path = tmp_path / "old.db"
+    with sqlite3.connect(path) as conn:  # the schema before flashcards existed
+        conn.execute(
+            "CREATE TABLE nodes (id TEXT PRIMARY KEY, parent_id TEXT REFERENCES nodes(id) ON DELETE CASCADE,"
+            " label TEXT NOT NULL, definition TEXT NOT NULL DEFAULT '', position INTEGER NOT NULL DEFAULT 0)"
+        )
+        conn.execute("INSERT INTO nodes VALUES ('r', NULL, 'Root', '', 0)")
+        conn.execute("INSERT INTO nodes VALUES ('c', 'r', 'Child', 'd', 0)")
+    storage.init(path, seed=None)
+    assert storage.load(path).children[0].flashcard is True
+    storage.set_flashcard("c", False, path)
+    assert storage.load(path).children[0].flashcard is False

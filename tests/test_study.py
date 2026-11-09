@@ -96,3 +96,11 @@ def test_tree_and_study_pages_are_both_served(server):
 def test_study_layout_lists_the_trees(server):
     layout = server.get("/study/_dash-layout").get_data(as_text=True)
     assert "study-card" in layout and "Course A" in layout
+
+
+def test_nodes_left_out_of_flashcards_are_skipped(week):
+    week.children[1].flashcard = False  # "b"
+    week.children[0].flashcard = False  # "a", but its child a1 is still a card
+    assert [n.id for n in study.concepts(week)] == ["c"]
+    assert [n.id for n in study.concepts(week, include_all=True)] == ["a1", "c"]
+    assert sorted(study.start("t", week)["cards"]) == ["c"]

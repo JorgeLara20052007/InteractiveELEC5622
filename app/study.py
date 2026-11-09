@@ -17,8 +17,10 @@ from .tree import Node
 
 
 def concepts(week: Node, include_all: bool = False) -> list[Node]:
-    """The week's direct children, or every node below the week when include_all is set."""
-    return list(tree.walk(week))[1:] if include_all else list(week.children)
+    """The week's direct children, or every node below the week when include_all is set,
+    leaving out nodes marked as not flashcards (their own children can still be cards)."""
+    nodes = list(tree.walk(week))[1:] if include_all else list(week.children)
+    return [n for n in nodes if n.flashcard]
 
 
 def start(

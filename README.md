@@ -59,6 +59,12 @@ window, so you can keep the tree open next to it.
 4. After the last card you get your score, the list of concepts you missed, and buttons to
    retry only those or start again.
 
+**Choosing what becomes a flashcard:** select a node in the tree and press **🃏 Flashcard: on**
+in the side panel to switch it to **🚫 Flashcard: off**. That node is then skipped in study mode
+and looks faded with a dotted outline in the tree. Press it again to include it. Its children are
+not affected (with "Include sub-concepts" they can still be cards). This can be undone with Ctrl+Z
+like any other change, and it is saved in the JSON export.
+
 Tick **Include sub-concepts** to be tested on every level below the week, not just its
 direct children. Study mode only reads the tree; it never changes it.
 

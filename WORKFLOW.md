@@ -163,6 +163,11 @@ Each step ends with something you can run or test. Commit after each one.
   browser's own PDF viewer from a local object URL, so nothing is uploaded.
 - Still open: reopen the same PDFs automatically after a reload, link a PDF page to a node.
 
+**Step 12: Choose which nodes are flashcards** (DONE)
+- **🃏 Flashcard: on / 🚫 off** button in the side panel per node (not for the root or the weeks).
+  Stored as a `flashcard` column/field (default on; old databases get the column added on
+  start), undoable, exported to JSON. Excluded nodes are faded in the tree and skipped in study.
+
 ## 5. Day-to-day content workflow (once the app works)
 
 1. Activate the venv, run `python -m app.main`, open http://127.0.0.1:8050.

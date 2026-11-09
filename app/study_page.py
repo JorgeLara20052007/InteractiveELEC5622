@@ -12,7 +12,7 @@ from dash import Dash, Input, Output, State, ctx, dcc, html
 from dash.exceptions import PreventUpdate
 from flask import Flask, redirect
 
-from . import storage, study, trees
+from . import storage, study, tree, trees
 from .styles import week_colour
 
 SHOW = {"display": "block"}
@@ -245,13 +245,13 @@ def _register(app: Dash) -> None:
 
         if total == 0:
             return (
-                "", {**card_style, "cursor": "default"}, week.label, "This week has no concepts yet",
-                "Add some children to it in the tree first.", "", HIDE, HIDE, HIDE, "", "", [], "", HIDE,
+                "", {**card_style, "cursor": "default"}, week.label, "This week has no flashcards yet",
+                "Add children to it in the tree, or include some of its nodes in flashcards.", "", HIDE, HIDE, HIDE, "", "", [], "", HIDE,
             )
 
         if study.finished(session):
             missed = study.missed(session)
-            labels = {n.id: n.label for n in study.concepts(week, include_all=True)}
+            labels = {n.id: n.label for n in tree.walk(week)}
             percent = round(100 * right / answered) if answered else 0
             return (
                 "",
@@ -272,7 +272,7 @@ def _register(app: Dash) -> None:
             )
 
         node_id = study.current(session)
-        node = next((n for n in study.concepts(week, include_all=True) if n.id == node_id), None)
+        node = tree.find(week, node_id)
         title = node.label if node else "(this concept was deleted from the tree)"
         definition = (node.definition if node else "") or "*No definition yet.*"
         revealed = session["revealed"]
