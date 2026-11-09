@@ -4,10 +4,10 @@ import re
 import time
 from pathlib import Path
 
-from dash import Input, Output, State, ctx, no_update
+from dash import ALL, Input, Output, State, ctx, no_update
 from dash.exceptions import PreventUpdate
 
-from . import images, storage, tree, trees
+from . import images, storage, styles, tree, trees
 
 ADD_ID = "__add__"  # id of the '+' ghost node shown next to the selected node
 SHOW = {"display": "block"}
@@ -17,7 +17,7 @@ FORM_SHOW = {"display": "flex", "flexDirection": "column", "flex": "1 1 auto", "
 
 
 def _elements(root: tree.Node, selected: str, collapsed: set[str]) -> list[dict]:
-    elements = tree.to_elements(root, collapsed)
+    elements = styles.paint(tree.to_elements(root, collapsed), [w.color for w in root.children])
     for el in elements:
         # An explicit class on every element: Cytoscape keeps stale classes on elements
         # that come back without any, which would leave old nodes highlighted.
@@ -89,6 +89,9 @@ def register(app) -> None:
         Input("btn-create-tree", "n_clicks"),
         Input("btn-cancel-tree", "n_clicks"),
         Input("btn-flashcard", "n_clicks"),
+        Input({"type": "swatch", "colour": ALL}, "n_clicks"),
+        Input("btn-colour-auto", "n_clicks"),
+        Input("btn-colour-hex", "n_clicks"),
         State("active-tree", "data"),
         State("new-tree-name", "value"),
         State("selected", "data"),
@@ -97,12 +100,14 @@ def register(app) -> None:
         State("collapsed", "data"),
         State("form-label", "value"),
         State("form-definition", "value"),
+        State("colour-hex", "value"),
         prevent_initial_call=True,
     )
     def handle_event(
         tap, _add, _edit, _cancel, _save, _confirm, _toggle, _collapse_all, _expand_all, search,
         _undo, _redo, chosen_tree, _new_tree, _create_tree, _cancel_tree, _flashcard,
-        active, new_tree_name, selected, mode, version, collapsed, label, definition,
+        _swatches, _colour_auto, _colour_hex,
+        active, new_tree_name, selected, mode, version, collapsed, label, definition, colour_hex,
     ):
         trigger, status = ctx.triggered_id, ""
         collapsed, focus, search_value, active_out = set(collapsed or []), no_update, no_update, no_update
@@ -160,6 +165,23 @@ def register(app) -> None:
             collapsed.discard(selected)
             selected, mode, version = path[-2].id, "view", version + 1
             status = f"Deleted {removed} node(s)."
+        elif isinstance(trigger, dict) or trigger in ("btn-colour-auto", "btn-colour-hex"):
+            if isinstance(trigger, dict):  # one of the swatches
+                if not ctx.triggered[0]["value"]:
+                    raise PreventUpdate  # swatches being drawn, not clicked
+                colour = trigger["colour"]
+            elif trigger == "btn-colour-auto":
+                colour = None
+            else:
+                colour = (colour_hex or "").strip()
+                if colour and not colour.startswith("#"):
+                    colour = "#" + colour
+                if not styles.HEX_COLOUR.match(colour):
+                    status = "Type a colour like #e76f51 (a # and six hex digits)."
+                    return result()
+            node = storage.set_color(selected, colour, db)
+            version += 1
+            status = f"“{node.label}” now uses {colour or 'its automatic colour'}."
         elif trigger == "btn-flashcard":
             node = tree.find(storage.load(db), selected)
             storage.set_flashcard(selected, not node.flashcard, db)
@@ -309,6 +331,8 @@ def register(app) -> None:
         Output("btn-flashcard", "children"),
         Output("btn-flashcard", "title"),
         Output("btn-flashcard", "disabled"),
+        Output("week-colour-row", "style"),
+        Output("colour-hex", "value"),
         Output("confirm-delete", "message"),
         Output("view", "style"),
         Output("form", "style"),
@@ -373,6 +397,8 @@ def register(app) -> None:
             "Expand" if node.id in collapsed else "Collapse",
             n_children == 0,
             *_flashcard_button(node, depth=len(path) - 1),
+            SHOW if len(path) == 2 else HIDE,  # only weeks (the root's children) choose a colour
+            node.color or "",
             f"Delete “{node.label}”"
             + (f" and its {n_desc} descendant(s)" if n_desc else "")
             + "? This cannot be undone.",

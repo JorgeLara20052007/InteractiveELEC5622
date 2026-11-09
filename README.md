@@ -38,6 +38,11 @@ box jumps to any node, and each week has its own colour.
   full tab, and `×` closes it. You can open several at once. The
   file stays in your browser: nothing is uploaded or saved, so after a page reload you
   open it again.
+- **Week colours:** every week has its own colour, and the nodes inside it get lighter shades
+  of it. To choose one, click a week node: the side panel shows **Week colour** with 16
+  swatches, **Automatic**, and a box where you can type any colour like `#e76f51` (press
+  **Use**). Dark or light colours both work: the text switches between white and dark to stay
+  readable. Ctrl+Z undoes a colour change, and chosen colours are saved in the JSON export.
 - **Editing with a live preview:** while you edit a node, the label and definition boxes stay
   in place and only the preview below them scrolls, so you can read a long preview without
   losing the editor. After you type, the preview scrolls to the part you are editing: adding

@@ -13,7 +13,7 @@ from dash.exceptions import PreventUpdate
 from flask import Flask, redirect
 
 from . import storage, study, tree, trees
-from .styles import week_colour
+from .styles import node_colour
 
 SHOW = {"display": "block"}
 HIDE = {"display": "none"}
@@ -239,7 +239,7 @@ def _register(app: Dash) -> None:
         root = storage.load(trees.db_path(session["tree"]))
         week_index = next((i for i, w in enumerate(root.children) if w.id == session["week"]), 0)
         week = root.children[week_index] if root.children else root
-        card_style = {**_card, "borderTop": f"10px solid {week_colour(week_index, 1)}"}
+        card_style = {**_card, "borderTop": f"10px solid {node_colour(week_index, 1, week.color)}"}
         total = len(session["cards"])
         right, answered = study.score(session)
 

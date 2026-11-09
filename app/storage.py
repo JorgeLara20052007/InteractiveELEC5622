@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS nodes (
     label      TEXT NOT NULL,
     definition TEXT NOT NULL DEFAULT '',
     position   INTEGER NOT NULL DEFAULT 0,
-    flashcard  INTEGER NOT NULL DEFAULT 1  -- 0 = left out of study mode
+    flashcard  INTEGER NOT NULL DEFAULT 1,  -- 0 = left out of study mode
+    color      TEXT                         -- chosen colour, e.g. '#e76f51' (NULL = automatic)
 );
 CREATE INDEX IF NOT EXISTS nodes_parent ON nodes(parent_id);
 CREATE TABLE IF NOT EXISTS history (
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS meta (
 );
 """
 
-_COLUMNS = "(id, parent_id, label, definition, position, flashcard)"
+_COLUMNS = "(id, parent_id, label, definition, position, flashcard, color)"
 
 
 def _connect(db: Path) -> sqlite3.Connection:
@@ -60,7 +61,13 @@ def _connect(db: Path) -> sqlite3.Connection:
 def _load(conn: sqlite3.Connection) -> Node:
     rows = conn.execute("SELECT * FROM nodes ORDER BY position, rowid").fetchall()
     nodes = {
-        r["id"]: Node(id=r["id"], label=r["label"], definition=r["definition"], flashcard=bool(r["flashcard"]))
+        r["id"]: Node(
+            id=r["id"],
+            label=r["label"],
+            definition=r["definition"],
+            flashcard=bool(r["flashcard"]),
+            color=r["color"],
+        )
         for r in rows
     }
     roots = []
@@ -79,13 +86,13 @@ def _replace_nodes(conn: sqlite3.Connection, root: Node) -> None:
     rows: list[tuple] = []
 
     def collect(node: Node, parent_id: str | None, position: int) -> None:
-        rows.append((node.id, parent_id, node.label, node.definition, position, int(node.flashcard)))
+        rows.append((node.id, parent_id, node.label, node.definition, position, int(node.flashcard), node.color))
         for i, child in enumerate(node.children):
             collect(child, node.id, i)
 
     collect(root, None, 0)
     conn.execute("DELETE FROM nodes")
-    conn.executemany(f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?)", rows)
+    conn.executemany(f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?, ?)", rows)
 
 
 def _cursor(conn: sqlite3.Connection) -> int:
@@ -125,6 +132,8 @@ def init(db: Path = DB_FILE, seed: Path | None = SEED_FILE) -> None:
         columns = {r["name"] for r in conn.execute("PRAGMA table_info(nodes)")}
         if "flashcard" not in columns:  # database from before study-mode exclusions existed
             conn.execute("ALTER TABLE nodes ADD COLUMN flashcard INTEGER NOT NULL DEFAULT 1")
+        if "color" not in columns:  # database from before week colours existed
+            conn.execute("ALTER TABLE nodes ADD COLUMN color TEXT")
         if conn.execute("SELECT COUNT(*) FROM nodes").fetchone()[0] == 0:
             if seed is None or not seed.exists():
                 return
@@ -152,8 +161,8 @@ def add_node(parent_id: str, label: str, definition: str = "", db: Path = DB_FIL
     position = len(tree.find(root, parent_id).children) - 1
     with closing(_connect(db)) as conn, conn:
         conn.execute(
-            f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?)",
-            (child.id, parent_id, child.label, child.definition, position, int(child.flashcard)),
+            f"INSERT INTO nodes {_COLUMNS} VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (child.id, parent_id, child.label, child.definition, position, int(child.flashcard), child.color),
         )
         _record(conn, f"Add “{child.label}”")
     return child
@@ -185,6 +194,21 @@ def set_flashcard(node_id: str, on: bool, db: Path = DB_FILE) -> Node:
         conn.execute("UPDATE nodes SET flashcard = ? WHERE id = ?", (int(on), node_id))
         _record(conn, f"{'Include' if on else 'Exclude'} “{node.label}” {'in' if on else 'from'} flashcards")
     node.flashcard = on
+    return node
+
+
+def set_color(node_id: str, color: str | None, db: Path = DB_FILE) -> Node:
+    """Give the node a colour like '#e76f51', or None to go back to the automatic one."""
+    node = tree.find(load(db), node_id)
+    if node is None:
+        raise KeyError(f"no node with id {node_id!r}")
+    color = color.lower() if color else None
+    if node.color == color:
+        return node
+    node.color = color  # validates the format
+    with closing(_connect(db)) as conn, conn:
+        conn.execute("UPDATE nodes SET color = ? WHERE id = ?", (color, node_id))
+        _record(conn, f"Colour of “{node.label}”: {color or 'automatic'}")
     return node
 
 
@@ -247,4 +271,5 @@ def redo(db: Path = DB_FILE) -> str | None:
 
 def export_json(out: Path = SEED_FILE, db: Path = DB_FILE) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(load(db).model_dump_json(indent=2) + "\n", encoding="utf-8", newline="\n")
+    # exclude_none: nodes without a chosen colour do not get a "color": null line each
+    out.write_text(load(db).model_dump_json(indent=2, exclude_none=True) + "\n", encoding="utf-8", newline="\n")

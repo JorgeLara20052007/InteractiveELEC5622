@@ -208,3 +208,34 @@ def test_init_adds_the_flashcard_column_to_an_old_database(tmp_path):
     assert storage.load(path).children[0].flashcard is True
     storage.set_flashcard("c", False, path)
     assert storage.load(path).children[0].flashcard is False
+
+
+# --- week colours
+
+
+def test_set_color_persists_undoes_and_resets(db):
+    storage.set_color("w1", "#E76F51", db)
+    assert storage.load(db).children[0].color == "#e76f51"
+    assert storage.history_state(db)[0] == "Colour of “Week 1”: #e76f51"
+    storage.undo(db)
+    assert storage.load(db).children[0].color is None
+    storage.redo(db)
+    storage.set_color("w1", None, db)
+    assert storage.load(db).children[0].color is None
+
+
+def test_set_color_rejects_bad_values(db):
+    with pytest.raises(ValueError):
+        storage.set_color("w1", "red", db)
+    with pytest.raises(KeyError):
+        storage.set_color("missing", "#ffffff", db)
+    assert storage.history_state(db) == (None, None)
+
+
+def test_export_only_writes_colours_that_were_chosen(db, tmp_path):
+    storage.set_color("w2", "#2a9d8f", db)
+    out = tmp_path / "snap.json"
+    storage.export_json(out, db)
+    text = out.read_text(encoding="utf-8")
+    assert text.count('"color"') == 1
+    assert Node.model_validate_json(text).children[1].color == "#2a9d8f"

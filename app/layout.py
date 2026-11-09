@@ -4,7 +4,7 @@ import dash_cytoscape as cyto
 from dash import dcc, html
 
 from . import trees
-from .styles import STYLESHEET
+from .styles import PALETTE, STYLESHEET
 
 # The side panel can be resized by dragging the bar on its left edge (assets/app.js sets
 # --panel-width and remembers it); this is the width until you do.
@@ -13,6 +13,48 @@ PANEL_WIDTH = "var(--panel-width, clamp(300px, 35vw, 440px))"
 _button = {"marginRight": "8px", "padding": "6px 12px", "cursor": "pointer"}
 _tool = {**_button, "marginRight": 0, "pointerEvents": "auto"}
 _field = {"width": "100%", "boxSizing": "border-box", "marginBottom": "10px", "fontSize": "14px"}
+
+
+def _week_colour_picker() -> html.Div:
+    """Swatches, 'Automatic' and a #rrggbb box; shown only when a week node is selected."""
+    swatches = [
+        html.Button(
+            id={"type": "swatch", "colour": colour},
+            title=colour,
+            style={
+                "width": "26px",
+                "height": "26px",
+                "margin": "0 4px 4px 0",
+                "padding": 0,
+                "border": "1px solid #8c959f",
+                "borderRadius": "6px",
+                "background": colour,
+                "cursor": "pointer",
+            },
+        )
+        for colour in PALETTE
+    ]
+    return html.Div(
+        id="week-colour-row",
+        style={"display": "none"},
+        children=[
+            html.Div("Week colour", style={"margin": "14px 0 6px", "color": "#57606a", "fontSize": "13px"}),
+            html.Div(swatches, style={"maxWidth": "260px"}),
+            html.Div(
+                style={"display": "flex", "gap": "6px", "alignItems": "center", "marginTop": "4px"},
+                children=[
+                    html.Button("Automatic", id="btn-colour-auto", style=_button),
+                    dcc.Input(
+                        id="colour-hex",
+                        type="text",
+                        placeholder="#rrggbb",
+                        style={"width": "90px", "fontFamily": "Consolas, monospace"},
+                    ),
+                    html.Button("Use", id="btn-colour-hex", style=_button),
+                ],
+            ),
+        ],
+    )
 
 
 def build_layout() -> html.Div:
@@ -126,6 +168,7 @@ def build_layout() -> html.Div:
                             html.Button("🃏 Flashcard: on", id="btn-flashcard", style=_button),
                             html.Button("Edit", id="btn-edit", style=_button),
                             html.Button("Delete", id="btn-delete", style=_button),
+                            _week_colour_picker(),
                         ],
                     ),
                     html.Div(

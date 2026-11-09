@@ -15,6 +15,7 @@ class Node(BaseModel):
     label: str
     definition: str = ""
     flashcard: bool = True  # False = left out of study mode
+    color: str | None = Field(default=None, pattern=r"^#[0-9a-fA-F]{6}$")  # chosen colour (used on weeks)
     children: list[Node] = Field(default_factory=list)
 
     @field_validator("id", "label")

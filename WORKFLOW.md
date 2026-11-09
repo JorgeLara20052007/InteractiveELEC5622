@@ -168,6 +168,13 @@ Each step ends with something you can run or test. Commit after each one.
   Stored as a `flashcard` column/field (default on; old databases get the column added on
   start), undoable, exported to JSON. Excluded nodes are faded in the tree and skipped in study.
 
+**Step 13: Week colours** (DONE)
+- Fixed: weeks after the 8th were grey (style rules only existed for 8 weeks). Colours are now
+  computed per node and sent with the graph data, so any number of weeks works.
+- Click a week to pick its colour (16 swatches, Automatic, or any `#rrggbb`); stored as a
+  `color` column/field, undoable, exported to JSON only when chosen. Text turns dark on light
+  colours.
+
 ## 5. Day-to-day content workflow (once the app works)
 
 1. Activate the venv, run `python -m app.main`, open http://127.0.0.1:8050.
