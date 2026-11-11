@@ -1542,8 +1542,15 @@
                   "children": [
                     {
                       "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-forward-phase-of-mlp-training-example-forward-phase",
-                      "label": "Example Forward Phase",
+                      "label": "Example Forward Phase 1",
                       "definition": "## Forward phase — worked example\n\nWe’ll predict whether an image patch contains a lesion using two features, one hidden ReLU neuron, and one sigmoid output neuron. The input is $\\mathbf{x}=(2,1)^\\top$, and the true label is $y=1$.\n\n1. **Feed in the input.** The starting values are $\\mathbf{h}^{(0)}=\\mathbf{x}=(2,1)^\\top$.\n\n2. **Compute the hidden neuron.** Its weights are $(0.50,-0.25)$ and its bias is $0.25$. Multiply each input by its weight, add the bias, then apply ReLU:\n\n   $$\n   z^{(1)}=0.50(2)-0.25(1)+0.25=1,\n   \\qquad\n   h^{(1)}=\\max(0,z^{(1)})=1.\n   $$\n\n3. **Calculate the prediction.** The output weight is $0.80$ and its bias is $-0.80$. Apply sigmoid to the output score:\n\n   $$\n   z^{(2)}=0.80(1)-0.80=0,\n   \\qquad\n   \\hat y=\\frac{1}{1+e^{-z^{(2)}}}=0.50.\n   $$\n\n   The network predicts a $50\\%$ probability of a lesion.\n\n4. **Calculate the loss.** Since the true label is $y=1$, binary cross-entropy becomes\n\n   $$\n   \\mathcal{L}=-[y\\log(\\hat y)+(1-y)\\log(1-\\hat y)]\n   =-\\log(0.50)\\approx0.693.\n   $$\n\n5. **Calculate the batch objective.** The objective $J$ is the average loss. Here the batch has one example, so $J=\\mathcal{L}\\approx0.693$.",
+                      "flashcard": false,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-forward-phase-of-mlp-training-example-backward-phase-2",
+                      "label": "Example Forward Phase 2",
+                      "definition": "## Forward pass walkthrough\n\n![pasted image](/images/503678812e6211cf.png)\n\n### 1. Feed in the training example (slide 13)\n\nThe diagram has two separate inputs. The feature vector $\\mathbf{x}$ goes through the network to produce a prediction. The target $\\mathbf{y}$ goes straight to the loss.\n\nFor example, an image patch could have two measured features, $\\mathbf{x} = (2, 1)^\\top$. If it belongs to class 2 out of three classes, its one-hot target is $\\mathbf{y} = (0, 1, 0)^\\top$.\n\n### 2. Compute the first hidden layer (slide 14)\n\nEach row of $\\mathbf{W}^1$ contains the weights for one hidden neuron. That neuron multiplies the input features by its weights and adds the results. ReLU then replaces a negative result with zero and keeps a positive result as it is.\n\nFor example, with two hidden neurons:\n\n$$\n\\mathbf{h}^1 = \\operatorname{ReLU}(\\mathbf{W}^1 \\mathbf{x})\n= \\operatorname{ReLU}\\left(\n\\begin{bmatrix} 1 & -1 \\\\ -1 & 1 \\end{bmatrix}\n\\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}\n\\right)\n= \\operatorname{ReLU}\\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}\n= \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}\n$$\n\nThe first neuron passes a value of $1$ to the next layer. The second passes $0$.\n\n> **Note:** This follows the diagram, which leaves the biases out of the equations.\n\n### 3. Compute the second hidden layer (slide 15)\n\nThis layer repeats the same operation, using $\\mathbf{h}^1$ as its input. It learns combinations of what the first layer has already detected:\n\n$$\n\\mathbf{h}^2 = \\operatorname{ReLU}(\\mathbf{W}^2 \\mathbf{h}^1)\n= \\operatorname{ReLU}\\left(\n\\begin{bmatrix} 2 & 1 \\\\ 1 & -1 \\end{bmatrix}\n\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}\n\\right)\n= \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}\n$$\n\n### 4. Produce one score per class (slide 16) - NO activation function\n\nEach row of $\\mathbf{W}^3$ combines the second hidden layer's outputs into a score for one class. These raw scores are called **logits**:\n\n$$\n\\mathbf{o} = \\mathbf{W}^3 \\mathbf{h}^2\n= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\\\ 1 & -2 \\end{bmatrix}\n\\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}\n= \\begin{bmatrix} 2 \\\\ 1 \\\\ 0 \\end{bmatrix}\n$$\n\n### 5. Convert socres to probabilities (slide 17)\n\nFinally convert the scrores to probabilities and calculate the loss. Softmax exponentials each score and divides the sum of all exponentiated scores. This gives positive probabilities that add up to $1$:\n\n$$\np(x_k|\\mathbf{x})=\\frac{e^{o_k}}{\\sum_{j=1}^Ce^{o_j}}, \\ \\mathbf{p}\\approx\\begin{pmatrix}0.665\\\\0.245\\\\0.090\\end{pmatrix}\n$$\n\nClass 1 has the highest probability, but the training labale says class 2. Cross entropy uses the probability assigned to that true class. Because the target is one hot, only the class 2 term contributes:\n\n$$\nJ=-\\sum_{j=1}^Cy_j\\log p(c_j|\\mathbf{x})=-\\log (0.245)\\approx 1.41\n$$",
                       "flashcard": false,
                       "children": []
                     }
@@ -1557,9 +1564,372 @@
                   "children": [
                     {
                       "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-backward-phase-mlp-training-example-backward-phase",
-                      "label": "Example Backward Phase",
+                      "label": "Example Backward Phase 1",
                       "definition": "## Backward phase — worked example\n\nUse the same network and training example. The forward pass gave $h^{(1)}=1$, $\\hat y=0.50$, and $y=1$.\n\n1. **Set the objective.** Adjust the weights and biases to reduce $J$. With this one-example batch, the gradients of $J$ are the gradients of the example’s loss $\\mathcal{L}$.\n\n2. **Start at the output.** With sigmoid and binary cross-entropy, the gradient with respect to the output score is\n\n   $$\n   \\delta^{(2)}\n   =\\frac{\\partial\\mathcal{L}}{\\partial z^{(2)}}\n   =\\hat y-y=0.50-1=-0.50.\n   $$\n\n3. **Pass the gradient back to the hidden neuron.** Multiply by the output weight and the derivative of ReLU. Since $z^{(1)}=1>0$, the ReLU derivative is $1$:\n\n   $$\n   \\delta^{(1)}=0.80(-0.50)(1)=-0.40.\n   $$\n\n4. **Find the weight and bias gradients.** For each weight, multiply the receiving neuron’s $\\delta$ by the input to that weight. A bias has an effective input of $1$, so its gradient is just $\\delta$:\n\n   $$\n   \\begin{aligned}\n   \\text{Output weight:}\\quad &(-0.50)(1)=-0.50,\\\\\n   \\text{Output bias:}\\quad &-0.50,\\\\\n   \\text{Hidden weights:}\\quad &(-0.40)(2,1)=(-0.80,-0.40),\\\\\n   \\text{Hidden bias:}\\quad &-0.40.\n   \\end{aligned}\n   $$\n\n   With a larger batch, average each parameter’s gradient across the examples before updating.\n\n5. **Update the parameters.** Use $\\theta_{\\mathrm{new}}=\\theta_{\\mathrm{old}}-\\eta\\nabla_\\theta J$ with learning rate $\\eta=0.10$:\n\n   $$\n   \\begin{aligned}\n   \\text{Output weight:}\\quad &0.80-0.10(-0.50)=0.85,\\\\\n   \\text{Output bias:}\\quad &-0.80-0.10(-0.50)=-0.75,\\\\\n   \\text{Hidden weights:}\\quad &(0.50,-0.25)-0.10(-0.80,-0.40)=(0.58,-0.21),\\\\\n   \\text{Hidden bias:}\\quad &0.25-0.10(-0.40)=0.29.\n   \\end{aligned}\n   $$\n\n   The next forward pass on the same example gives $\\hat y\\approx0.575$. The prediction moves closer to $y=1$, and the loss drops from $0.693$ to about $0.553$.",
                       "flashcard": false,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-backward-phase-mlp-training-example-backward-phase-2",
+                      "label": "Example Backward Phase 2",
+                      "definition": "The backward pass works from the loss back to the first layer. At each layer, it answers two questions: How does each weight affect the loss? And what gradient should we pass to the preceding layer?\n\nLet's consider: \n\n- $\\mathbf{x}=(2,1)^\\top$\n- $\\mathbf{h}^1=(1,0)^\\top$\n- $\\mathbf{h}^2=(2,1)^\\top$\n- $\\mathbf{0}=(2,1,0)^\\top$\n- True class is class 2, so $\\mathbf{y}=(0,1,0)^\\top$\n\n1. Start with the loss and apply the chain rule. A weight affects the loss indirectly. It changes a neuron's output, which changes the class probabilities, which changes the loss. The chain rule links those effects. For example, if $h$ affects $p$ and $p$ affects $J$, then:\n\n$$\n\\frac{\\partial J}{\\partial h} = \\frac{\\partial J}{\\partial p}\\frac{\\partial p}{\\partial h}\n$$\n\n",
+                      "flashcard": false,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-learning-rate",
+                  "label": "Learning Rate",
+                  "definition": "The hyperoarameter $\\alpha$ (lr) controls how much an MLP changes its weights and biases after backpropagation. Backpropagation computes the gradients, and gradients descent subtracts that gradient multiplied by $\\alpha$:\n\n- **Small lr**: requires many updates before reaching minimum\n- **Large lr**: might overshoot the minimum point\n\n$$\nw_{\\text{new}} = w_\\text{old}-\\alpha\\frac{\\partial J}{\\partial w}\n$$\n\nIn MLP example, one output weight started at $0$ and had a gradient of $-1.511$. With $\\alpha=0.1$\n\n$$\nw_{\\text{new}} = 0-0.1(-1.511)=0.1511\n$$\n\nThe weight increases because its gradient is negative: increasing it locally reduces loss.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-cross-entropy",
+                  "label": "Cross Entropy",
+                  "definition": "Cross entropy measures **how good the prediction is**. In MLP with one hot label, the loss is negative log of the probabilitu assigned to the true class:\n\n$$\n\\mathcal{L}=-\\log(p_{\\text{true class}})\n$$",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-batch-gradient-descent",
+                  "label": "Batch Gradient Descent",
+                  "definition": "Use all training samples to calculate the average gradient, then update the wieghts once. Each update uses the full dataset, so it can be expensive. (Accurate estimation but expensive)",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-stochastic-gradient-descent-sgd",
+                  "label": "Stochastic gradient descent (SGD)",
+                  "definition": "Consider one sample and use it to calculate the gradient for weight update in a single step. Noisy gradient estimation but converges fast for large datasets. \n\nIt uses a randomly selected training sample.",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-stochastic-gradient-descent-sgd-sgd-with-momentum",
+                      "label": "SGD with momentum",
+                      "definition": "In SGD, we do not compute the exact gradient of our loss function, therefore we are not going in the optimal direction:\n\n$$\n\\mathbf{W_new} = \\mathbf{W_current}-\\alpha\\nabla_W\\mathbf{J}\n$$\n\nSo use momentim for weight update:\n\n$$\n\\begin{align}\n&\\mathbf{W_new} = \\mathbf{W_current} - \\alpha V_t \\\\\n&V_t = \\beta V_{t-1}+(1-\\beta)\\nabla_W\\mathbf{J}\n\\end{align}\n$$\n\nThis helps with accelerating gradients in the right direcitons, thus leading to faster converging.\n",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-mini-batch-gradient-descent",
+                  "label": "Mini-Batch Gradient Descent",
+                  "definition": "Consider a small and fixed number of training samples in each step for weight update.\n\n- Balance between batch gradient descent and stochastic gradient descent.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-types-of-weight-initialisation",
+                  "label": "Types of weight initialisation",
+                  "definition": "",
+                  "flashcard": false,
+                  "children": [
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-types-of-weight-initialisation-random-initialisation",
+                      "label": "Random Initialisation",
+                      "definition": "`W = 0.01*np.random.randn(D,H)`\n\n`W = 1*np.random.randn(D,H)`\n\n2 main issues:\n\n- Too small initial weights soon make the activations approach 0\n- Too large initial weights soon make the activation exploded",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-types-of-weight-initialisation-xavier-initialisation",
+                      "label": "Xavier initialisation",
+                      "definition": "**Xavier initialisation draws a random weights with a scale matched to the layer's size**. It centers the weghts at 0 and sets their variance to:\n\n$$\n\\text{Var}(w) = \\frac{2}{n_{\\text{in}}-n_\\text{out}} \\ \\text{ where }n_{\\text{in/out}} \\text{ is the number of input and outputs of the NN}\n$$\n\nCompared with using the same arbitrary scal for every layer, Xavier helps heep **activations during the forward pass** and **gradients during the backward pass** from shrinking or growing too much at the start of training.\n\n```\nW = np.random.randn(fan_in, fan_out) / np.sqrt(fan_in)\n```\n\nOr the original:\n\n```\nW = np.random.randn(fan_in, fan_out) * np.sqrt(2 / (fan_in + fan_out))\n```\n",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-mlp-training-types-of-weight-initialisation-kaiming-s-initialisation-or-he-initialisation",
+                      "label": "Kaiming's initialisation (or He initialisation)",
+                      "definition": "Its designed for layers that use ReLU. It draws weights with mean zero and variance $2/\\text{fan_{in}}$:\n\n```\nW = np.random.randn(fan_in, fan_out) * np.sqrt(2 / fan_in)\n```",
+                      "flashcard": true,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-multi-layer-perceptron-mlp-problems-on-mlp-3",
+              "label": "Problems on MLP (3)",
+              "definition": "- Every output unit interacts with every input unit\n- The number of weights grws largely with size of input image\n- Pixels and distance are less correlated",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns",
+          "label": "Convolutional Neural Networks (CNNs)",
+          "definition": "A CNN (Convolutional Neural Network) learns to detect patterns in grid-like data such as images.\n\nA convolutional layer slides a small filter (for example, \\(3\\times3\\) weights) across the image. At each position, it computes a weighted sum of the nearby pixels. The results form a feature map showing where the filter responds strongly.\n\nThe same weights are reused at every position, so a filter can detect an edge wherever it appears in the image. Deeper layers combine simple patterns such as edges and textures into more complex features that the network can use for tasks like classification or segmentation.\n\n**This reduces the amount of parameters needded to compute the NN analysis**",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns-sparse-connectivity",
+              "label": "Sparse Connectivity",
+              "definition": "Sparse connectivity means each neuron of the NN in a convolutional layer, connects to a small neighbourhood in the previous layer. For example, a $3\\times3$ filter on a grayscal image uses **9 neaby pixels** to compute each output value. That patch is the neuron's **receptive field**. The local connections let CNNs detect patterns such as edges and textures.\n\n![pasted image](/images/200b360dc6a32354.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns-receptive-field",
+              "label": "Receptive Field",
+              "definition": "A neuron is only connected to a local region of the input grid. The local region is known as the **receptive field** of the neuron. This field can be increased by stacking more layers:\n\n![pasted image](/images/8c74e17a9bd28a92.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns-weight-sharing-in-cnns",
+              "label": "Weight Sharing in CNNs",
+              "definition": "CNNs apply the same filter at every spatial location. The input pixels change as the filter slides, but its weights stay the same.\n\nA $3\\times 3$ filter on a grayscal image learns $9$ weights in total, even if its applied at $1000$ locations. This saves parameters and lets the same filter detect a pattern such as an edge, wherever it appears.\n\n",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns-weight-sharing-in-cnns-multiple-filters-in-cnns",
+                  "label": "Multiple filters in CNNs",
+                  "definition": "Multiple filters are useful, since even though each filter contains the same set of weights, they mifht capture different patterns. Each filter learns a differnt patter, such as vertical edge, horizontal edge or a texture. Each produces its own **feature map** showing where that pattern appears.\n\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-10-neural-network-basics-convolutional-neural-networks-cnns-weight-sharing-in-cnns-translation-invariance",
+                  "label": "Translation invariance",
+                  "definition": "Because the same filter scans the while image, it can detect pattern wherever it appears. If the pattern moves, its response moves on the feature map too. That is **translation equivariance/invariance**. A later operation such as global pooling can summarise how strongly the pattern appears across the image, making the final prediction less sensitive to where it appears.\n\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification",
+      "label": "Week 11 - Deep learning models for medical image classification",
+      "definition": "",
+      "flashcard": true,
+      "children": [
+        {
+          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-why-deep-learning-instead-of-traditional-methods",
+          "label": "Why deep learning instead of traditional methods?",
+          "definition": "Deep learning models benefit more from large training data:\n\n![pasted image](/images/470928c52e4fa196.png)\n",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-deep-learning-applications-in-mia",
+          "label": "Deep learning applications in MIA (3)",
+          "definition": "1. Classification / Regression\n2. Segmentation / Detection\n3. Synthesis",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-deep-learning-applications-in-mia-classification-regression-in-mia",
+              "label": "Classification / Regression in MIA",
+              "definition": "**Classification** shows us a category or a probability of a category, like predicting wheter an MRI contains a tumor. And **Regression** outputs a continuous number that could be the estimate of a tumor's volume. \n\n![pasted image](/images/53b148f934cdfb15.png)\n![pasted image](/images/a21d63693661d8a4.png)",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-deep-learning-applications-in-mia-segmentation-detection-in-mia",
+              "label": "Segmentation / Detection in MIA",
+              "definition": "It labels a pixel/voxel, forming a mask. It could outline which voxels belong to a tumor.\n\nIts useful for:\n\n- Breast cancer detection\n- Brain tumor segmentation\n- Prostate segmentation",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-deep-learning-applications-in-mia-synthesis",
+              "label": "Synthesis",
+              "definition": "It outputs a generated image, like using a low does PET scan to generate an estimate of a standard dose PET image.\n\n![pasted image](/images/b460b9e158d12f87.png)",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-mia-deep-learning-challenges-3",
+          "label": "MIA Deep learning challenges (3)",
+          "definition": "1. Small sample size problem\n   - annotated training samples are limited\n   - limited public datasets\n2. Data of class imbalance problem in training set\n   - skewed towards normal/non-pathological data\n3. Missing data problem for multi-modality analysis\n   - Discarding data-missing subjects will further reduce the number of training subjects",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3",
+          "label": "CNN typical model consists of (3):",
+          "definition": "- Convolutional layers\n- Pooling layers\n- Fully connected layer",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-pixel-process-in-cnns",
+              "label": "Pixel process in CNNs",
+              "definition": "A zero padding is added to the matrix. A kernel is multipled to each mini-batch amd a feature map is derived:\n\n![pasted image](/images/ec8cb3c6a55e020c.png)",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-relu-matrix-example",
+              "label": "ReLU matrix example",
+              "definition": "![pasted image](/images/c3d29b38ebde704e.png)\n",
+              "flashcard": false,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-pooling-methods",
+              "label": "Pooling Methods",
+              "definition": "",
+              "flashcard": false,
+              "children": [
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-pooling-methods-max-pooling",
+                  "label": "Max pooling",
+                  "definition": "![pasted image](/images/aceb5e2b49b13050.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-pooling-methods-average-pooling",
+                  "label": "Average pooling",
+                  "definition": "![pasted image](/images/e5f3c32933b72d34.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-strided-convolution-vs-pooling-w-out-formula",
+              "label": "Strided Convolution vs Pooling (W_out formula)",
+              "definition": "Use strided convolution ($\\text{stride} > 1$) could also reduce the size of feature maps:\n\n$$\nW_{\\text{out}}=\\left\\lfloor\\frac{W_{\\text{in}}-W_\\text{out} + 2 \\times P}{S}\\right\\rfloor+1\n$$\n\n- The kernel weights are learnable in strided convolution; however pooling has no learnable parameters\n\n1. $W_{\\text{in}}$: is the input width before padding\n2. $W_{\\text{out}}$: is the output width (should be the kernel width $K$). Each valid kernel position produces one output value along that row.\n3. $K$: kernel width (usually $3\\times 3$)\n4. $P$: padding on each side. Padding adds extra values to the edges of an input image or feature map. Usually $0$s.\n5. $S$: is the stride, the number of pixels the kernel moves each step.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-fully-connected-layers-fc",
+              "label": "Fully Connected Layers (FC)",
+              "definition": "FC layers flatten feature maps for prediction, same as MLP in principle. (Used for output layers)\n\n![pasted image](/images/2f14e6e3c762c3d5.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models",
+              "label": "Popular CNN Models",
+              "definition": "",
+              "flashcard": false,
+              "children": [
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-lenet",
+                  "label": "LeNet",
+                  "definition": "![pasted image](/images/1e1c440b5f7c206c.png)\n\n- Architecture: CONV-POOL-CONV-POOL-FC-FC\n- CONV: $5\\times5$ filter, stride $= 1$\n- POOL: $2\\times 2$ filter, stride $=2$\n\nDeveloped on 1998, it combined local connections, shared filter weights and subsampling in a network trained nd to end with backpropagation. It learned the features needed to recognise digits that were handwritten.\n\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet",
+                  "label": "AlexNet",
+                  "definition": "AlexNet (2012) was introduced by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton. It won the 2012 ImageNet image classification challenge.\n\nArchitecture. Five convolutional layers followed by three fully connected layers. It used ReLU activations, max pooling after selected layers, and dropout in the first two fully connected layers. The final softmax predicted one of 1,000 classes.\n\nKey feature. AlexNet showed that a deep CNN trained on GPUs could achieve a large improvement in image classification. ReLU helped speed up training, and dropout helped reduce overfitting.\n\n![pasted image](/images/8af131781979c50a.png)",
+                  "flashcard": true,
+                  "children": [
+                    {
+                      "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-what-did-alexnet-use-6",
+                      "label": "What did AlexNet use? (6)",
+                      "definition": "- ReLU\n- Local Response Normalisation\n- Overlapping pooling\n- Multiple GPU Training\n- Dropout\n- Data Augmentation",
+                      "flashcard": true,
+                      "children": [
+                        {
+                          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-what-did-alexnet-use-6-dropout",
+                          "label": "Dropout",
+                          "definition": "Randmoly discard neurons and their associated incoming and outgoing connections. Used to **prevent overfitting**.\n\nWork as ensembles of slightly different networks to reduce overfitting, only apply at training stage:\n\n![pasted image](/images/ccde9e3800e45a5d.png)\n",
+                          "flashcard": true,
+                          "children": []
+                        },
+                        {
+                          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-what-did-alexnet-use-6-data-augmentation",
+                          "label": "Data Augmentation",
+                          "definition": "Increase the variation of visual patterns in the training set.\n\n- Random cropping and resizing\n- Horizontal or vertical flipping\n- Rotation, translation, and scaling\n- Brightness, contrast, and colour adjustments\n -Adding noise or blur\n- Random erasing, where part of the image is covered\n- MixUp or CutMix, which combine two training images and their labels\n\n*In AlexNet image regions are randomly cropped with shift; their horizontal reflections are also included.*\n\n",
+                          "flashcard": true,
+                          "children": []
+                        },
+                        {
+                          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-what-did-alexnet-use-6-data-preprocessing-in-alexnet",
+                          "label": "Data Preprocessing in AlexNet",
+                          "definition": "Normalise data by subtracting the mean from the training set:\n\n$$\nx_{\\text{centred}} = x-\\mu_{\\text{train}}\n$$\n\nPositive values are above the training mean and negative values are below it. This removes the common intensity offset and can make optimisation easy. The same training mean is used for validation and test images so the model receives inputs on the same scale.",
+                          "flashcard": true,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-adapting-alexnet",
+                      "label": "Adapting Alexnet",
+                      "definition": "",
+                      "flashcard": false,
+                      "children": [
+                        {
+                          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-adapting-alexnet-feature-extractor-addition-fo-alexnet",
+                          "label": "Feature extractor addition fo Alexnet",
+                          "definition": "Freeze all pretrained layers and train only the new classifier. AlexNet turns each image into a feature vector and the new classifier learns how to use thos features.",
+                          "flashcard": true,
+                          "children": []
+                        },
+                        {
+                          "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-alexnet-adapting-alexnet-fine-tune-alexnet",
+                          "label": "Fine tune AlexNet",
+                          "definition": "Start with the pretrained weights and train the entire network end to end. This lets every layer adapt to your dataset.\n\n**Partial fine-tuning**. Freeze the early layers and train the later layers plus the new classifier. This keeps general features such as edges and textures while adapting higher-level features to your task.",
+                          "flashcard": true,
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-vgg16-visual-geometry-group",
+                  "label": "VGG16 (Visual Geometry Group)",
+                  "definition": "VGG16 was introduced in 2014. \n\nArchitecture: It has 13 convolutional layers, arranged in five blocks, each followed by $2\\times 2$ max pooling. Three fully connected layers produce scores for 1000 classes. The 16 counts the layers with learnable weights.\n\n**Key feature**: VGG16 stacks small $3\\times3$ convolutions with ReLU between them. 2 consecutive $3\\times3$ layers see a $5\\times5$ region input, so stacking layers builds a larger receptive field adding nonlinear steps. It considers more non linearities and uses fewer parameters.\n\n![pasted image](/images/48faabe4b783a076.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-googlenet",
+                  "label": "GoogLeNet",
+                  "definition": "GoogLeNet, also known as Inception v1, was introduced in 2014 by Christian Szegedy and colleagues at Google. It won the 2014 ImageNet classification challenge, and the paper appeared at CVPR in 2015. Original paper\n\nArchitecture. It has 22 layers with learnable weights, built around nine Inception modules. Global average pooling summarises the final feature maps before classification.\n\nKey feature. An Inception module applies $(1\\times1)$, $(3\\times3)$, and $(5\\times5)$ convolutions and max pooling in parallel, then concatenates their outputs. This captures patterns at different scales. The module also uses $(1\\times1)$ convolutions to reduce the number of channels before the larger filters, saving computation. Also, it uses **global average pooling** to replace FC layers at the end, which reduces the number of model parameters significantly.\n\n![pasted image](/images/a57d1ed13b077cf1.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-inception-v3",
+                  "label": "Inception v3",
+                  "definition": "It was introduced in 2015.\n\n**Architecture**: 42 layer CNN that takes $299\\times299$ image. It stacks inception modules, reduces the spatial size between groups of modules, and uses global average pooling before classification.\n\n**Key feature**: It makes incpetion blocks more efficient through factorised convolutions. For example $5\\times5$ convolution can be replaced by 2 $3\\times3$ convolutions and a $7\\times7$ convolution by $1\\times7$ followed by $7\\times 1$. This preserves the receptive field while reducing computation.\n\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-resnet",
+                  "label": "ResNET",
+                  "definition": "Introduces skipping connections and makes it possible to train much deeper networks by learning of residuals.\n\nIntroduced in 2015.\n\nIts architecture consists of residual blocks. ResNet18 and ResNet34 use 2 $3\\times3$ convolutions per block. Deeper variants such as ResNet50 use bottleneck blocks with $1\\times1, 3\\times3$, and $1\\times1$ convolutions.\n\n**Key feature**: A skip connection adds the block input $\\mathbf{x}$ to the transformation $F(\\mathbf{x})$:\n\n$$\n\\mathbf{y} = \\mathbf{x} + F(\\mathbf{x}) \n$$\n\nThe block learns what to change about its input. The shortcut also gives gradients a direct path during backpropagation, making every deep networks easier to train.\n\n![pasted image](/images/186bd3e84e50beb8.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-3d-cnn-models",
+                  "label": "3D CNN Models",
+                  "definition": "",
+                  "flashcard": false,
+                  "children": [
+                    {
+                      "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-3d-cnn-models-2-5d-cnn",
+                      "label": "2.5D CNN",
+                      "definition": "Its an approach for processing 3D medical scans with 2D convolutions. An early example appeared in 2014.\n\n**Architecture**: A common design stacjs neighbouring slices as input channels. For example, a 2D CNN takes MRI slices $z-1$, $z$, $z+1$ and predicts a segmentation mask for the centre slice $z$.\n\n**Key feature**: The network sees context across slices while its filters slide in 2 dimensions. This helps it recognise strucures that continue into neighbouring slices.",
+                      "flashcard": true,
+                      "children": []
+                    },
+                    {
+                      "id": "elec5622-week-11-deep-learning-models-for-medical-image-classification-cnn-typical-model-consists-of-3-popular-cnn-models-3d-cnn-models-3d-cnn",
+                      "label": "3D CNN",
+                      "definition": "Processes volumetric data such as a CT or MRI. Introduced in 2016.\n\n**Architecture**: The input is a volume. Therefore its filter is $3\\times3\\times3$, which slides along all 3 axis, using neighbourhood of 27 voxels at each position to build a 3D feature map.\n\n**Key feature**: A 3D CNN learns how structures extend within and across slices. In a 2.5D CNN, neighbouring slices serve as input channels. In a 3D CNN, the filter itself moves through the slice direction.\n\n![pasted image](/images/7f7ab0907d8ffe7d.png)\n",
+                      "flashcard": true,
                       "children": []
                     }
                   ]
@@ -1567,6 +1937,175 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation",
+      "label": "Week 12 - Deep Learning models for medical image segmentation",
+      "definition": "",
+      "flashcard": true,
+      "color": "#e76f51",
+      "children": [
+        {
+          "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-what-is-segmentation",
+          "label": "What is segmentation?",
+          "definition": "Assign a label to each pixel/voxel scan. For example, amodel can label each voxel in an MRI as tumor or background. The resulting mask shows the tumour's location, shape and extent.\n\n- Delineates regions of interest (ROI)\n- Classifies pixels into ROIs and background\n\n![pasted image](/images/95df315b86b80718.png)\n",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-loss-function-in-segmentation",
+          "label": "Loss function in segmentation",
+          "definition": "",
+          "flashcard": false,
+          "children": [
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-loss-function-in-segmentation-cross-entropy-loss-in-segmentation",
+              "label": "Cross entropy loss in segmentation",
+              "definition": "## Binary Cross-Entropy Loss\n\nIn binary medical image segmentation, **cross-entropy measures how much probability the model assigns to the correct label at each pixel**. For example, $p=1$ means the ground-truth mask marks that pixel as tumour, and $p=0$ means background. The model outputs $\\hat p$, its estimated probability that the pixel is tumour.\n\n$$\n\\mathrm{CE}(p,\\hat p)\n=-\\big[p\\log(\\hat p)+(1-p)\\log(1-\\hat p)\\big].\n$$\n\nBecause the ground-truth label is either $0$ or $1$, only one term contributes:\n\n- **Tumour pixel** ($p=1$). The loss is $-\\log(\\hat p)$.\n- **Background pixel** ($p=0$). The loss is $-\\log(1-\\hat p)$.\n\nFor a tumour pixel, predicting $\\hat p=0.9$ gives a small loss of $0.105$. Predicting $\\hat p=0.1$ gives a much larger loss of $2.303$. **Confidently wrong predictions cost more.**\n\nDuring training, the network typically **averages this loss over all pixels or voxels** and uses backpropagation to update its weights.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-loss-function-in-segmentation-weighted-cross-entropy-loss",
+              "label": "Weighted Cross-entropy Loss",
+              "definition": "## Weighted Cross-Entropy Loss\n\n**Weighted cross-entropy gives tumour pixels more influence during training** when they are outnumbered by background pixels. With ordinary cross-entropy, the many background pixels can dominate the average loss, even when the model misses much of the tumour.\n\n$$\n\\mathrm{WCE}(p,\\hat p)\n=-\\big[\\beta p\\log(\\hat p)+(1-p)\\log(1-\\hat p)\\big].\n$$\n\n- **Tumour pixel** ($p=1$). The loss is $-\\beta\\log(\\hat p)$, so $\\beta>1$ makes underpredicting tumour more costly.\n- **Background pixel** ($p=0$). The loss stays $-\\log(1-\\hat p)$.\n\nFor example, if an image has **10 tumour pixels and 990 background pixels**, setting $\\beta=99$ gives both classes the same total weight: $10\\times99=990\\times1$. The pixel counts stay the same. $\\beta$ changes how much each pixel contributes to the loss. With $\\beta=1$, you recover ordinary cross-entropy.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-loss-function-in-segmentation-dice-loss-mask-notation",
+              "label": "Dice Loss - Mask notation",
+              "definition": "## Dice Loss, mask notation\n\nThe slide writes Dice in terms of two sets of pixels:\n\n- $A$ is the set of tumour pixels in the **ground-truth mask**.\n- $B$ is the set of tumour pixels in the **predicted mask**.\n- $|A\\cap B|$ counts the pixels that both masks label as tumour.\n\n$$\n\\mathrm{Dice}(A,B)=\\frac{2|A\\cap B|}{|A|+|B|}.\n$$\n\nUsing the previous example, $|A|=10$, $|B|=8$, and $|A\\cap B|=6$. The Dice score is $12/18=0.667$, or $66.7\\%$. **Use the decimal score when calculating the loss**:\n\n$$\n\\mathcal L_{\\mathrm{Dice}}=1-0.667\\approx0.333.\n$$\n\nThis is the **hard-mask** version of Dice. During training, **soft Dice** uses the predicted probabilities before thresholding so the loss can be differentiated.\n\nDice helps with **class imbalance** because correctly labelled background pixels are outside both sets. A large background therefore cannot hide a poor tumour overlap.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-loss-function-in-segmentation-dice-loss-soft-dice-loss",
+              "label": "Dice Loss - Soft Dice Loss",
+              "definition": "## Soft Dice Loss\n\n**Soft Dice uses the predicted probabilities directly.** For example, if a pixel belongs to the tumour and the model predicts $0.89$, that pixel contributes $0.89$ to the overlap.\n\nLet $p_i$ be the ground-truth label ($0$ or $1$) and $\\hat p_i$ the predicted tumour probability. Multiply them pixel by pixel and add the results:\n\n$$\n\\text{Soft overlap}=\\sum_i p_i\\hat p_i.\n$$\n\nWhere $p_i=1$, the product keeps the predicted probability. Where $p_i=0$, the product is zero.\n\nThe bottom two rows are tumour pixels, so their predicted probabilities add up to $7.41$. The ground-truth mask has $8$ tumour pixels, and all predicted probabilities add up to $7.82$. Using the simple-sum version:\n\n$$\n\\mathrm{Soft\\ Dice}\n=\\frac{2\\sum_i p_i\\hat p_i}{\\sum_i p_i+\\sum_i\\hat p_i}\n=\\frac{2(7.41)}{8+7.82}\\approx0.937.\n$$\n\nSo **Soft Dice loss is $1-0.937\\approx0.063$**. Predicted tumour probabilities on background pixels increase the denominator without adding any overlap.\n\nThe **squared-sum variant** uses $\\sum_i p_i^2+\\sum_i\\hat p_i^2$ in the denominator. Both versions keep the predicted probabilities continuous, allowing gradients to flow during training.\n\n![pasted image](/images/a84023c1f5a7b052.png)\n",
+              "flashcard": true,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation",
+          "label": "CNNs for segmentation",
+          "definition": "## CNNs for Medical Image Segmentation\n\nA segmentation CNN predicts **one label per pixel or voxel**. For example, it can take a $256\\times256$ MRI slice and produce a $256\\times256$ map of tumour probabilities.\n\nA common design, such as **U-Net**, works in three steps:\n\n1. **Encoder.** Convolutions learn features such as edges and textures. Downsampling lets deeper layers use a larger region of the image to interpret each feature.\n2. **Decoder.** Upsampling brings the feature maps back to the original resolution. Skip connections bring in finer spatial details from the encoder to help locate boundaries.\n3. **Pixel-wise prediction.** A final $1\\times1$ convolution turns the features at each pixel into class scores. For binary segmentation, a **sigmoid** converts each score into a tumour probability. For multiple mutually exclusive classes, **softmax** gives a probability for each class.\n\nDuring training, the probability map is compared with the ground-truth mask using a loss such as **cross-entropy** or **soft Dice**. At inference, the probabilities can be converted into a mask by thresholding or choosing the highest-probability class at each location.",
+          "flashcard": true,
+          "children": [
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-patch-based-method",
+              "label": "Patch Based Method",
+              "definition": "Predict the class of an image patch and assign the label to the centroid pixel-\n\n**Main issues**:\n\n1. Very inefficient on test data: needs to go through every pixel for prediciton.\n2. Not reusing shared features between overlapping patches.",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-fully-convolutional-neural-network-fcn",
+              "label": "Fully Convolutional Neural Network (FCN)",
+              "definition": "![pasted image](/images/f7306c6a652fc046.png)\n\nConvolutions at original image resolution are very expensive. We can convolute and Deconvolute to reduce the parameters:\n\n![pasted image](/images/0cf74835cfd39c7d.png)\n\n",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-fully-convolutional-neural-network-fcn-deconvolution",
+                  "label": "Deconvolution",
+                  "definition": "Upsampling followed by specifically designed. **Transposed convolution**:\n\n![pasted image](/images/2e67c9ea4f535862.png)\n",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-fully-convolutional-neural-network-fcn-dilated-convolution",
+                  "label": "Dilated Convolution",
+                  "definition": "Obtains a wide field of view while preserving spatial details. **Dilation Rate**:\n\n![pasted image](/images/a14e18244e1a9c50.png)",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-deepmedic",
+              "label": "DeepMedic",
+              "definition": "Is a multiscale 3D CNN for segmentation developed in 2016/2017.\n\n**Architecture**: The 11 layer network has 2 parallel 3D CNN pathways. One processes a patch at the scan's original resolution. The other processes a downsampled patch covering a wider region. Their features are combined to predict a label for each voxel in the output patch.\n\n**Key feature**: Combines fine local detail with wider anatomical context, helps the model identify lesions and locate their boundaries.\n\n\n\n![pasted image](/images/52838e2d374fc6d2.png)",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-u-net",
+              "label": "U-net",
+              "definition": "Introduced in 2015.\n\n**Architecture**: The encoder $3\\times 3$ convolutions and max pooling to capture context at progressively lower resolutions. The devoder upsamples the feature maps to localise structures. A final $1\\times 1$ convolution produces a class score for each output pixel.\n\n**Key feature**: Skip connections concatenate encoder features with decoder features at corresponding resolutions. This gives a decoder both broader context to indetify what a structure is and fine spatial detail to locate where its boundaries are.\n\n![pasted image](/images/d8b5a17d02b79c2e.png)",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-u-net-u-net-loss-function",
+                  "label": "U-net loss function",
+                  "definition": "The loss function used in U-net is a weighted pixel-wise cross entropy loss equations:\n\n$$\nE = \\sum_{\\mathbf{x}\\in\\Omega}w(\\mathbf{x})\\log(p_{\\ell_{\\mathbf{x}}}(\\mathbf{x})) \\text{ Pich probability of the true class}\n$$\n\n$$\np_{k}(\\mathbf{x})=\\exp\\left(\\frac{a_k(\\mathbf{x})}{\\sum_{k'=1}^{K}\\exp(a_{k'}(\\mathbf{x}))}\\right) \\text{ converting class scores to probabilites}\n$$\n\nwhere:\n\n1. $a_{k}(\\mathbf{x})$: is the activation in feature channel $k$ at a pixel $\\mathbf{x}$\n2. $\\ell:\\{1,...,K\\}$: is the true label at each pixel\n3. $w$ is the weight map to give some pixels more importance in the trianing.",
+                  "flashcard": true,
+                  "children": []
+                },
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-u-net-advantages-of-u-net-4",
+                  "label": "Advantages of U-net (4)",
+                  "definition": "- High precesion image segmentation outperforming CNN-based using sliding window.\n- Fast to compute.\n- No FC layers: allow input images with different sizes.\n- A hierarchy of features: the location infromation from the downsampling path and contextual information in the upsampling (expansion) path; linked by the skip connections.",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-3d-u-net",
+              "label": "3D U-net",
+              "definition": "3D U-Net was introduced in 2016.\n\n**Architecture**: It keeps Unet encoder, decoder and skip connections, but uses $3\\times3\\times3$ convolutions, 3D pooling and 3D upsampling. A final $1\\times1\\times1$ convolution produces class scores for each output voxel. The filters capture context both within and across slices.\n\n**Key feature**. The original model could learn from partially labelled volumes. Unlabelled voxels recevied 0 weight in the cross entropy loss, so only annotated voxels contributed during training. At inference the model could produce a dense 3D segmentation.\n\n![pasted image](/images/f5e5c5b80881541c.png)\n",
+              "flashcard": true,
+              "children": []
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-v-net",
+              "label": "V-Net",
+              "definition": "Introduced in 2016.\n\n**Architecture**: A 3D encoder-decoder with **residual blocks** and skip connections. It uses $5\\times5\\times5$ convolutions to extract features, stride-2 convolutions to downsample and transposed convolutions to restore spatial resolution.\n\n**Key feature**. V_Net introduced a soft dice objective for training. It optimises overlap between the predicted and true foreground masks, which helps when the structure occupies only a small fraction of the volume.\n\n![pasted image](/images/539de4e01bd28cfe.png)",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-v-net-v-net-loss-function",
+                  "label": "V-Net loss function",
+                  "definition": "V-Net uses a dice loss function:\n\n$$\nD = \\frac{2\\sum_{i}^np_ig_i}{\\sum_i^Np_i^2+\\sum_{i}^Ng_i^2}\n$$\n\nwhere $p_i$ is the predicted binary segmentation volume and $g_i$ is the ground truth binary segmentation volume:\n\n$$\n\\frac{\\partial D}{\\partial p_j}=2\\left[ \\frac{g_j\\left( \\sum_i^Np_i^2+\\sum_i^Ng^2_i \\right)-2p_j\\left(\\sum_i^Np_ig_i\\right)}{\\left( \\sum_i^Np_i^2+\\sum_i^Ng_i^2 \\right)} \\right]\n$$\n\nUse Dice los, it does not need to assign weights to pixels to balance between foreground and background.\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-multiresunet",
+              "label": "MultiResUnet",
+              "definition": "It uses inception like blocks that incorporate $3\\times3$, $5\\times5$, $7\\times7$ convolution operations in parallel to extract features at different scales, and concatenate the generated feature maps. Introduction of additional convolutional layers in parallel increases the mempory requirement:\n\n![pasted image](/images/d9db19202c850ecc.png)\n\nFactorise the bigger, more demanding $5\\times5$ and $7\\times7$ convolutional layers into a sequence of smaller $3\\times3$ convolutional blocks.\n\nThe outputs of the 2nd and 3rd $3\\times3$ convolutional blocks effectively approximate the $5\\times5$ and $7\\times7$ convolution operations respectively:\n\n![pasted image](/images/d7849008bb50eb89.png)\n\n![pasted image](/images/587e5dc8a739ea96.png)\n",
+              "flashcard": true,
+              "children": [
+                {
+                  "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cnns-for-segmentation-multiresunet-residual-path-of-multiresunet",
+                  "label": "Residual path of MultiResUnet",
+                  "definition": "Semantic gap between the corresponding levels of encode-decoder. Introduce additional nonlinear transformation on the features propagating from the encoder before they are concatenated with those from the decoder.\n\n![pasted image](/images/061616a546a7660c.png)\n",
+                  "flashcard": true,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-cascading-of-networks",
+          "label": "Cascading of networks",
+          "definition": "Its a combination of networks where its input and output connections might be in parallel or in series. It uses 2 or more models in a sequence. As an example, in CT segmentation, the first CNN locates the liver and produces a rough mask. The second CNN uses that masl to focus on the liver region and segment tumours within it. This lets the 1st stage handle localisation and the second focus on finer detail.\n\n![pasted image](/images/e8f5a9d583a1a31f.png)\n\n![pasted image](/images/98c3b89288dbce16.png)\n\n![pasted image](/images/eccbbb3d7e402f03.png)\n\n![pasted image](/images/ca43c91fd80567a6.png)\n\n![pasted image](/images/c2e5ad4189317ea8.png)\n",
+          "flashcard": true,
+          "children": []
+        },
+        {
+          "id": "elec5622-week-12-deep-learning-models-for-medical-image-segmentation-attention",
+          "label": "Attention",
+          "definition": "Channel attention assigns one weight to each CNN feature map based on the current image. For example, if a feature map responds to a texture that helps identify a lesion, the network can give that channel more influence.\n\nA **Squeeze and Excitation (SE) Block** does this in 3 steps:\n\n1. *Squeeze*: Use global average pooling to reduce each feature map to one number that summarises its response across the image.\n2. *Excite*: Feed all those averages into a small neural network. A sigmoid produces one weight between $0$ and $1$ per channel.\n3. *Scale*: multiply every position in channel $c$ by its weight $s_c$:\n\n$$\n\\vec{F}_c(i,j) = s_cF_c(i,j) \n$$\n\nA weight near \\(1\\) preserves the feature map, while a weight near \\(0\\) suppresses it. The weights are computed for each image, so the same channel can matter more for one scan than another.\n\n![pasted image](/images/49a1385e61fbc395.png)\n\n![pasted image](/images/d6c052f51c26d79a.png)\n\n\n\n",
+          "flashcard": true,
+          "children": []
         }
       ]
     }

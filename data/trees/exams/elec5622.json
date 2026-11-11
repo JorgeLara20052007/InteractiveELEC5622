@@ -1,0 +1,113 @@
+{
+  "sections": [
+    {
+      "label": "Week 1",
+      "questions": [
+        {
+          "question": "Q1: An imaging study measures the thickness of an organ wall, regional blood flow, and changes in tissue chemistry. How should these measurements be classified? (Type of question: Multiple Choice)\n\n- A. Wall thickness and blood flow are anatomical. Changes in tissue chemistry are functional.\n- B. Wall thickness is anatomical. Blood flow and changes in tissue chemistry are functional.\n- C. Blood flow is anatomical. Wall thickness and changes in tissue chemistry are functional.\n- D. All three measurements are anatomical.",
+          "solution": "**Q1. B** — Wall thickness describes anatomy. Regional blood flow and changes in tissue chemistry describe physiological activity and are functional measurements."
+        },
+        {
+          "question": "Q2: Why can bone and surrounding soft tissue be distinguished on a plain X-ray image? (Type of question: Multiple Choice)\n\n- A. Bone and soft tissue emit different amounts of radiation after absorbing the same number of X-rays.\n- B. Bone and soft tissue return different echoes to a transducer.\n- C. Bone and soft tissue recover their magnetisation at different rates after excitation.\n- D. Bone and soft tissue attenuate the incident X-ray beam by different amounts.",
+          "solution": "**Q2. D** — Bone generally attenuates X-rays more strongly than surrounding soft tissue. Fewer X-rays reach the detector behind bone, so it appears brighter on a standard radiograph."
+        },
+        {
+          "question": "Q3: On a plain chest radiograph, several structures overlap. Why can computed tomography (CT) help separate them? (Type of question: Multiple Choice)\n\n- A. CT combines X-ray measurements from different angles to reconstruct cross-sectional slices that can form a 3D volume.\n- B. CT increases X-ray exposure so that a single projection can reveal the depth of each structure.\n- C. CT combines X-ray measurements from different angles into a single projection that preserves depth.\n- D. CT uses detector pixels small enough to determine the depth of each structure from one projection.",
+          "solution": "**Q3. A** — A plain radiograph projects structures at different depths onto the same image. CT uses measurements from multiple angles to reconstruct slices, which can also be assembled into a 3D volume.\n"
+        },
+        {
+          "question": "Q4: Which combination is used to acquire conventional T1- or T2-weighted anatomical MRI? (Type of question: Multiple Choice)\n\n- A. An external X-ray source and a detector that measures transmitted radiation\n- B. A handheld transducer that sends sound pulses and receives echoes\n- C. A strong magnetic field and radiofrequency pulses\n- D. An injected radiotracer and detectors that record emitted gamma photons",
+          "solution": "**Q4. C** — Conventional anatomical MRI uses a strong magnetic field and radiofrequency pulses. T1 weighting emphasises differences in longitudinal magnetisation recovery, and T2 weighting emphasises differences in transverse magnetisation decay."
+        },
+        {
+          "question": "Q5: A researcher wants to observe a superficial tendon moving as a participant flexes their wrist. Which method and signal best suit real-time imaging with a handheld transducer? (Type of question: Multiple Choice)\n\n- A. Computed tomography using transmitted X-rays\n- B. Ultrasound using echoes from high-frequency sound pulses\n- C. T2-weighted MRI using signals from hydrogen nuclei\n- D. Positron emission tomography using radiation emitted after tracer injection",
+          "solution": "**Q5. B** — An ultrasound transducer sends high-frequency sound pulses and receives echoes. Rapid acquisition lets the researcher observe tendon movement in real time."
+        },
+        {
+          "question": "Q6: A lab needs a cross-sectional image of the layers of a superficial tissue sample using light returned from the tissue. Which imaging technique best matches this goal? (Type of question: Multiple Choice)\n\n- A. Optical fluorescence imaging\n- B. Ultrasound\n- C. Computed tomography\n- D. Optical coherence tomography (OCT)",
+          "solution": "**Q6. D** — Optical coherence tomography uses light backscattered from different depths to resolve tissue layers in cross-section."
+        },
+        {
+          "question": "Q7: Which description matches single-photon emission computed tomography (SPECT)? (Type of question: Multiple Choice)\n\n- A. It reconstructs a volume from X-rays transmitted through the body from an external source.\n- B. It maps changes in blood flow using an MRI scanner.\n- C. It reconstructs a 3D image of an injected radiotracer's distribution by detecting individual emitted gamma photons.\n- D. It maps a fluorescent indicator by detecting the light it emits.",
+          "solution": "**Q7. C** — SPECT detects individual gamma photons emitted by the injected radiotracer. Measurements from multiple angles allow reconstruction of the tracer distribution in 3D."
+        },
+        {
+          "question": "Q8: A team wants to estimate the orientation of white-matter pathways from the directional motion of water molecules in the brain. Which method should the team use? (Type of question: Multiple Choice)\n\n- A. Diffusion tensor imaging (DTI)\n- B. Functional MRI (fMRI)\n- C. Conventional T1-weighted MRI\n- D. Single-photon emission computed tomography (SPECT)",
+          "solution": "**Q8. A** — DTI measures how water diffusion varies with direction. In white matter, the direction of greatest diffusion can be used to estimate the local fibre orientation."
+        },
+        {
+          "question": "Q9: Which option correctly describes the divisions made by the sagittal, coronal, and axial (transverse) planes? (Type of question: Multiple Choice)\n\n- A. Sagittal divides anterior from posterior, coronal divides left from right, and axial divides superior from inferior.\n- B. Sagittal divides left from right, coronal divides superior from inferior, and axial divides anterior from posterior.\n- C. Sagittal divides superior from inferior, coronal divides anterior from posterior, and axial divides left from right.\n- D. Sagittal divides left from right, coronal divides anterior from posterior, and axial divides superior from inferior.",
+          "solution": "**Q9. D** — Sagittal separates left and right, coronal separates anterior and posterior, and axial (transverse) separates superior and inferior."
+        },
+        {
+          "question": "Q10: An imaging classifier gives a negative result. Which metric gives the proportion of negative results that are truly negative? (Type of question: Multiple Choice)\n\n- A. Specificity\n- B. Negative predictive value\n- C. Sensitivity\n- D. Positive predictive value",
+          "solution": "**Q10. B** — Negative predictive value is `TN / (TN + FN)`, the fraction of negative predictions that are truly negative. Specificity is `TN / (TN + FP)`, the fraction of truly negative cases predicted negative."
+        },
+        {
+          "question": "Q11: Identify the primary purpose of medical imaging in each scenario. Justify each choice by explaining how or when the image is used. (Type of question: Extended response)\n\n- (a) A clinician examines an image to determine whether a patient's symptoms are caused by a fracture.\n- (b) A team collects images from volunteers to study how brain structure changes with age.\n- (c) A surgeon reviews a patient's images before an operation to decide on an approach.\n- (d) A clinician uses live images to adjust the position of an ablation probe during treatment.",
+          "solution": "**Q11. Purposes of medical imaging**\n\n- **(a) Diagnosis.** The clinician uses the image to determine whether a fracture explains the symptoms.\n- **(b) Research.** The team uses images to investigate age-related changes in brain structure across volunteers.\n- **(c) Preoperative surgical planning.** The surgeon uses patient-specific anatomy to choose an approach before the operation.\n- **(d) Image-guided therapy.** The clinician uses live images to adjust the probe while delivering the treatment."
+        },
+        {
+          "question": "Q12: A hospital sends a CT study from one manufacturer's scanner to another manufacturer's viewing workstation. Expand the acronym DICOM, explain how the standard helps the two systems exchange the study, and identify the network protocol suite used for the transfer. (Type of question: Extended response)",
+          "solution": "**Q12. DICOM**\n\nDICOM stands for **Digital Imaging and Communications in Medicine**. It defines how imaging systems represent and exchange medical images and associated information, such as image orientation. A compatible workstation can receive and interpret a study from another manufacturer's scanner using these common rules. The network protocol suite is **TCP/IP**."
+        },
+        {
+          "question": "Q13: A study tracks the size of a lesion and its regional metabolic activity before and after treatment. For each measurement, state whether it is anatomical or functional, choose a suitable imaging modality, and explain what information its images provide. Explain the role of a radiotracer in measuring metabolic activity. (Type of question: Extended response)",
+          "solution": "**Q13. Lesion size and metabolic activity**\n\n- **Lesion size is anatomical.** CT can show the lesion boundary on reconstructed slices, allowing dimensions or volume to be compared before and after treatment. MRI is also a suitable choice when it shows the boundary clearly.\n- **Regional metabolic activity is functional.** PET maps the distribution of an injected radiotracer selected to reflect the metabolic process of interest. The tracer's uptake in the lesion provides an indirect measure of that activity, which can be compared between scans."
+        },
+        {
+          "question": "Q14: One research team wants to map which areas of the brain respond during a finger-tapping task. Another team uses a fluorescent indicator to track a cellular process in a tissue sample. Choose a suitable imaging method for each team and explain what signal it measures or uses as a proxy for activity. (Type of question: Extended response)",
+          "solution": "**Q14. Mapping brain and cellular activity**\n\n- **Brain response during finger tapping.** Task fMRI typically measures blood oxygenation changes associated with the local blood-flow response. Comparing the signal during tapping and rest identifies regions whose responses are associated with the task.\n- **Cellular process in the tissue sample.** Optical fluorescence imaging excites the indicator with light and records the light it emits. Changes in the emitted signal indicate where or when the process occurs."
+        },
+        {
+          "question": "Q15: One screening service prioritises reducing missed cases among people who truly have a condition. Another service prioritises reducing unnecessary referrals among people who truly do not have the condition. Which of sensitivity and specificity should each service prioritise? Use the relevant false-negative or false-positive counts to justify your choices. (Type of question: Extended response)",
+          "solution": "**Q15. Choosing a performance metric**\n\n- **First service — sensitivity.** Among people who truly have the condition, the missed-case rate is `FN / (TP + FN)`. Sensitivity is `TP / (TP + FN)`, so higher sensitivity means a smaller fraction of true cases is missed.\n- **Second service — specificity.** Among people who truly do not have the condition, the false-positive rate is `FP / (TN + FP)`. Specificity is `TN / (TN + FP)`, so higher specificity means a smaller fraction of condition-free people is referred."
+        },
+        {
+          "question": "Q16: An imaging classifier is evaluated on 240 scans. A reference standard identifies 70 scans as positive. The classifier flags 74 scans as positive, including 56 of the reference-positive scans. (Type of question: Calculation)\n\n- (a) Construct a labelled 2 × 2 confusion matrix and identify TP, FP, FN, and TN.\n- (b) Calculate sensitivity and specificity.\n- (c) Calculate positive predictive value (precision) and negative predictive value. Round all percentages in parts (b) and (c) to one decimal place.\n- (d) Explain why the denominators for sensitivity and positive predictive value differ in this example.",
+          "solution": "**Q16. Confusion matrix and performance**\n\n**(a)** Of the 70 reference-positive scans, 56 are true positives, so `FN = 70 − 56 = 14`. The classifier flags 74 scans, so `FP = 74 − 56 = 18`. There are `240 − 70 = 170` reference-negative scans, so `TN = 170 − 18 = 152`.\n\n| Classifier result | Reference positive | Reference negative | Total |\n|---|---:|---:|---:|\n| Positive | 56 (TP) | 18 (FP) | 74 |\n| Negative | 14 (FN) | 152 (TN) | 166 |\n| Total | 70 | 170 | 240 |\n\n**(b)** Sensitivity = `TP / (TP + FN) = 56 / 70` = **80.0%**. Specificity = `TN / (TN + FP) = 152 / 170` = **89.4%**.\n\n**(c)** PPV = `TP / (TP + FP) = 56 / 74` = **75.7%**. NPV = `TN / (TN + FN) = 152 / 166` = **91.6%**.\n\n**(d)** Sensitivity starts with the **70 reference-positive scans** and asks how many were flagged. PPV starts with the **74 flagged scans** and asks how many were reference-positive. Both count the same 56 true positives in the numerator."
+        },
+        {
+          "question": "Q17: The same classifier has a sensitivity of 90% and a specificity of 95% at two sites. Each site evaluates 1,000 people. At Site A, 200 people truly have the condition. At Site B, 40 people truly have it. (Type of question: Calculation)\n\n- (a) Calculate TP, FP, FN, and TN for each site.\n- (b) Calculate the positive and negative predictive values at each site. Express your answers as percentages rounded to one decimal place.\n- (c) Explain why the predictive values differ between the sites even though sensitivity and specificity are the same.",
+          "solution": "**Q17. Predictive values at two sites**\n\n**(a)** The classifier correctly flags 90% of people with the condition and correctly clears 95% of people without it. Apply those rates to the respective groups at each site.\n\n| Count | Site A | Site B |\n|---|---:|---:|\n| Truly positive | 200 | 40 |\n| Truly negative | 800 | 960 |\n| TP | 0.90 × 200 = 180 | 0.90 × 40 = 36 |\n| FN | 200 − 180 = 20 | 40 − 36 = 4 |\n| TN | 0.95 × 800 = 760 | 0.95 × 960 = 912 |\n| FP | 800 − 760 = 40 | 960 − 912 = 48 |\n\n**(b)** Calculate PPV as `TP / (TP + FP)` and NPV as `TN / (TN + FN)`.\n\n| Metric | Site A | Site B |\n|---|---:|---:|\n| PPV | 180 / 220 = **81.8%** | 36 / 84 = **42.9%** |\n| NPV | 760 / 780 = **97.4%** | 912 / 916 = **99.6%** |\n\n**(c)** Site B has lower prevalence, so it has fewer true positives and more people without the condition to whom the 5% false-positive rate applies. False positives make up a larger share of positive results, lowering PPV. Site B also has fewer false negatives and more true negatives, so negative results are more likely to be correct and NPV rises."
+        }
+      ]
+    },
+    {
+      "label": "Week 2",
+      "questions": []
+    },
+    {
+      "label": "Week 3",
+      "questions": []
+    },
+    {
+      "label": "Week 4",
+      "questions": []
+    },
+    {
+      "label": "Week 5",
+      "questions": []
+    },
+    {
+      "label": "Week 6",
+      "questions": []
+    },
+    {
+      "label": "Week 7",
+      "questions": []
+    },
+    {
+      "label": "Week 10",
+      "questions": []
+    },
+    {
+      "label": "Week 11",
+      "questions": []
+    },
+    {
+      "label": "Week 12",
+      "questions": []
+    }
+  ]
+}
