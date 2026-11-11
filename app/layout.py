@@ -117,6 +117,13 @@ def build_layout() -> html.Div:
                                 title="Flashcards: test yourself on one week",
                                 style={"pointerEvents": "auto"},
                             ),
+                            html.A(
+                                html.Button("📝 Exam", style=_tool),
+                                href="/exam/",
+                                target="_blank",  # opens in its own window/tab
+                                title="Practice exam questions with solutions, by week",
+                                style={"pointerEvents": "auto"},
+                            ),
                             # Handled in assets/pdf.js: opens PDFs from this computer in floating windows.
                             html.Button(
                                 "📄 PDF",

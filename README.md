@@ -17,6 +17,8 @@ pictures), and every node can be studied as a flashcard.
 - Undo / redo every change (Ctrl+Z / Ctrl+Y), even after a restart.
 - **Study mode:** shuffled flashcards per week, self-marking, a score at the end and a retry
   of the ones you missed. Choose which nodes are flashcards.
+- **Practice exam questions:** sections per week with questions and hidden solutions, written
+  in Markdown.
 - Floating, resizable PDF windows to read your slides while taking notes.
 - Several trees, one per course.
 

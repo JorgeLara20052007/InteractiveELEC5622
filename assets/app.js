@@ -123,7 +123,7 @@
   // the Markdown for it at the cursor.
   document.addEventListener('paste', async function (e) {
     const area = e.target;
-    if (!area || area.id !== 'form-definition') return;
+    if (!area || (area.id !== 'form-definition' && !area.classList.contains('paste-images'))) return;
     const items = Array.from((e.clipboardData && e.clipboardData.items) || []);
     const item = items.find((i) => i.kind === 'file' && i.type.startsWith('image/'));
     if (!item) return;

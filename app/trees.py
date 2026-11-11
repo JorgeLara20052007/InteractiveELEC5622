@@ -12,7 +12,7 @@ import sqlite3
 from contextlib import closing
 from pathlib import Path
 
-from . import storage
+from . import exam, storage
 from .tree import Node
 
 TREES_DIR = storage.TREES_DIR
@@ -25,6 +25,11 @@ def db_path(slug: str) -> Path:
 
 def seed_path(slug: str) -> Path:
     return TREES_DIR / f"{slug}.json"
+
+
+def exam_path(slug: str) -> Path:
+    """JSON snapshot of the tree's practice exam questions."""
+    return TREES_DIR / "exams" / f"{slug}.json"
 
 
 def slugify(name: str) -> str:
@@ -74,6 +79,7 @@ def init_all() -> None:
     """Make sure every tree has a database, seeding it from its JSON snapshot if needed."""
     for slug in list_slugs():
         storage.init(db_path(slug), seed_path(slug))
+        exam.init(db_path(slug), exam_path(slug))
 
 
 def create_tree(name: str) -> str:
@@ -91,6 +97,7 @@ def create_tree(name: str) -> str:
     TREES_DIR.mkdir(parents=True, exist_ok=True)
     seed_path(slug).write_text(root.model_dump_json(indent=2) + "\n", encoding="utf-8", newline="\n")
     storage.init(db_path(slug), seed_path(slug))
+    exam.init(db_path(slug), exam_path(slug))
     return slug
 
 
@@ -100,5 +107,6 @@ def export_all() -> list[str]:
     for slug in list_slugs():
         if db_path(slug).exists():
             storage.export_json(seed_path(slug), db_path(slug))
+            exam.export_json(db_path(slug), exam_path(slug))
             exported.append(slug)
     return exported

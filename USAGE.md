@@ -11,6 +11,7 @@ Start the app with `python -m app.main` and open **http://127.0.0.1:8050**.
 - **Left:** the tree. Above it is the toolbar: tree picker, **+ New tree**, **📚 Study**,
   **📄 PDF**, **↶ Undo**, **↷ Redo**, **Fit to screen**, **Collapse all**, **Expand all**
   and the search box.
+- **📝 Exam** opens the practice exam questions (see below).
 - **Right:** the side panel, showing the selected node's path, title and definition, and
   its buttons.
 - **The grey bar between them:** drag it to make the panel wider (more room to write) or
@@ -110,6 +111,23 @@ Select a node and press **🃏 Flashcard: on** in the panel to switch it to **�
 off**. That node is then skipped in study mode, and appears faded with a dotted outline in
 the tree. Press it again to include it. Only that node changes; nodes below it can still be
 cards. The top node and the weeks are never cards, so their button is greyed out.
+
+## Practice exam questions
+
+Press **📝 Exam** in the toolbar. It opens in its own tab or window with ten sections: Week 1
+to Week 7, Week 10, Week 11 and Week 12.
+
+- Click a section to open or close it (**Open all** / **Close all** do every section). Each
+  section header shows how many questions it has.
+- **+ Add question** (inside an open section) opens the editor on the right. Write the
+  **Question** and its **Solution** in Markdown, with formulas (`$...$`, `$$...$$`) and
+  pictures (paste them in with Ctrl+V), and check the live preview below. Press **Save**.
+- Each question shows its solution hidden behind **Show solution**, so you can try it first.
+- **Edit** loads a question back into the editor; **Delete** removes it after asking you.
+
+The questions belong to the tree chosen at the top (each course has its own), are saved
+immediately, and are included when you run `python -m app.export_json` (they are written to
+`data/trees/exams/<tree>.json`).
 
 ## PDF windows
 

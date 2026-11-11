@@ -175,6 +175,13 @@ Each step ends with something you can run or test. Commit after each one.
   `color` column/field, undoable, exported to JSON only when chosen. Text turns dark on light
   colours.
 
+**Step 14: Practice exam questions** (DONE)
+- `/exam/` page (third Dash app on the server, **📝 Exam** button). Sections Week 1–7, 10,
+  11, 12; open/close per section; questions and solutions in Markdown with live preview;
+  solutions behind "Show solution"; edit and delete with confirmation.
+- Stored per tree in `exam_sections` / `exam_questions` tables; exported to
+  `data/trees/exams/<slug>.json` and re-imported into an empty database.
+
 ## 5. Day-to-day content workflow (once the app works)
 
 1. Activate the venv, run `python -m app.main`, open http://127.0.0.1:8050.

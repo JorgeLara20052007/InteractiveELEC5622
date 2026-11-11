@@ -1,7 +1,10 @@
 /* Pictures inside definitions fit the side panel; click one to open it full size. */
 #definition img,
 #form-preview img,
-#study-definition img {
+#study-definition img,
+.exam-md img,
+#exam-question-preview img,
+#exam-solution-preview img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
@@ -160,4 +163,17 @@ body.pdf-dragging #cy {
 /* The edit form: everything above the preview keeps its size; the preview takes the rest. */
 #form > :not(#preview-scroll) {
   flex: 0 0 auto;
+}
+
+/* Practice exam page: tables inside questions and solutions. */
+.exam-md table,
+#exam-question-preview table,
+#exam-solution-preview table {
+  border-collapse: collapse;
+}
+.exam-md th, .exam-md td,
+#exam-question-preview th, #exam-question-preview td,
+#exam-solution-preview th, #exam-solution-preview td {
+  border: 1px solid #d0d7de;
+  padding: 4px 8px;
 }
